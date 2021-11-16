@@ -30,6 +30,8 @@ public class Post {
 	private Date postDate;
     @Column(name = "thread_id")
 	private int threadId;
+    @Column(name = "image_url")
+    private String imageUrl;
 
 	public Post(int postId, String postContent, int userId, Date postDate) {
 		super();
