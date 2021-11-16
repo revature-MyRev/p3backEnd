@@ -7,7 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table
+import org.springframework.lang.NonNull;
+
+@Table(name="`User`")
 @Entity
 public class User {
 
@@ -16,8 +18,10 @@ public class User {
 	@Column(name = "user_id")
 	private int userId;
 	private int age;
+	@NonNull
 	@Column(name = "user_name")
 	private String userName;
+	@NonNull
 	private String password;
 	private String gender;
 	private String photo;
