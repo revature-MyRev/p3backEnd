@@ -9,6 +9,6 @@ import com.revature.myrev.repository.FollowerRepository;
 public class FollowerService {
 
 	@Autowired
-	FollowerRepository repository;
+	public FollowerRepository repository;
 	
 }

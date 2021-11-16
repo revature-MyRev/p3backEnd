@@ -9,6 +9,6 @@ import com.revature.myrev.repository.UserRepository;
 public class UserService {
 	
 	@Autowired
-	UserRepository repository;
+	public UserRepository repository; // note this
 
 }
