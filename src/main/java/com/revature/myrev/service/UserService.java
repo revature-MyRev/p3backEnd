@@ -12,14 +12,4 @@ public class UserService {
 	@Autowired
 	UserRepository repository;
 
-	public User findByUserName(String userName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public User addUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

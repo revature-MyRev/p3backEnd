@@ -19,14 +19,5 @@ public class UserController {
 	
 	@Autowired
 	private UserService service;
-	
-	@GetMapping(path = "/findByUserName/{userName}")
-	public User findByUserName(@PathVariable String userName) {
-		return service.findByUserName(userName);
-	}
-	
-    @PostMapping(path = "/addUser")
-    public User addUser(@RequestBody User user) {
-    	return service.addUser(user);
-    }
+
 }
