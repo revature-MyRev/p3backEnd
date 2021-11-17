@@ -12,7 +12,7 @@ import com.revature.myrev.repository.UserRepository;
 public class UserServiceImpl implements UserService{
 
 	@Autowired
-	UserRepository userRepository;
+	public UserRepository userRepository;
 
 	@Override
 	public User findByUsername(String username) {
