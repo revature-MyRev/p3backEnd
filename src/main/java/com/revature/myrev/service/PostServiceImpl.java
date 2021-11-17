@@ -9,31 +9,37 @@ import com.revature.myrev.model.Post;
 import com.revature.myrev.repository.PostRepository;
 
 @Service
-public class PostService {
+public class PostServiceImpl implements PostService{
 
 	@Autowired
 	PostRepository repository;
 
+	@Override
 	public List<Post> findAllPosts() {
 		return repository.findAll();
 	}
 
+	@Override
 	public Optional<Post> findByPostId(int id) {
 		return repository.findById(id);
 	}
 	
+	@Override
 	public List<Post> findByUserId(int uid) {
 		return repository.findByUserId(uid);
 	}
 
+	@Override
     public Post savePost(Post post) {
     	return repository.save(post);
     }
     
+	@Override
     public Post updatePost(int id, Post post) {
     	return repository.save(post);
     }
 
+	@Override
     public void deletePost(int id) {
     	repository.deleteById(id);
     }

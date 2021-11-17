@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.myrev.model.Post;
-import com.revature.myrev.service.PostService;
+import com.revature.myrev.service.PostServiceImpl;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -23,7 +23,7 @@ import com.revature.myrev.service.PostService;
 public class PostController {
 
 	@Autowired
-	private PostService service;
+	private PostServiceImpl service;
 	
 	@GetMapping("/posts")
 	public List<Post> findAllPosts() {

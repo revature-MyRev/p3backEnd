@@ -14,7 +14,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import com.revature.myrev.MyRevApplication;
 import com.revature.myrev.model.Post;
-import com.revature.myrev.service.PostService;
+import com.revature.myrev.service.PostServiceImpl;
 
 
 @SpringBootTest
@@ -23,7 +23,7 @@ import com.revature.myrev.service.PostService;
 
 public class PostJUnitTest {
 	
-	@Autowired PostService postServ;
+	@Autowired PostServiceImpl postServ;
 	
 	@Test
 	@Order(1)
