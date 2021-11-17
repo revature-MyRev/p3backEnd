@@ -5,14 +5,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.myrev.service.UserService;
+import com.revature.myrev.service.UsersService;
 
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/users")
-public class UserController {
+public class UsersController {
 	
 	@Autowired
-	private UserService service;
+	private UsersService service;
 
 }
