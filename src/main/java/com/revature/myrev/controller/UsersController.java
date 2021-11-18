@@ -22,7 +22,7 @@ public class UsersController {
 	
 	@GetMapping(path = "/findByUserName/{userName}")
 	public Users findByUserName(@PathVariable String userName) {
-		return service.findByUsername(userName);
+		return service.findByUserName(userName);
 	}
 	
     @PostMapping(path = "/addUser")
