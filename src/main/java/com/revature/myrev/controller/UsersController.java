@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.myrev.model.Users;
 import com.revature.myrev.service.UsersService;
+import com.revature.myrev.service.UsersServiceImpl;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -18,7 +19,7 @@ import com.revature.myrev.service.UsersService;
 public class UsersController {
 	
 	@Autowired
-	private UsersService service;
+	private UsersServiceImpl service;
 	
 	@GetMapping(path = "/findByUserName/{userName}")
 	public Users findByUserName(@PathVariable String userName) {
