@@ -4,10 +4,22 @@
  */
 package com.revature.myrev.controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 /**
  * @author Dipanjali Ghosh
  *
  */
+
+@RestController
+@CrossOrigin()
 public class TokenDemoController {
+
+	@RequestMapping({ "/hello" })
+	public String hello() {
+		return "Hello World";
+	}
 
 }
