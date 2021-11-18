@@ -38,7 +38,7 @@ public class TestFollowerRepository {
 	}
 	*/
 	@Test
-	public void followerFindByIdMock() throws Exception {
+	public void followerFindByIdMock()  {
 	    FollowerRepository localMockFollowerRepository = Mockito.mock(FollowerRepository.class);
 	    JpaRepository<Follower, Integer> followerRepository = null;
 		//   FollowerRepository followerRepository = new FollowerRepository();

@@ -6,6 +6,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.revature.myrev.model.Thread;
+import com.revature.myrev.repository.ThreadRepository;
 
 
 public class TestThreadRepository {
@@ -23,4 +27,20 @@ public class TestThreadRepository {
     assertEquals(thread, order);
     Mockito.verify(mockObj).findAllByorderId(1); 
     */
+	
+	@Test
+	public void threadFindByIdMock()  {
+	    ThreadRepository localMockThreadRepository = Mockito.mock(ThreadRepository.class);
+	    JpaRepository<Thread, Integer> threadRepository = null ;//new JpaRepository<Thread, Integer>();;
+		//   ThreadRepository threadRepository = new ThreadRepository();
+	 	List<Thread> threads = threadRepository.findAll();
+		
+	    Mockito.when(localMockThreadRepository.findAll()).thenReturn(threads);
+
+	    List<Thread> mockThreads= localMockThreadRepository.findAll();
+
+	    //Assert.
+	    assertEquals(threads, mockThreads);
+	    Mockito.verify(localMockThreadRepository).count();
+	}
 }

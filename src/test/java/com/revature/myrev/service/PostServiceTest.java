@@ -1,31 +1,49 @@
-package com.revature.myrev.repository;
+package com.revature.myrev.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.revature.myrev.MyRevApplication;
+import com.revature.myrev.repository.PostRepository;
 
 @SpringBootTest
 @ContextConfiguration(classes = MyRevApplication.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Rollback(false)
-@DataJpaTest
-class PostRepositoryTest {
-
-	// Not mocking anything here. 
-	// Be sure to delete any additions made to db tables at the end of each test
-	/** PostRepository for testing */
-	@Autowired
-	private PostRepository repository;
+class PostServiceTest {
 	
+	/** Mock PostRespository for Mockito testing */
+	@Mock
+	private PostRepository repository;
+	/** PostService for JUnit testing */
+	@Autowired
+	@InjectMocks
+	PostService service;
+	/** Used for the initialization & closing of mocked fields */
+    private AutoCloseable closeable;
+	
+	@Before
+	public void setUp () {
+		closeable = MockitoAnnotations.openMocks(this);
+	}
+	
+	@After
+	public void releaseMocks () throws Exception {
+		closeable.close();
+	}
+
 	@Test
 	void test() {
 		fail("Not yet implemented");

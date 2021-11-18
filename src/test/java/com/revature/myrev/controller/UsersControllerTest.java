@@ -20,26 +20,30 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.myrev.MyRevApplication;
-import com.revature.myrev.service.ThreadServiceImpl;
+// change import once everyone has all cases of user switched to users
+//import com.revature.myrev.service.UsersServiceImpl;
+import com.revature.myrev.service.UserServiceImpl;
 
 @SpringBootTest
 @ContextConfiguration(classes = MyRevApplication.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @AutoConfigureMockMvc
 @Rollback(false)
-class ThreadControllerTest {
+class UsersControllerTest {
 	
 	// You may find these useful for your tests
-	/** Mock ThreadService for Mockito tests */
+	/** Mock UsersService for Mockito tests */
 	@Mock
-	private ThreadServiceImpl service;
+	//private UsersServiceImpl service;
+	private UserServiceImpl service;
 	/** Mocked servlet environment for Mockito tests */
 	@Autowired
 	private MockMvc mvc;
-	/** ThreadController for any sort of JUnit test */
+	/** UsersController for any sort of JUnit test */
 	@Autowired
 	@InjectMocks
-	private ThreadController controller;
+	//private UsersController controller;
+	private UserController controller;
 	/** Used for the initialization & closing of mocked fields */
     private AutoCloseable closeable;
     /** Useful for reading & writing JSON to & from POJOS */
@@ -57,7 +61,6 @@ class ThreadControllerTest {
 	public void releaseMocks () throws Exception {
 		closeable.close();
 	}
-
 
 	@Test
 	void test() {
