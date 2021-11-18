@@ -8,4 +8,6 @@ import com.revature.myrev.model.Follower;
 @Repository
 public interface FollowerRepository extends JpaRepository<Follower, Integer> {
 
+	Follower findByFollowedId(int followedId);
+
 }
