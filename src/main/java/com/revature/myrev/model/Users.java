@@ -17,7 +17,7 @@ public class Users {
 	private int usersId;
 	private int age;
 	@Column(name = "users_name")
-	private String usersName;
+	private String usersname;
 	private String password;
 	private String gender;
 	private String photo;
@@ -31,12 +31,12 @@ public class Users {
 	@Column(name = "job_title")
 	private String jobTitle;
 
-	public Users(int usersId, int age, String usersName, String password, String gender, String photo, String email,
+	public Users(int usersId, int age, String usersname, String password, String gender, String photo, String email,
 			String firstName, String lastName, String middleName, String jobTitle) {
 		super();
 		this.usersId = usersId;
 		this.age = age;
-		this.usersName = usersName;
+		this.usersname = usersname;
 		this.password = password;
 		this.gender = gender;
 		this.photo = photo;
@@ -69,11 +69,11 @@ public class Users {
 	}
 
 	public String getUsersName() {
-		return usersName;
+		return usersname;
 	}
 
-	public void setUsersName(String usersName) {
-		this.usersName = usersName;
+	public void setUsersName(String usersname) {
+		this.usersname = usersname;
 	}
 
 	public String getPassword() {
@@ -142,7 +142,7 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "Users [usersId=" + usersId + ", age=" + age + ", usersName=" + usersName + ", gender=" + gender + ", photo="
+		return "Users [usersId=" + usersId + ", age=" + age + ", usersname=" + usersname + ", gender=" + gender + ", photo="
 				+ photo + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", middleName="
 				+ middleName + ", jobTitle=" + jobTitle + "]";
 	}
