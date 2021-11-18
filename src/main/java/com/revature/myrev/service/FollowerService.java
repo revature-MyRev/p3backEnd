@@ -1,14 +1,21 @@
 package com.revature.myrev.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.List;
+import com.revature.myrev.model.Follower;
 
-import com.revature.myrev.repository.FollowerRepository;
 
-@Service
-public class FollowerService {
+public interface FollowerService {
 
-	@Autowired
-	FollowerRepository repository;
+	public Follower findByFollowedId(int followedId);
+	
+	public List<Follower> findAll();
+
+	public Follower findById(int id);
+
+	public void save(Follower follower);
+
+	public void update(int id, Follower follower);
+
+	public void deleteById(int id);
 	
 }
