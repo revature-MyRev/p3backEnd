@@ -8,6 +8,6 @@ import com.revature.myrev.model.Users;
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Integer> {
 
-	Users findByUsername(String username);
+	Users findByUserName(String userName);
 
 }
