@@ -16,6 +16,7 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
+
  @tag1
  Feature: Registration feature
   I want to use this template for registration
