@@ -25,7 +25,7 @@ public class PostController {
 	@Autowired
 	private PostServiceImpl service;
 	
-	@GetMapping("/posts")
+	@GetMapping("/api")
 	public List<Post> findAllPosts() {
 		return service.findAllPosts();
 	}
