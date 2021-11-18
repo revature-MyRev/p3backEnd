@@ -29,7 +29,7 @@
 	Then Message displayed Registration Successfully
 
   @tag2
-  Scenario: Standard login with invalid credentials
+  Scenario: Standard registration with invalid credentials
   Given the user is on the Registration page
   When the user enters a invalid Credentials
   |           | testmname | testlastname | testage | testjob | testgender | Test@153.com | testuser_1 | testpassword | 
@@ -38,11 +38,11 @@
   | testfname | testmname | testlastname | testage | testjob | testgender | Test@153.com |            | testpassword | 
   | testfname | testmname | testlastname | testage | testjob | testgender | Test@153.com | testuser_1 |              | 
    
-  And User click submit button
-  Then Login show error
+  And User click RevUp button
+  Then Registration show error
   
  @tag3
- Scenario: Redirect to registration page
- Given the user is on the login page
+ Scenario: Redirect to home page
+ Given the user is on the registration page
  When Click the RevUp button 
- Then Go to the registration page
+ Then Go to the home page
