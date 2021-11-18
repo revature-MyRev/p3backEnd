@@ -143,3 +143,4 @@ buildNumber.properties
 .classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,java,angular,maven
+target/classes/META-INF/maven/com.revature/MyRev/pom.properties
