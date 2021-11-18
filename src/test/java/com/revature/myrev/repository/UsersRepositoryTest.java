@@ -24,12 +24,14 @@ class UsersRepositoryTest {
 	// Be sure to delete any additions made to table at the end of each test
 	/** UserRepository for testing */
 	@Autowired
-	//private UsersRepository repository;
-	private UserRepository repository;
+	private UsersRepository repository;
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	public void testFindByUsername () {
+		//test for exception on empty table
+		
+		//test for exception on invalid username
+		
+		//test for returned user on valid username
 	}
-
 }

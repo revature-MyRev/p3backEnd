@@ -16,7 +16,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.revature.myrev.MyRevApplication;
-import com.revature.myrev.repository.UserRepository;
+import com.revature.myrev.repository.UsersRepository;
 
 @SpringBootTest
 @ContextConfiguration(classes = MyRevApplication.class)
@@ -26,13 +26,11 @@ class UsersServiceImplTest {
 
 	/** Mock UserRespository for Mockito testing */
 	@Mock
-	//private UsersRepository repository;
-	private UserRepository repository;
+	private UsersRepository repository;
 	/** UserService for JUnit testing */
 	@Autowired
 	@InjectMocks
-	//private UsersService service;
-	UserService service;
+	private UsersService service;
 	/** Used for the initialization & closing of mocked fields */
     private AutoCloseable closeable;
 	
@@ -45,9 +43,14 @@ class UsersServiceImplTest {
 	public void releaseMocks () throws Exception {
 		closeable.close();
 	}
+	
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	public void testFindByUsername () {
+		//test for exception on empty table
+		
+		//test for exception on invalid username
+		
+		//test for returned user on valid username
 	}
 
 

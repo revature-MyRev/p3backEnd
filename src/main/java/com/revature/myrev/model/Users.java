@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Table
 @Entity
-public class User {
+public class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class User {
 	@Column(name = "job_title")
 	private String jobTitle;
 
-	public User(int userId, int age, String userName, String password, String gender, String photo, String email,
+	public Users(int userId, int age, String userName, String password, String gender, String photo, String email,
 			String firstName, String lastName, String middleName, String jobTitle) {
 		super();
 		this.userId = userId;
@@ -47,7 +47,7 @@ public class User {
 		this.jobTitle = jobTitle;
 	}
 
-	public User() {
+	public Users() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

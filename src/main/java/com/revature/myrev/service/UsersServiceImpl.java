@@ -5,35 +5,35 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.myrev.model.User;
-import com.revature.myrev.repository.UserRepository;
+import com.revature.myrev.model.Users;
+import com.revature.myrev.repository.UsersRepository;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UsersServiceImpl implements UsersService{
 
 	@Autowired
-	public UserRepository userRepository;
+	public UsersRepository userRepository;
 
 	@Override
-	public User findByUsername(String username) {
+	public Users findByUsername(String username) {
 		// TODO Auto-generated method stub
 		return userRepository.findByUsername(username);
 	}
 
 	@Override
-	public User findById(int id) {
+	public Users findById(int id) {
 		// TODO Auto-generated method stub
 		return userRepository.findById(id).get();
 	}
 
 	@Override
-	public void save(User user) {
-		userRepository.save(user);
+	public Users save(Users user) {
+		return userRepository.save(user);
 
 	}
 
 	@Override
-	public void update(int id, User user) {
+	public void update(int id, Users user) {
 		userRepository.save(user);
 
 	}
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<User> findAll() {
+	public List<Users> findAll() {
 		// TODO Auto-generated method stub
 		return userRepository.findAll();
 	}

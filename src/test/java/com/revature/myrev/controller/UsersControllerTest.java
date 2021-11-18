@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.myrev.MyRevApplication;
 // change import once everyone has all cases of user switched to users
 //import com.revature.myrev.service.UsersServiceImpl;
-import com.revature.myrev.service.UserServiceImpl;
+import com.revature.myrev.service.UsersServiceImpl;
 
 @SpringBootTest
 @ContextConfiguration(classes = MyRevApplication.class)
@@ -34,16 +34,14 @@ class UsersControllerTest {
 	// You may find these useful for your tests
 	/** Mock UsersService for Mockito tests */
 	@Mock
-	//private UsersServiceImpl service;
-	private UserServiceImpl service;
+	private UsersServiceImpl service;
 	/** Mocked servlet environment for Mockito tests */
 	@Autowired
 	private MockMvc mvc;
 	/** UsersController for any sort of JUnit test */
 	@Autowired
 	@InjectMocks
-	//private UsersController controller;
-	private UserController controller;
+	private UsersController controller;
 	/** Used for the initialization & closing of mocked fields */
     private AutoCloseable closeable;
     /** Useful for reading & writing JSON to & from POJOS */
@@ -63,8 +61,12 @@ class UsersControllerTest {
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	public void testFindByUsername () {
+		//test for exception on empty table
+		
+		//test for exception on invalid username
+		
+		//test for returned user on valid username
 	}
 
 }
