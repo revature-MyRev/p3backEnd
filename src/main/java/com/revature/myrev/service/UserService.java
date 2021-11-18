@@ -9,12 +9,19 @@ import org.springframework.stereotype.Service;
 import com.revature.myrev.model.User;
 import com.revature.myrev.repository.UserRepository;
 
-@Service
-public class UserService {
+public interface UsersService {
 	
-	@Autowired
-	UserRepository repository;
+    public Users findByUserName(String username);
+	
+	public List<Users> findAll();
 
+	public Users findById(int id);
+
+	public Users save(Users user);
+
+	public void update(int id, Users user);
+
+<<<<<<< HEAD
 	public List<User> findAll() {
 		return repository.findAll();
 	}
@@ -27,4 +34,7 @@ public class UserService {
 		repository.save(user);
 	}
 	
+=======
+	public void deleteById(int id);
+>>>>>>> origin/main
 }
