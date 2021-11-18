@@ -9,31 +9,17 @@ import org.springframework.stereotype.Service;
 import com.revature.myrev.model.User;
 import com.revature.myrev.repository.UserRepository;
 
-public interface UserService {
+public interface UsersService {
+	
+    public Users findByUserName(String username);
+	
+	public List<Users> findAll();
 
-    public User findByUsername(String username);
-@Service
-public class UserService {
+	public Users findById(int id);
 
-	public List<User> findAll();
-	@Autowired
-	UserRepository repository;
+	public Users save(Users user);
 
-	public User findById(int id);
-	public List<User> findAll() {
-		return repository.findAll();
-	}
-
-	public void save(User user);
-	public User findById(int userId) {
-		return repository.findById(userId).get();
-	}
-
-	public void update(int id, User user);
+	public void update(int id, Users user);
 
 	public void deleteById(int id);
-	public void save(User user) {
-		repository.save(user);
-	}
-
 }
