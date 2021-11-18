@@ -34,7 +34,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Optional;
 //import com.google.common.base.Optional;
-import com.revature.myrev.model.User;
+import com.revature.myrev.model.Users;
 import com.revature.myrev.repository.UserRepository;
 import com.revature.myrev.service.UserService;
 
@@ -51,16 +51,16 @@ public class UserServiceTest {
 	 @Autowired
 	 @InjectMocks
      private UserService userService;
-	 private User u1; 
-	 private User u2;
-	 List<User> userList;
+	 private Users u1; 
+	 private Users u2;
+	 List<Users> userList;
     //private UserRepository userRepo;
 	
 	 @BeforeEach
 	 public void setUp() {
 		 userList = new ArrayList<>();
-		 u1 = new User(1, 16, "bob", "password", "male", "test", "test@gmail.com", "Bob", "Smith", "Middle", "Constructor");
-		 u2 = new User(2, 18, "joe", "password", "male", "test", "test2@gmail.com", "Joe", "Middle", "Adams", "Instructor");
+		 u1 = new Users(1, 16, "bob", "password", "male", "test", "test@gmail.com", "Bob", "Smith", "Middle", "Constructor");
+		 u2 = new Users(2, 18, "joe", "password", "male", "test", "test2@gmail.com", "Joe", "Middle", "Adams", "Instructor");
 		 userList.add(u1);
 		 userList.add(u2);
 	 }
@@ -84,7 +84,7 @@ public class UserServiceTest {
 	      userRepository.save(u1);
 	     //stubbing mock to return specific data
 	     when(userRepository.findAll()).thenReturn(userList);
-	     List<User> userList1 = userService.findAll();
+	     List<Users> userList1 = userService.findAll();
 	     assertEquals(userList1,userList);
 	     verify(userRepository,times(1)).save(u1);
 	     verify(userRepository,times(1)).findAll();
