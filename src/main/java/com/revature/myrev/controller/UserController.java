@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.myrev.model.User;
+import com.revature.myrev.model.Users;
 import com.revature.myrev.service.UserService;
 
 @CrossOrigin(origins = "*")
