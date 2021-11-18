@@ -16,21 +16,23 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.revature.myrev.MyRevApplication;
-import com.revature.myrev.repository.PostRepository;
+import com.revature.myrev.repository.UserRepository;
 
 @SpringBootTest
 @ContextConfiguration(classes = MyRevApplication.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Rollback(false)
-class PostServiceTest {
-	
-	/** Mock PostRespository for Mockito testing */
+class UsersServiceImplTest {
+
+	/** Mock UserRespository for Mockito testing */
 	@Mock
-	private PostRepository repository;
-	/** PostService for JUnit testing */
+	//private UsersRepository repository;
+	private UserRepository repository;
+	/** UserService for JUnit testing */
 	@Autowired
 	@InjectMocks
-	PostService service;
+	//private UsersService service;
+	UserService service;
 	/** Used for the initialization & closing of mocked fields */
     private AutoCloseable closeable;
 	
@@ -43,10 +45,10 @@ class PostServiceTest {
 	public void releaseMocks () throws Exception {
 		closeable.close();
 	}
-
 	@Test
 	void test() {
 		fail("Not yet implemented");
 	}
+
 
 }

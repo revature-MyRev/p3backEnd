@@ -18,14 +18,15 @@ import com.revature.myrev.MyRevApplication;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Rollback(false)
 @DataJpaTest
-class PostRepositoryTest {
-
-	// Not mocking anything here. 
-	// Be sure to delete any additions made to db tables at the end of each test
-	/** PostRepository for testing */
-	@Autowired
-	private PostRepository repository;
+class UsersRepositoryTest {
 	
+	// Not mocking anything here. 
+	// Be sure to delete any additions made to table at the end of each test
+	/** UserRepository for testing */
+	@Autowired
+	//private UsersRepository repository;
+	private UserRepository repository;
+
 	@Test
 	void test() {
 		fail("Not yet implemented");
