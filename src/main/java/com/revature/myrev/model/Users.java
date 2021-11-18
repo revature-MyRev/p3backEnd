@@ -13,11 +13,11 @@ public class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_id")                                       
-	private int userId;
+	@Column(name = "users_id")                                       
+	private int usersId;
 	private int age;
-	@Column(name = "user_name")
-	private String userName;
+	@Column(name = "users_name")
+	private String usersName;
 	private String password;
 	private String gender;
 	private String photo;
@@ -31,12 +31,12 @@ public class Users {
 	@Column(name = "job_title")
 	private String jobTitle;
 
-	public Users(int userId, int age, String userName, String password, String gender, String photo, String email,
+	public Users(int usersId, int age, String usersName, String password, String gender, String photo, String email,
 			String firstName, String lastName, String middleName, String jobTitle) {
 		super();
-		this.userId = userId;
+		this.usersId = usersId;
 		this.age = age;
-		this.userName = userName;
+		this.usersName = usersName;
 		this.password = password;
 		this.gender = gender;
 		this.photo = photo;
@@ -52,12 +52,12 @@ public class Users {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getUserId() {
-		return userId;
+	public int getUsersId() {
+		return usersId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUsersId(int usersId) {
+		this.usersId = usersId;
 	}
 
 	public int getAge() {
@@ -68,12 +68,12 @@ public class Users {
 		this.age = age;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsersName() {
+		return usersName;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsersName(String usersName) {
+		this.usersName = usersName;
 	}
 
 	public String getPassword() {
@@ -142,7 +142,7 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "Users [userId=" + userId + ", age=" + age + ", userName=" + userName + ", gender=" + gender + ", photo="
+		return "Users [usersId=" + usersId + ", age=" + age + ", usersName=" + usersName + ", gender=" + gender + ", photo="
 				+ photo + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", middleName="
 				+ middleName + ", jobTitle=" + jobTitle + "]";
 	}
