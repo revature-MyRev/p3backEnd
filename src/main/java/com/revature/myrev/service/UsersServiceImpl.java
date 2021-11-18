@@ -17,7 +17,7 @@ public class UsersServiceImpl implements UsersService{
 	@Override
 	public Users findByUsername(String username) {
 		// TODO Auto-generated method stub
-		return userRepository.findByUsername(username);
+		return userRepository.findByUserName(username);
 	}
 
 	@Override

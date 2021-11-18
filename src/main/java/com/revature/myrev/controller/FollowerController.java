@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.myrev.service.FollowerService;
+import com.revature.myrev.service.FollowerServiceImpl;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -13,6 +14,6 @@ import com.revature.myrev.service.FollowerService;
 public class FollowerController {
 	
 	@Autowired
-	private FollowerService service;
+	private FollowerServiceImpl service;
 
 }

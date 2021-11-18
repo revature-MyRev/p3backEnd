@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.myrev.service.ThreadService;
+import com.revature.myrev.service.ThreadServiceImpl;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -13,5 +14,5 @@ import com.revature.myrev.service.ThreadService;
 public class ThreadController {
     
 	@Autowired
-	private ThreadService service;
+	private ThreadServiceImpl service;
 }
