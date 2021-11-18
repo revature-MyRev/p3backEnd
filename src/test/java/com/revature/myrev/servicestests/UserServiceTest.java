@@ -1,5 +1,6 @@
 package com.revature.myrev.servicestests;
 
+import static org.assertj.core.api.Assertions.assertThat;
 //import static org.hamcrest.CoreMatchers.any;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
@@ -21,6 +22,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.internal.matchers.Any;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -30,7 +32,8 @@ import org.springframework.lang.NonNull;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
+//import com.google.common.base.Optional;
 import com.revature.myrev.model.User;
 import com.revature.myrev.repository.UserRepository;
 import com.revature.myrev.service.UserService;
@@ -75,5 +78,32 @@ public class UserServiceTest {
 		 verify(userRepository, times(1)).save(any());
 		 
 	 }
+	 
+	 @Test
+	 public void GivenGetAllUsersShouldReturnListOfAllUsers(){
+	      userRepository.save(u1);
+	     //stubbing mock to return specific data
+	     when(userRepository.findAll()).thenReturn(userList);
+	     List<User> userList1 = userService.findAll();
+	     assertEquals(userList1,userList);
+	     verify(userRepository,times(1)).save(u1);
+	     verify(userRepository,times(1)).findAll();
+	 }
+	 
+	 
+	 @Test
+	 public void givenIdThenShouldReturnUserOfThatId() {
+	    Mockito.when(userRepository.findById(1)).thenReturn(Optional.ofNullable(u1));
+	    assertThat(userService.findById(u1.getUserId())).isEqualTo(u1);
+	 }
+	 
+	 
+//	 @Test
+//	 public void givenIdTODeleteThenShouldDeleteTheUser(){
+//	     when(userService.(u1.getUserId())).thenReturn(u1);
+//	 //assertThat(productService.);
+//	     verify(userRepository,times(1)).findAll();
+//	 }
+	 
 	 
 }
