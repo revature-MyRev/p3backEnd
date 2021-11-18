@@ -24,14 +24,14 @@ public class Post {
 	private int postId;
 	@Column(name = "post_content")
 	private String postContent;
-    @Column(name = "user_id")
+	@Column(name = "user_id")
 	private int userId;
 	@Column(name = "post_date")
 	private Date postDate;
-    @Column(name = "thread_id")
+	@Column(name = "thread_id")
 	private int threadId;
-    @Column(name = "image_url")
-    private String imageUrl;
+	@Column(name = "image_url")
+	private String imageUrl;
 
 	public Post(int postId, String postContent, int userId, Date postDate) {
 		super();
