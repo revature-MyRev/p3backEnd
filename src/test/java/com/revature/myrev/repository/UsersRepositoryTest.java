@@ -17,7 +17,6 @@ import com.revature.myrev.model.Users;
 @ContextConfiguration(classes = MyRevApplication.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Transactional
-
 class UsersRepositoryTest {
 
 	// Not mocking anything here.
@@ -26,6 +25,9 @@ class UsersRepositoryTest {
 	@Autowired
 	private UsersRepository repository;
 
+	/**
+	 * Tests for a successful addition to the user table 
+	 */
 	@Test
 	@Order(1)
 	public void testCreateUsers() {
@@ -36,19 +38,37 @@ class UsersRepositoryTest {
 		Users result = repository.save(testUser);
 
 		Assertions.assertNotEquals(0, result.getUserId());
+		Assertions.assertEquals(testUser.toString(), result.toString());
 	}
 
+	/**
+	 * Tests findByUserName
+	 * Both positive and negative tests
+	 */
 	@Test
 	@Order(2)
 	public void testFindByUsername() {
+		// Test on empty table
+		Users result = repository.findByUserName("user1");
+		
+		Assertions.assertNull(result);
+		
+		
+		// Test on nonempty table with invalid user name
 		Users testUser = new Users(0, 20, "Tester1234", "test123", "Female", "null", "test@revature.com", "Test",
 				"Testing", "JUnit", "Tester");
-
 		repository.save(testUser);
+		
+		result = repository.findByUserName("user1");
+		
+		Assertions.assertNull(result);
+		
+		
+        // Test on nonempty table with valid user name
+		result = repository.findByUserName(testUser.getUserName());
 
-		Users result = repository.findByUserName(testUser.getUserName());
-
-		Assertions.assertEquals(testUser.getAge(), result.getAge());
+		Assertions.assertNotNull(result);
+		Assertions.assertEquals(20, result.getAge());
 	}
 
 }

@@ -60,10 +60,23 @@ class UsersServiceImplTest {
 		closeable.close();
 	}
 	
+	/**
+	 * Test that findByUserName either finds a user or throws an exception
+	 */
 	@Test
 	public void testFindByUsername () {
+		//test for exception on empty table
+		when(repository.findByUserName("user1")).thenReturn(null);
 		
-		//test for returned user on valid username
+		try {
+		    Users test = service.findByUserName("user1");
+		} catch (Exception e) {
+			Assertions.assertEquals(e.getMessage(), "Record Not Found");
+			verify(service,times(1)).findByUserName("user1");
+		}
+		
+		
+		//test for exception on invalid username on nonempty table
 		List<Users> list = new ArrayList<>();
 		Users one = new Users(1, 30, "test123", "testpassword", "gender", "photo", "email", "firstName", "lastName", "middleName", "jobTitle");
 		Users two = new Users(2, 35, "num123", "passwordtest", "gender", "photo", "email", "firstName", "lastName", "middleName", "jobTitle");
@@ -71,20 +84,24 @@ class UsersServiceImplTest {
 		list.add(one);
 		list.add(two);
 		list.add(three);
-
-					
+		
+		try {
+		    Users test = service.findByUserName("user1");
+		} catch (Exception e) {
+			Assertions.assertEquals(e.getMessage(), "Record Not Found");
+			verify(service,times(1)).findByUserName("user1");
+		}
+		
+		
+		//test for returned user on valid username
 		when(repository.findByUserName("test123")).thenReturn(one);			//mock UsersServiceImpl to call findByUserName and return matching user
 		
 		Users test = service.findByUserName("test123");	
 		
+		Assertions.assertNotNull(test);
 		Assertions.assertEquals(30, test.getAge());							//age should match returned user age
 		Assertions.assertEquals("testpassword", test.getPassword());		//password should match returned user password
-		verify(service,times(1)).findByUserName("test123");					//verify UsersServiceImpl calls findByUserName method 1 time
-		
-		
-		//test for exception on empty table
-		//test for exception on invalid username
-		
+		verify(service,times(1)).findByUserName("test123");					//verify UsersServiceImpl calls findByUserName method 1 time	
 	}
 
 
