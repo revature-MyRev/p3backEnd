@@ -15,19 +15,29 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.myrev.model.Follower;
 import com.revature.myrev.service.FollowerService;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/followers")
+@EnableSwagger2
 public class FollowerController {
 	
 	@Autowired
 	private FollowerService followerService;
 	
 	
+	
 	@GetMapping("/findFollowers/{followedId}")
-	public Follower findByFollowedId(@PathVariable int followedId) {
+	public List<Follower> findByFollowedId(@PathVariable int followedId) {
 		// TODO Auto-generated method stub
 		return followerService.findByFollowedId(followedId);
+	}
+	
+	@GetMapping("/isFollowing/{followedId},{followerId}")
+	public Follower findByFollowedIdAndFollowerId(@PathVariable int followedId,@PathVariable int followerId) {
+		// TODO Auto-generated method stub
+		return followerService.findByFollowedIdAndFollowerId(followedId, followerId);
 	}
 
 	@GetMapping("/followers")

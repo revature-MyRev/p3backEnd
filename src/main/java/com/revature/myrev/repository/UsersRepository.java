@@ -3,10 +3,10 @@ package com.revature.myrev.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.revature.myrev.model.User;
+import com.revature.myrev.model.Users;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UsersRepository extends JpaRepository<Users, Integer> {
 
-	public User findByUsername(String username);
+	public Users findByUsername(String username);
 }

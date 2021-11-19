@@ -12,10 +12,10 @@ import com.revature.myrev.repository.FollowerRepository;
 public class FollowerServiceImpl implements FollowerService{
 
 	@Autowired
-	FollowerRepository followerRepository;
+	public FollowerRepository followerRepository;
 	
 	@Override
-	public Follower findByFollowedId(int followedId) {
+	public List<Follower> findByFollowedId(int followedId) {
 		// TODO Auto-generated method stub
 		return followerRepository.findByFollowedId(followedId);
 	}
@@ -49,6 +49,13 @@ public class FollowerServiceImpl implements FollowerService{
 		followerRepository.deleteById(id);
 		
 	}
+
+	@Override
+	public Follower findByFollowedIdAndFollowerId(int followedId, int followerId) {
+		// TODO Auto-generated method stub
+		return followerRepository.findByFollowedIdAndFollowerId(followedId, followerId);
+	}
+
 
 	
 
