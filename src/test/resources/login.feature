@@ -1,7 +1,8 @@
 @tag1
 Scenario: Successful Login with Valid Credentials
 Given User is on Login Page
-When User enters Username and Password
+When User enters Username <username> and Password <password>
+|username    |password  |
 | testuser_1 | Test@153 |
 And User click submit button 
 Then Message displayed Login Successfully
@@ -9,7 +10,7 @@ Then Message displayed Login Successfully
  @tag2
  Scenario: Standard login with invalid credentials
  Given User is on Login page
- When User enters invalid Username or Password
+ When User enters Username <username> and Password <password>
  |username             |password        |
  |user1                |00000aa         |
  |                     |Test@153        |
