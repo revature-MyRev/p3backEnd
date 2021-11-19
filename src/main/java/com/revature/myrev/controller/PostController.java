@@ -19,13 +19,13 @@ import com.revature.myrev.service.PostServiceImpl;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/posts")
+@RequestMapping("/api")
 public class PostController {
 
 	@Autowired
 	private PostServiceImpl service;
 	
-	@GetMapping("/api")
+	@GetMapping("/posts")
 	public List<Post> findAllPosts() {
 		return service.findAllPosts();
 	}
