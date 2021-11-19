@@ -42,7 +42,7 @@ public class UsersController {
     
     public void validate(Users user) {
 		if(Objects.isNull(user.getUserName()) || Objects.isNull(user.getPassword())) {
-			throw new ValidationException("Not found");
+			throw new ValidationException("Invalid user");
 		}
 	}
 
