@@ -1,5 +1,7 @@
 package com.revature.myrev.controller;
 
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.myrev.exception.ObjectNotFoundException;
+import com.revature.myrev.exception.ValidationException;
 import com.revature.myrev.model.Users;
+import com.revature.myrev.service.UsersService;
 import com.revature.myrev.service.UsersServiceImpl;
 
 @CrossOrigin(origins = "*")
@@ -22,12 +27,23 @@ public class UsersController {
 	
 	@GetMapping(path = "/findByUserName/{userName}")
 	public Users findByUserName(@PathVariable String userName) {
-		return service.findByUserName(userName);
+		Users user = service.findByUserName(userName);
+		if(Objects.isNull(user)) {
+			throw new ObjectNotFoundException("Not Found");
+		}
+		return user;
 	}
 	
     @PostMapping(path = "/addUser")
     public Users addUser(@RequestBody Users user) {
+    	validate(user);
     	return service.save(user);
     }
+    
+    public void validate(Users user) {
+		if(Objects.isNull(user.getUserName()) || Objects.isNull(user.getPassword())) {
+			throw new ValidationException("Not found");
+		}
+	}
 
 }
