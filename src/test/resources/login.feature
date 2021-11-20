@@ -1,3 +1,5 @@
+Feature: Log in
+
 @tag1
 Scenario: Successful Login with Valid Credentials
 Given User is on Login Page

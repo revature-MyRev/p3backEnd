@@ -25,25 +25,32 @@ public class UsersController {
 	@Autowired
 	private UsersServiceImpl service;
 	
+	/**
+	 * Requests user from service that matches the given user name
+	 * 
+	 * @param username The user name associated with the user to be retrieved.
+	 * @return The user associated with the given user name.
+	 */
 	@GetMapping(path = "/findByUserName/{userName}")
 	public Users findByUserName(@PathVariable String userName) {
-		Users user = service.findByUserName(userName);
-		if(Objects.isNull(user)) {
-			throw new ObjectNotFoundException("Not Found");
-		}
-		return user;
+		return service.findByUserName(userName);
 	}
 	
+	/**
+	 * Sends a user object to service to save in the database
+	 * 
+	 * @param user The user object to be added to the database.
+	 * @return The user object saved in the database with an updated user id.
+	 */
     @PostMapping(path = "/addUser")
     public Users addUser(@RequestBody Users user) {
-    	validate(user);
     	return service.save(user);
     }
-    
-    public void validate(Users user) {
-		if(Objects.isNull(user.getUserName()) || Objects.isNull(user.getPassword())) {
-			throw new ValidationException("Invalid user");
-		}
-	}
+//    
+//    public void validate(Users user) {
+//		if(Objects.isNull(user.getUserName()) || Objects.isNull(user.getPassword())) {
+//			throw new ValidationException("Invalid user");
+//		}
+//	}
 
 }

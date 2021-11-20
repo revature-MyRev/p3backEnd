@@ -1,5 +1,6 @@
 package com.revature.myrev.service; 
 
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -65,19 +66,28 @@ class UsersServiceImplTest {
 	 */
 	@Test
 	public void testFindByUsername () {
-		//test for exception on empty table
-		when(repository.findByUserName("user1")).thenReturn(null);
+		List<Users> list = new ArrayList<>();
+		Users fake = new Users(0, 52, "fake", "not real", "none", "photo", "email", "firstName", "lastName", "middleName", "jobTitle");
 		
+		doAnswer(invocation -> {
+			for (Users u: list) {
+				if (u.getUserName().equals(fake.getUserName())) {
+					return u;
+				}
+			} 
+			return null;
+		}).when(repository).findByUserName(fake.getUserName());
+			
+		//test for exception on empty table	
 		try {
-		    Users test = service.findByUserName("user1");
+		    Users test = service.findByUserName(fake.getUserName());
 		} catch (Exception e) {
-			Assertions.assertEquals(e.getMessage(), "Record Not Found");
-			verify(service,times(1)).findByUserName("user1");
+			Assertions.assertEquals(e.getMessage(), "User Record Not Found");
+			verify(service,times(1)).findByUserName(fake.getUserName());
 		}
 		
 		
-		//test for exception on invalid username on nonempty table
-		List<Users> list = new ArrayList<>();
+		//test for exception on invalid user name on nonempty table
 		Users one = new Users(1, 30, "test123", "testpassword", "gender", "photo", "email", "firstName", "lastName", "middleName", "jobTitle");
 		Users two = new Users(2, 35, "num123", "passwordtest", "gender", "photo", "email", "firstName", "lastName", "middleName", "jobTitle");
 		Users three = new Users(3, 45, "fakeusername", "fakepassword", "gender", "photo", "email", "firstName", "lastName", "middleName", "jobTitle");
@@ -86,14 +96,14 @@ class UsersServiceImplTest {
 		list.add(three);
 		
 		try {
-		    Users test = service.findByUserName("user1");
+		    Users test = service.findByUserName(fake.getUserName());
 		} catch (Exception e) {
-			Assertions.assertEquals(e.getMessage(), "Record Not Found");
-			verify(service,times(1)).findByUserName("user1");
+			Assertions.assertEquals(e.getMessage(), "User Record Not Found");
+			verify(service,times(2)).findByUserName(fake.getUserName());
 		}
 		
 		
-		//test for returned user on valid username
+		//test for returned user on valid user name
 		when(repository.findByUserName("test123")).thenReturn(one);			//mock UsersServiceImpl to call findByUserName and return matching user
 		
 		Users test = service.findByUserName("test123");	
@@ -104,5 +114,21 @@ class UsersServiceImplTest {
 		verify(service,times(1)).findByUserName("test123");					//verify UsersServiceImpl calls findByUserName method 1 time	
 	}
 
-
+    /**
+     * Tests that a user is saved 
+     */
+	@Test
+	public void testSave () {
+		Users test = new Users(0, 30, "test123", "testpassword", "gender", "photo", "email", "firstName", "lastName", "middleName", "jobTitle");
+		List<Users> mockdb = new ArrayList<Users>();
+		doAnswer(invocation -> {
+			test.setUserId(1);
+			mockdb.add(test);
+			return test;
+		}).when(repository).save(test);
+		
+		Users result = service.save(test);
+		Assertions.assertNotNull(result);
+        Assertions.assertEquals(test.toString(), result.toString());
+	}
 }
