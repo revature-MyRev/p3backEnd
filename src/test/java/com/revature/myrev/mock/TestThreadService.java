@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,24 +24,24 @@ import com.revature.myrev.service.ThreadServiceImpl;
 
 
 public class TestThreadService {
-	/*
+/*
 	@Mock
 	ThreadRepository threadRepository;
 	
-	Optional<Thread> thread;
+	//Optional<Thread> thread;
 	
 	@Test
     public void testMock() {
     ThreadRepository mockObj = Mockito.mock(ThreadRepository.class);
-    List<Thread> thread = threadRepository.findAll();
-    Mockito.when(mockObj.findAllByorderId(1)).thenReturn(thread);
+    List<Thread> threads = threadRepository.findAll();
+    Mockito.when(mockObj.findAll()).thenReturn(threads);
 
-    List<Thread> order = mockObj.findAllByorderId(1);
+    List<Thread> mockThreads = mockObj.findAll();
 
    // Assert.
-    assertEquals(thread, order);
-    Mockito.verify(mockObj).findAllByorderId(1); 
-    
+    assertEquals(threads, mockThreads);
+    Mockito.verify(mockObj).findAll(); 
+	}
 	
 	@Test
 	final void testFindById() {
@@ -64,7 +65,7 @@ public class TestThreadService {
 	    Mockito.verify(localMockThreadRepository).count();
 	}
 	
-	
+	*/
 
 	@InjectMocks
 	 ThreadServiceImpl threadService;
@@ -85,12 +86,13 @@ public class TestThreadService {
 	
 	@Test
 	final void testGetThread() {
-		when(threadRepository.findById(anyInt())).thenReturn(thread);
+		when(threadRepository.findAll()).thenReturn(Collections.singletonList(thread));
+		//when(threadRepository.findById(anyInt())).thenReturn(thread);
 		assertNotNull(thread);
 		assertEquals(8, thread.getThreadId());
 	}		
-*/	
 	
+
 	
 	
 }

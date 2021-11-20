@@ -65,7 +65,7 @@ public class TestFollowerService {
 	    assertEquals(followers, mockFollowers);
 	    Mockito.verify(localMockFollowerRepository).count();
 	}
-	
+	*/
 	
 
 	@InjectMocks
@@ -93,7 +93,7 @@ public class TestFollowerService {
 		assertNotNull(follower);
 		assertEquals(3, follower.getFollowedId());
 	}		
-*/
+
 	
 	
 	

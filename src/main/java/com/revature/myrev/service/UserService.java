@@ -1,20 +1,25 @@
 package com.revature.myrev.service;
 
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.revature.myrev.model.User;
+import com.revature.myrev.repository.UserRepository;
 
-public interface UserService {
+public interface UsersService {
 	
-    public User findByUsername(String username);
+    public Users findByUserName(String username);
 	
-	public List<User> findAll();
+	public List<Users> findAll();
 
-	public User findById(int id);
+	public Users findById(int id);
 
-	public void save(User user);
+	public Users save(Users user);
 
-	public void update(int id, User user);
+	public void update(int id, Users user);
 
 	public void deleteById(int id);
 }
