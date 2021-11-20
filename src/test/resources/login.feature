@@ -13,10 +13,17 @@ Then Message displayed Login Successfully
  Scenario: Standard login with invalid credentials
  Given User is on Login page
  When User enters Username <username> and Password <password>
+ # Test for missing information
  |username             |password        |
- |user1                |00000aa         |
  |                     |Test@153        |
  |testuser_1           |                |
+ |                     |                |
+ # Test for invalid user name
+ |fakename             |testing         |
+ # Test for invalid password
+ |testing              |fakepassword    |
+ # Test for invalid user name and password
+ |fakename             |fakepassword
  And User click submit button
  Then Login show error
   
