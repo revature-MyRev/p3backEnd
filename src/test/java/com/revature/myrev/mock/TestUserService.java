@@ -3,10 +3,13 @@ package com.revature.myrev.mock;
 
 	import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +22,12 @@ import org.mockito.MockitoAnnotations;
 
 import com.revature.myrev.controller.UserController;
 import com.revature.myrev.model.User;
-	import com.revature.myrev.repository.UserRepository;
+import com.revature.myrev.model.User;
+import com.revature.myrev.model.User;
+import com.revature.myrev.repository.UserRepository;
+import com.revature.myrev.repository.UserRepository;
+import com.revature.myrev.repository.UserRepository;
+import com.revature.myrev.service.UserServiceImpl;
 import com.revature.myrev.service.UserServiceImpl;
 
 	public class TestUserService {
@@ -28,19 +36,21 @@ import com.revature.myrev.service.UserServiceImpl;
 	    public void testMock() {
 	    UserRepository mockObj = Mockito.mock(UserRepository.class);
 	    List<User> user = userRepository.findAll();
-	    Mockito.when(mockObj.findAllByThreadId(1)).thenReturn(user);
+	    Mockito.when(mockObj.findAllByUserId(1)).thenReturn(user);
 
-	    List<User> thread = mockObj.findAllByThreadId(1);
+	    List<User> user = mockObj.findAllByUserId(1);
 
 	   // Assert.
-	    assertEquals(user, thread);
-	    Mockito.verify(mockObj).findAllByThreadId(1); 
+	    assertEquals(user, user);
+	    Mockito.verify(mockObj).findAllByUserId(1); 
 		
 		
 		
 	}
 	
+	
 		@InjectMocks
+		
 		 UserServiceImpl userService;
 		
 		@Mock
@@ -69,8 +79,8 @@ import com.revature.myrev.service.UserServiceImpl;
 			assertNotNull(user);
 			assertEquals("male", user.getGender());
 		}
-		*/
 		
+	
 		@InjectMocks
 		 UserServiceImpl userService;
 		
@@ -101,6 +111,65 @@ import com.revature.myrev.service.UserServiceImpl;
 		
 		
 		
+		
+		@InjectMocks
+		 UserServiceImpl userService;
+		
+		@Mock
+		UserRepository userRepository;
+		
+		User user;
+		
+		@BeforeEach
+		void setUp() throws Exception{
+			MockitoAnnotations.initMocks(this);
+			user = new User();
+			
+			user.setUserId(8);
+			
+		}
+	
+		@Test
+		final void testGetUser() {
+			when(userRepository.findAll()).thenReturn(Collections.singletonList(user));
+			//when(userRepository.findById(anyInt())).thenReturn(user);
+			assertNotNull(user);
+			assertEquals(8, user.getUserId());
+		}		
+		
+		
+		
+	//	private UserRepository userRepository;
+//		private UserServiceImpl userService;
+		
+		@BeforeEach
+		void initService() {
+			userRepository = mock(UserRepository.class);
+		//	userService = new UserServiceImpl();
+			
+			
+		}
+		
+		
+		@Test
+		void create() {
+			User user = new User();
+			
+			user = new User();
+			
+			user.setUserId(6);
+			user.setJobTitle("Software Engineer");
+	//		user.setUserContent("This is a sample user");
+			
+			when(userRepository.save(any(User.class))).thenReturn(user);
+			assertNotNull(user);
+			assertEquals(6, user.getUserId());
+			
+		}
+		
+		
+
+*/		
 		
 	}
 
