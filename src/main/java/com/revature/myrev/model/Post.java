@@ -19,16 +19,18 @@ public class Post {
 	private int postId;
 	@Column(name = "post_content")
 	private String postContent;
-    @Column(name = "users_id")
+	@Column(name = "users_id")
 	private int usersId;
 	@Column(name = "post_date")
 	private Date postDate;
-    @Column(name = "thread_id")
+	@Column(name = "thread_id")
 	private int threadId;
+
     @Column(name = "image_url")
     private String imageUrl;
     @Column(name = "type")
     private String type;
+
 
 	public Post(int postId, String postContent, int usersId, Date postDate, String imageUrl, int threadId, String type) {
 		super();
@@ -41,74 +43,102 @@ public class Post {
 		this.type = type;
 	}
 
+	
+
 	public Post() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	
 	public int getPostId() {
 		return postId;
 	}
+
+
 
 	public void setPostId(int postId) {
 		this.postId = postId;
 	}
 
+
+
 	public String getPostContent() {
 		return postContent;
 	}
+
+
 
 	public void setPostContent(String postContent) {
 		this.postContent = postContent;
 	}
 
+
+
 	public int getUsersId() {
 		return usersId;
 	}
+
+
 
 	public void setUsersId(int usersId) {
 		this.usersId = usersId;
 	}
 
+
+
 	public Date getPostDate() {
 		return postDate;
 	}
 
+
+
 	public void setPostDate(Date postDate) {
 		this.postDate = postDate;
 	}
-	
-	
+
+
 
 	public int getThreadId() {
 		return threadId;
 	}
 
+
+
 	public void setThreadId(int threadId) {
 		this.threadId = threadId;
 	}
+
+
 
 	public String getImageUrl() {
 		return imageUrl;
 	}
 
+
+
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-	
-	
+
+
 
 	public String getType() {
 		return type;
 	}
 
+
+
 	public void setType(String type) {
 		this.type = type;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Post [postId=" + postId + ", postContent=" + postContent + ", usersId=" + usersId + ", postDate="
+
 				+ postDate + ", threadId=" + threadId + ", imageUrl=" + imageUrl + ", type=" + type + "]";
 	}
 
