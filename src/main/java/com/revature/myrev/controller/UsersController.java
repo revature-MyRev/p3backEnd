@@ -3,6 +3,7 @@ package com.revature.myrev.controller;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,7 @@ public class UsersController {
 	private UsersServiceImpl service;
 	
 	@GetMapping(path = "/findByUserName/{userName}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public Users findByUserName(@PathVariable String userName) {
 		Users user = service.findByUserName(userName);
 		if(Objects.isNull(user)) {
@@ -35,6 +37,7 @@ public class UsersController {
 	}
 	
     @PostMapping(path = "/addUser")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public Users addUser(@RequestBody Users user) {
     	validate(user);
     	return service.save(user);

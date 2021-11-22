@@ -4,19 +4,19 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.myrev.model.Users;
 import com.revature.myrev.repository.UsersRepository;
 
 @Service
-public class UsersServiceImpl implements UsersService{
+public class UsersServiceImpl implements UsersService {
 
 	@Autowired
 	public UsersRepository userRepository;
 
 	@Override
 	public Users findByUserName(String username) {
-		// TODO Auto-generated method stub
 		return userRepository.findByUserName(username);
 	}
 
