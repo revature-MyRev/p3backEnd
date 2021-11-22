@@ -7,13 +7,6 @@ import org.junit.jupiter.api.Test;
 
 class PostTest {
 
-	@Test
-
-	void test() {
-		fail("Not yet implemented");
-	}
-
-
 	void postConstructorTest() {
 		Post testPost = new Post();
 		assertNotNull(testPost, "testPost is null");
@@ -102,6 +95,20 @@ class PostTest {
 		testPost.setImageUrl(test);
 		assertEquals(test, testPost.getImageUrl());
 	}
+	
+	@Test
+	void postTypeGetterTest() {
+		Post testPost = new Post();
+		assertEquals(null, testPost.getType());
+	}
+
+	@Test
+	void postTypeSetterTest() {
+		String test = "typeTest";
+		Post testPost = new Post();
+		testPost.setType(test);
+		assertEquals(test, testPost.getType());
+	}
 
 	@Test
 	void postToStringTest() {
@@ -112,8 +119,9 @@ class PostTest {
 		String postDate = "null";
 		int threadId = 0;
 		String imageUrl = "null";
+		String type = "null";
 		String test = "Post [postId=" + postId + ", postContent=" + postContent + ", usersId=" + usersId + ", postDate="
-				+ postDate + ", threadId=" + threadId + ", imageUrl=" + imageUrl + "]";
+				+ postDate + ", threadId=" + threadId + ", imageUrl=" + imageUrl + ", type=" + type + "]";
 		Post testPost = new Post();
 		assertEquals(0, testPost.toString().compareTo(test));
 	}
