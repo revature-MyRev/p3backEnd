@@ -8,9 +8,9 @@ import java.util.Set;
 //more can be added if more details are to be set up at registration
 public class SignUpRequest {
 
-	private String userName;
-	private String firstName;
-	private String lastName;
+	private String username;
+	private String firstname;
+	private String lastname;
 	private String email;
 	private String password;
 	private Set<String> role;
@@ -20,37 +20,37 @@ public class SignUpRequest {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SignUpRequest(String userName, String firstName, String lastName, String email, String password) {
+	public SignUpRequest(String username, String firstname, String lastname, String email, String password) {
 		super();
-		this.userName = userName;
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.username = username;
+		this.firstname = firstname;
+		this.lastname = lastname;
 		this.email = email;
 		this.password = password;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public String getEmail() {
@@ -77,4 +77,11 @@ public class SignUpRequest {
 		this.role = role;
 	}
 
+	@Override
+	public String toString() {
+		return "SignUpRequest [username=" + username + ", firstname=" + firstname + ", lastname=" + lastname
+				+ ", email=" + email + ", password=" + password + ", role=" + role + "]";
+	}
+
+	
 }
