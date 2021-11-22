@@ -15,49 +15,49 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.revature.myrev.controller.UserController;
-import com.revature.myrev.model.User;
+import com.revature.myrev.controller.UsersController;
+import com.revature.myrev.model.Users;
 
-import com.revature.myrev.repository.UserRepository;
-import com.revature.myrev.service.UserServiceImpl;
+import com.revature.myrev.repository.UsersRepository;
+import com.revature.myrev.service.UsersServiceImpl;
 
 public class TestUserController {
-/*	
+	
 	@InjectMocks
-	UserController userController;
+	UsersController usersController;
 	
 	@Mock
-	UserServiceImpl userService;
+	UsersServiceImpl usersService;
 	
-	User user;
+	Users users;
 	
 	@BeforeEach
 	void setUp() throws Exception{
 		MockitoAnnotations.initMocks(this);
-		user = new User();
+		users = new Users();
 		
-		user.setAge(38);
-		user.setEmail("test@aol.com");
-		user.setFirstName("John");
-		user.setLastName("Smith");
-		user.setGender("Male");
-		user.setJobTitle("Software Engineer");
+		users.setAge(38);
+		users.setEmail("test@aol.com");
+		users.setFirstName("John");
+		users.setLastName("Smith");
+		users.setGender("Male");
+		users.setJobTitle("Software Engineer");
 	}
 	
 	@Test
-	final void testGetUser() {
-		when(userService.findById(anyInt())).thenReturn(user);
-		assertNotNull(user);
-		assertEquals("Smith", user.getLastName());
+	final void testGetUsers() {
+		when(usersService.findById(anyInt())).thenReturn(users);
+		assertNotNull(users);
+		assertEquals("Smith", users.getLastName());
 	}
-*/
-	private UserRepository userRepository;
-//	private UserServiceImpl userService;
+
+	private UsersRepository usersRepository;
+//	private UsersServiceImpl usersService;
 	
 	@BeforeEach
 	void initService() {
-		userRepository = mock(UserRepository.class);
-	//	userService = new UserServiceImpl();
+		usersRepository = mock(UsersRepository.class);
+	//	usersService = new UsersServiceImpl();
 		
 		
 	}
@@ -65,15 +65,15 @@ public class TestUserController {
 	
 	@Test
 	void create() {
-		User user = new User();
+		Users users = new Users();
 		
-	//	user = new User();
+	//	users = new Users();
 		
-		user.setUserId(6);
+		users.setUsersId(6);
 	
-		when(userRepository.save(any(User.class))).thenReturn(user);
-		assertNotNull(user);
-		assertEquals(6, user.getUserId());
+		when(usersRepository.save(any(Users.class))).thenReturn(users);
+		assertNotNull(users);
+		assertEquals(6, users.getUsersId());
 		
 	}
 	
@@ -82,32 +82,32 @@ public class TestUserController {
 	
 
 		@InjectMocks
-		UserController userController;
+		UsersController usersController;
 		
 		@Mock
-		UserServiceImpl userService;
+		UsersServiceImpl usersService;
 		
-		User user;
+		Users users;
 		
 		@SuppressWarnings("deprecation")
 		@BeforeEach
 		void setUp() throws Exception{
 			MockitoAnnotations.initMocks(this);
-			user = new User();
+			users = new Users();
 			
-			user.setUserId(6);
-			user.setUserId(1);
-			user.setJobTitle("This is a job Title");
+			users.setUsersId(6);
+			users.setUsersId(1);
+			users.setJobTitle("This is a job Title");
 		
 		}
 		
 		@Test
-		final void testGetUser() {
-			//when(userService.findByUserId(anyInt())).thenReturn(user);
-			when(userService.findAll()).thenReturn(Collections.singletonList(user));
+		final void testGetUsers() {
+			//when(usersService.findByUsersId(anyInt())).thenReturn(users);
+			when(usersService.findAll()).thenReturn(Collections.singletonList(users));
 			
-			assertNotNull(user);
-			assertEquals(6, user.getUserId());
+			assertNotNull(users);
+			assertEquals(6, users.getUsersId());
 		}
 */
 	}

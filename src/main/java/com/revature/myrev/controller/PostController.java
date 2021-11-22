@@ -19,7 +19,7 @@ import com.revature.myrev.service.PostServiceImpl;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/posts")
+@RequestMapping("/api")
 public class PostController {
 
 	@Autowired

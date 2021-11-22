@@ -16,7 +16,11 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.revature.myrev.MyRevApplication;
+<<<<<<< HEAD
 import com.revature.myrev.repository.UserRepository;
+=======
+import com.revature.myrev.repository.UsersRepository;
+>>>>>>> 0f1a1e64533b404e3b10e065ae2814e1939b3903
 
 @SpringBootTest
 @ContextConfiguration(classes = MyRevApplication.class)
@@ -27,12 +31,20 @@ class UsersServiceImplTest {
 	/** Mock UserRespository for Mockito testing */
 	@Mock
 	//private UsersRepository repository;
+<<<<<<< HEAD
 	private UserRepository repository;
+=======
+	private UsersRepository repository;
+>>>>>>> 0f1a1e64533b404e3b10e065ae2814e1939b3903
 	/** UserService for JUnit testing */
 	@Autowired
 	@InjectMocks
 	//private UsersService service;
+<<<<<<< HEAD
 	UserService service;
+=======
+	UsersService service;
+>>>>>>> 0f1a1e64533b404e3b10e065ae2814e1939b3903
 	/** Used for the initialization & closing of mocked fields */
     private AutoCloseable closeable;
 	

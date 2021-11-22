@@ -34,7 +34,7 @@ public class TestPostController {
 		post = new Post();
 		
 		post.setPostId(6);
-		post.setUserId(1);
+		post.setUsersId(1);
 		post.setPostContent("This is a sample post");
 	
 	}

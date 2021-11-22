@@ -20,9 +20,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.myrev.MyRevApplication;
+<<<<<<< HEAD
 // change import once everyone has all cases of user switched to users
 //import com.revature.myrev.service.UsersServiceImpl;
 import com.revature.myrev.service.UserServiceImpl;
+=======
+import com.revature.myrev.service.UsersServiceImpl;
+>>>>>>> 0f1a1e64533b404e3b10e065ae2814e1939b3903
 
 @SpringBootTest
 @ContextConfiguration(classes = MyRevApplication.class)
@@ -35,7 +39,11 @@ class UsersControllerTest {
 	/** Mock UsersService for Mockito tests */
 	@Mock
 	//private UsersServiceImpl service;
+<<<<<<< HEAD
 	private UserServiceImpl service;
+=======
+	private UsersServiceImpl service;
+>>>>>>> 0f1a1e64533b404e3b10e065ae2814e1939b3903
 	/** Mocked servlet environment for Mockito tests */
 	@Autowired
 	private MockMvc mvc;
@@ -43,7 +51,11 @@ class UsersControllerTest {
 	@Autowired
 	@InjectMocks
 	//private UsersController controller;
+<<<<<<< HEAD
 	private UserController controller;
+=======
+	private UsersController controller;
+>>>>>>> 0f1a1e64533b404e3b10e065ae2814e1939b3903
 	/** Used for the initialization & closing of mocked fields */
     private AutoCloseable closeable;
     /** Useful for reading & writing JSON to & from POJOS */

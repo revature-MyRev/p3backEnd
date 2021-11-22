@@ -25,7 +25,11 @@ class UsersRepositoryTest {
 	/** UserRepository for testing */
 	@Autowired
 	//private UsersRepository repository;
+<<<<<<< HEAD
 	private UserRepository repository;
+=======
+	private UsersRepository repository;
+>>>>>>> 0f1a1e64533b404e3b10e065ae2814e1939b3903
 
 	@Test
 	void test() {
