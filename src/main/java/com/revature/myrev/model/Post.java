@@ -27,28 +27,34 @@ public class Post {
 	private int threadId;
 	@Column(name = "image_url")
 	private String imageUrl;
+	@Column(name = "type")
+	private String type;
 
-	public Post(int postId, String postContent, int usersId, Date postDate) {
+
+	public Post(int postId, String postContent, int usersId, Date postDate, int threadId, String imageUrl, String type) {
 		super();
+		this.type = type;
+		System.out.println("Hello");
+		if(this.type == "post")
+		{
+			Thread thread = new Thread();
+			this.threadId = thread.getThreadId();
+			System.out.println(this.threadId);
+		}
 		this.postId = postId;
 		this.postContent = postContent;
 		this.usersId = usersId;
 		this.postDate = postDate;
-	}
-
-	public Post(int postId, String postContent, int usersId, Date postDate, int threadId, String imageUrl) {
-		super();
-		this.postId = postId;
-		this.postContent = postContent;
-		this.usersId = usersId;
-		this.postDate = postDate;
-		this.threadId = threadId;
 		this.imageUrl = imageUrl;
+		
+		
+		
 	}
 
 	public Post() {
 		super();
 		// TODO Auto-generated constructor stub
+		System.out.println("This is a string");
 	}
 
 	public int getPostId() {
@@ -99,10 +105,20 @@ public class Post {
 		this.imageUrl = imageUrl;
 	}
 
+	public String isType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	@Override
 	public String toString() {
 		return "Post [postId=" + postId + ", postContent=" + postContent + ", usersId=" + usersId + ", postDate="
-				+ postDate + ", threadId=" + threadId + ", imageUrl=" + imageUrl + "]";
+				+ postDate + ", threadId=" + threadId + ", imageUrl=" + imageUrl + ", type=" + type + "]";
 	}
+	
+	
 
 }
