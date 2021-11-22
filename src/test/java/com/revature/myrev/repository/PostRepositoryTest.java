@@ -1,8 +1,6 @@
 package com.revature.myrev.repository;
 
 
-import static org.junit.jupiter.api.Assertions.*;
-
 //import org.junit.jupiter.api.MethodOrderer;
 //import org.junit.jupiter.api.Test;
 //import org.junit.jupiter.api.TestMethodOrder;
@@ -24,9 +22,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.revature.myrev.MyRevApplication;
@@ -37,15 +33,7 @@ import com.revature.myrev.model.Post;
 @ContextConfiguration(classes = MyRevApplication.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
-@Rollback(false)
-@DataJpaTest
 class PostRepositoryTest {
-
-	// Not mocking anything here. 
-
-
-
-
 // Not mocking anything here.
 
 	// Be sure to delete any additions made to db tables at the end of each test
@@ -53,17 +41,10 @@ class PostRepositoryTest {
 	@Autowired
 	private PostRepository repository;
 
-	
-	@Test
-	void test() {
-		fail("Not yet implemented");
-		}
-
-
 	@Test
 	@Order(1)
 	public void createPostTest() {
-		Post post = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
+		Post post = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
 
 		Post result = repository.save(post);
 
@@ -86,7 +67,7 @@ class PostRepositoryTest {
 	@Order(3)
 
 	public void findPostByPostIdTest() {
-		Post result = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
+		Post result = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
 
 		Assertions.assertNotEquals(0, result.getPostId());
 	}
@@ -95,7 +76,7 @@ class PostRepositoryTest {
 	@Order(4)
 
 	public void findPostByUserIdTest() {
-		Post result = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
+		Post result = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
 
 		Assertions.assertNotEquals(0, result.getUsersId());
 	}
@@ -104,7 +85,7 @@ class PostRepositoryTest {
 	@Order(5)
 
 	public void findPostByDateTest() {
-		Post result = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
+		Post result = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
 
 		Assertions.assertNotEquals(0, result.getPostDate());
 	}
@@ -146,58 +127,4 @@ class PostRepositoryTest {
 //		Assertions.assertEquals(true, result);
 //		
 //	}
-
-	@Test
-	@Order(9)
-	public void createPostFailureTestEmptyBody() {
-
-		Post post = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
-
-		Assertions.assertThrows(Exception.class, () -> repository.save(post));
-	}
-
-	@Test
-	@Order(10)
-
-	public void createPostFailureTestTooManyCharacters() {
-
-		int length = 256;
-		String tooMany = "";
-		for (int i = 0; i < length; i++) {
-			tooMany.concat("X");
-		}
-
-		Post post = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
-
-		Assertions.assertThrows(Exception.class, () -> repository.save(post));
-	}
-
-	@Test
-	@Order(11)
-
-	public void updatePostFailureTestEmptyBody() {
-		Post post = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
-
-		post.setPostContent("");
-
-		Assertions.assertThrows(Exception.class, () -> repository.save(post));
-	}
-
-	@Test
-	@Order(12)
-
-	public void updatePostFailureTestTooManyCharacters() {
-		Post post = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
-
-		int length = 256;
-		String tooMany = "";
-		for (int i = 0; i < length; i++) {
-			tooMany.concat("X");
-		}
-		post.setPostContent(tooMany);
-
-		Assertions.assertThrows(Exception.class, () -> repository.save(post));
-
-	}
-
 }

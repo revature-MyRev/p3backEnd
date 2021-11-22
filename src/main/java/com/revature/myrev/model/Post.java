@@ -31,16 +31,23 @@ public class Post {
     private String type;
 
 
-	public Post(int postId, String postContent, int usersId, Date postDate, String imageUrl, int threadId, String type) {
-		super();
-		this.postId = postId;
-		this.postContent = postContent;
-		this.usersId = usersId;
-		this.postDate = postDate;
-		this.threadId = threadId;
-		this.imageUrl=imageUrl;
-		this.type = type;
-	}
+    public Post(int postId, String postContent, int usersId, Date postDate, int threadId, String imageUrl, String type) {
+        super();
+        this.type = type;
+        System.out.println("Hello");
+        if(this.type == "post")
+        {
+            Thread thread = new Thread();
+            this.threadId = thread.getThreadId();
+            System.out.println(this.threadId);
+        }
+        this.postId = postId;
+        this.postContent = postContent;
+        this.usersId = usersId;
+        this.postDate = postDate;
+        this.imageUrl = imageUrl;
+
+    }
 
 	
 
