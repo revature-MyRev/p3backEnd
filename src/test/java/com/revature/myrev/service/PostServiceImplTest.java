@@ -53,7 +53,7 @@ class PostServiceImplTest {
 	@Order(1)
 	@Rollback(value = false)
 	public void createPostTest() {
-		Post post = new Post(1, "content", 1, new Date(0));
+		Post post = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
 		
 		Post result = postServ.savePost(post);
 		
@@ -77,7 +77,7 @@ class PostServiceImplTest {
 	@Order(3)
 	@Rollback(value = false)
 	public void findPostByPostIdTest() {
-		Post result = new Post(1, "content", 1, new Date(0));
+		Post result = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
 		
 		Assertions.assertNotEquals(0,result.getPostId());
 	}
@@ -86,7 +86,7 @@ class PostServiceImplTest {
 	@Order(4)
 	@Rollback(value = false)
 	public void findPostByUserIdTest() {
-		Post result = new Post(1, "content", 1, new Date(0));
+		Post result = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
 		
 		Assertions.assertNotEquals(0,result.getUsersId());
 	}
@@ -95,7 +95,7 @@ class PostServiceImplTest {
 	@Order(5)
 	@Rollback(value = false)
 	public void findPostByDateTest() {
-		Post result = new Post(1, "content", 1, new Date(0));
+		Post result = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
 		
 		Assertions.assertNotEquals(0,result.getPostDate());
 	}
@@ -149,7 +149,7 @@ class PostServiceImplTest {
 	//Or find some way to completely prevent all of these and return whatever error message would come up
 	public void createPostFailureTestEmptyBody() {
 		
-		Post post = new Post(1, "", 1, new Date(0));
+		Post post = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
 		
 		Assertions.assertThrows(Exception.class, () -> postServ.savePost(post));
 	}
@@ -165,7 +165,7 @@ class PostServiceImplTest {
 		   tooMany.concat("X");
 		}
 		
-		Post post = new Post(1, tooMany, 1, new Date(0));
+		Post post = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
 		
 		Assertions.assertThrows(Exception.class, () -> postServ.savePost(post));
 	}
@@ -174,7 +174,7 @@ class PostServiceImplTest {
 	@Order(11)
 	@Rollback(value = false)
 	public void updatePostFailureTestEmptyBody() {
-		Post post = new Post(1, "text", 1, new Date(0));
+		Post post = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
 		
 		post.setPostContent("");
 
@@ -185,7 +185,7 @@ class PostServiceImplTest {
 	@Order(12)
 	@Rollback(value = false)
 	public void updatePostFailureTestTooManyCharacters() {
-		Post post = new Post(1, "text", 1, new Date(0));
+		Post post = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
 		
 		int length = 256;
 		String tooMany = "";

@@ -3,12 +3,17 @@ package com.revature.myrev.model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Date;
-
 import org.junit.jupiter.api.Test;
 
 class PostTest {
 
 	@Test
+
+	void test() {
+		fail("Not yet implemented");
+	}
+
+
 	void postConstructorTest() {
 		Post testPost = new Post();
 		assertNotNull(testPost, "testPost is null");
@@ -122,9 +127,11 @@ class PostTest {
 		Date postDate = new Date(System.currentTimeMillis());
 		int threadId = 0;
 		String imageUrl = "image";
+		String type = "post";
 		String test = "Post [postId=" + postId + ", postContent=" + postContent + ", usersId=" + usersId + ", postDate="
-				+ postDate + ", threadId=" + threadId + ", imageUrl=" + imageUrl + "]";
-		Post testPost = new Post(postId, postContent, usersId, postDate, threadId, imageUrl);
+				+ postDate + ", threadId=" + threadId + ", imageUrl=" + imageUrl + ", type=" + type  + "]";
+		Post testPost = new Post(postId, postContent, usersId, postDate, imageUrl, threadId, type);
 		assertEquals(0, testPost.toString().compareTo(test));
 	}
 }
+
