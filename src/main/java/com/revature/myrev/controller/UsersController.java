@@ -22,29 +22,29 @@ import com.revature.myrev.service.UsersServiceImpl;
 @RestController
 @RequestMapping("/users")
 public class UsersController {
-	
+
 	@Autowired
 	private UsersServiceImpl service;
-	
+
 	@GetMapping(path = "/findByUserName/{userName}")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public Users findByUserName(@PathVariable String userName) {
 		Users user = service.findByUserName(userName);
-		if(Objects.isNull(user)) {
+		if (Objects.isNull(user)) {
 			throw new ObjectNotFoundException("Not Found");
 		}
 		return user;
 	}
-	
-    @PostMapping(path = "/addUser")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public Users addUser(@RequestBody Users user) {
-    	validate(user);
-    	return service.save(user);
-    }
-    
-    public void validate(Users user) {
-		if(Objects.isNull(user.getUserName()) || Objects.isNull(user.getPassword())) {
+
+	@PostMapping(path = "/addUser")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+	public Users addUser(@RequestBody Users user) {
+		validate(user);
+		return service.save(user);
+	}
+
+	public void validate(Users user) {
+		if (Objects.isNull(user.getUserName()) || Objects.isNull(user.getPassword())) {
 			throw new ValidationException("Invalid user");
 		}
 	}
