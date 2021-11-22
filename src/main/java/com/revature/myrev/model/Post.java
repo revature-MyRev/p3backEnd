@@ -25,13 +25,20 @@ public class Post {
 	private Date postDate;
     @Column(name = "thread_id")
 	private int threadId;
+    @Column(name = "image_url")
+    private String imageUrl;
+    @Column(name = "type")
+    private String type;
 
-	public Post(int postId, String postContent, int usersId, Date postDate) {
+	public Post(int postId, String postContent, int usersId, Date postDate, String imageUrl, int threadId, String type) {
 		super();
 		this.postId = postId;
 		this.postContent = postContent;
 		this.usersId = usersId;
 		this.postDate = postDate;
+		this.threadId = threadId;
+		this.imageUrl=imageUrl;
+		this.type = type;
 	}
 
 	public Post() {
@@ -70,11 +77,42 @@ public class Post {
 	public void setPostDate(Date postDate) {
 		this.postDate = postDate;
 	}
+	
+	
+
+	public int getThreadId() {
+		return threadId;
+	}
+
+	public void setThreadId(int threadId) {
+		this.threadId = threadId;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	
+	
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	@Override
 	public String toString() {
 		return "Post [postId=" + postId + ", postContent=" + postContent + ", usersId=" + usersId + ", postDate="
-				+ postDate + "]";
+				+ postDate + ", threadId=" + threadId + ", imageUrl=" + imageUrl + ", type=" + type + "]";
 	}
 
+	
+
+	
 }
