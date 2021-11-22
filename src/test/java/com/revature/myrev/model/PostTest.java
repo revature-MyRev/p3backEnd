@@ -3,12 +3,17 @@ package com.revature.myrev.model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Date;
-
 import org.junit.jupiter.api.Test;
 
 class PostTest {
 
 	@Test
+
+	void test() {
+		fail("Not yet implemented");
+	}
+
+
 	void postConstructorTest() {
 		Post testPost = new Post();
 		assertNotNull(testPost, "testPost is null");
@@ -129,3 +134,4 @@ class PostTest {
 		assertEquals(0, testPost.toString().compareTo(test));
 	}
 }
+

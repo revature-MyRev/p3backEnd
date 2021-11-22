@@ -1,5 +1,19 @@
 package com.revature.myrev.repository;
 
+
+import static org.junit.jupiter.api.Assertions.*;
+
+//import org.junit.jupiter.api.MethodOrderer;
+//import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.TestMethodOrder;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+//import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.test.annotation.Rollback;
+//import org.springframework.test.context.ContextConfiguration;
+//
+//import com.revature.myrev.MyRevApplication;
+//=======
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
@@ -10,27 +24,44 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.revature.myrev.MyRevApplication;
 import com.revature.myrev.model.Post;
 
+
 @SpringBootTest
 @ContextConfiguration(classes = MyRevApplication.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
+@Rollback(false)
+@DataJpaTest
 class PostRepositoryTest {
 
-	// Not mocking anything here.
+	// Not mocking anything here. 
+
+
+
+
+// Not mocking anything here.
+
 	// Be sure to delete any additions made to db tables at the end of each test
 	/** PostRepository for testing */
 	@Autowired
 	private PostRepository repository;
 
+	
+	@Test
+	void test() {
+		fail("Not yet implemented");
+		}
+
+
 	@Test
 	@Order(1)
-
 	public void createPostTest() {
 		Post post = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
 
@@ -166,6 +197,7 @@ class PostRepositoryTest {
 		post.setPostContent(tooMany);
 
 		Assertions.assertThrows(Exception.class, () -> repository.save(post));
+
 	}
 
 }

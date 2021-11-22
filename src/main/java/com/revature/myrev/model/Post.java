@@ -25,7 +25,6 @@ public class Post {
 	private Date postDate;
 	@Column(name = "thread_id")
 	private int threadId;
-
     @Column(name = "image_url")
     private String imageUrl;
     @Column(name = "type")
