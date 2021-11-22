@@ -13,39 +13,41 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.myrev.service.ThreadService;
+import com.revature.myrev.model.Feed;
+import com.revature.myrev.service.FeedServiceImpl;
 
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
-public class ThreadController {
+public class FeedController {
     
 	@Autowired
-	private ThreadService service;
+	private FeedServiceImpl service;
 	
-	@GetMapping("/threads")
-	public List<Thread> findAll() {
+	@GetMapping("/feeds")
+	public List<Feed> findAll() {
 		return service.findAll();
 	}
 	
-	@GetMapping("/threadsById")
-	public Thread findById(@PathVariable int threadId) {
-		return service.findById(threadId);
+	@GetMapping("/feeds/{feed_id}")
+	public Feed findById(@PathVariable int feedId) {
+		return service.findById(feedId);
 	}
 	
-	@PostMapping("/threads")
-	public void save(@RequestBody Thread thread) {
-		service.save(thread);
+	@PostMapping("/feeds")
+	public int save(@RequestBody Feed feed) {
+		service.save(feed);
+		return feed.getFeedId();
 	}
 	
-	@PutMapping("/threads/{thread_id}")
-	public void update(@PathVariable int threadId, @RequestBody Thread thread) {
-		service.save(thread);
+	@PutMapping("/feeds/{feed_id}")
+	public void update(@PathVariable int feedId, @RequestBody Feed feed) {
+		service.save(feed);
 	}
 	
-	@DeleteMapping("/threads/{thread_id}")
-	public void delete(@PathVariable int threadId) {
-		service.deleteById(threadId);
+	@DeleteMapping("/feeds/{feed_id}")
+	public void delete(@PathVariable int feedId) {
+		service.deleteById(feedId);
 	}
 	
 }

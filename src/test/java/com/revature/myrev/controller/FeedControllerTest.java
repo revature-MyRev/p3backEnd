@@ -20,26 +20,26 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.myrev.MyRevApplication;
-import com.revature.myrev.service.ThreadServiceImpl;
+import com.revature.myrev.service.FeedServiceImpl;
 
 @SpringBootTest
 @ContextConfiguration(classes = MyRevApplication.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @AutoConfigureMockMvc
 @Rollback(false)
-class ThreadControllerTest {
+class FeedControllerTest {
 	
 	// You may find these useful for your tests
 	/** Mock ThreadService for Mockito tests */
 	@Mock
-	private ThreadServiceImpl service;
+	private FeedServiceImpl service;
 	/** Mocked servlet environment for Mockito tests */
 	@Autowired
 	private MockMvc mvc;
 	/** ThreadController for any sort of JUnit test */
 	@Autowired
 	@InjectMocks
-	private ThreadController controller;
+	private FeedController controller;
 	/** Used for the initialization & closing of mocked fields */
     private AutoCloseable closeable;
     /** Useful for reading & writing JSON to & from POJOS */

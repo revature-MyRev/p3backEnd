@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import com.revature.myrev.model.Feed;
 
 @Entity
 @Table
@@ -34,20 +35,17 @@ public class Post {
 	public Post(int postId, String postContent, int usersId, Date postDate, int threadId, String imageUrl, String type) {
 		super();
 		this.type = type;
-		System.out.println("Hello");
 		if(this.type == "post")
 		{
-			Thread thread = new Thread();
-			this.threadId = thread.getThreadId();
-			System.out.println(this.threadId);
+			Feed feed = new Feed();
+			this.threadId = feed.getFeedId();
 		}
+		//this.threadId = threadId;
 		this.postId = postId;
 		this.postContent = postContent;
 		this.usersId = usersId;
 		this.postDate = postDate;
 		this.imageUrl = imageUrl;
-		
-		
 		
 	}
 

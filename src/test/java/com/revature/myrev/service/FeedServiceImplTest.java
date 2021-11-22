@@ -16,21 +16,21 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.revature.myrev.MyRevApplication;
-import com.revature.myrev.repository.ThreadRepository;
+import com.revature.myrev.repository.FeedRepository;
 
 @SpringBootTest
 @ContextConfiguration(classes = MyRevApplication.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Rollback(false)
-class ThreadServiceImplTest {
+class FeedServiceImplTest {
 
 	/** Mock ThreadRespository for Mockito testing */
 	@Mock
-	private ThreadRepository repository;
+	private FeedRepository repository;
 	/** ThreadService for JUnit testing */
 	@Autowired
 	@InjectMocks
-	ThreadService service;
+	FeedService service;
 	/** Used for the initialization & closing of mocked fields */
     private AutoCloseable closeable;
 	

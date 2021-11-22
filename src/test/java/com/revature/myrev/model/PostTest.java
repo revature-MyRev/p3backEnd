@@ -130,7 +130,7 @@ class PostTest {
 		String type = "post";
 		String test = "Post [postId=" + postId + ", postContent=" + postContent + ", usersId=" + usersId + ", postDate="
 				+ postDate + ", threadId=" + threadId + ", imageUrl=" + imageUrl + ", type=" + type  + "]";
-		Post testPost = new Post(postId, postContent, usersId, postDate, imageUrl, threadId, type);
+		Post testPost = new Post(postId, postContent, usersId, postDate, threadId, imageUrl, type);
 		assertEquals(0, testPost.toString().compareTo(test));
 	}
 }

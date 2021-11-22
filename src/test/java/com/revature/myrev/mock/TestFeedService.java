@@ -18,12 +18,12 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.revature.myrev.model.Thread;
-import com.revature.myrev.repository.ThreadRepository;
-import com.revature.myrev.service.ThreadServiceImpl;
+import com.revature.myrev.model.Feed;
+import com.revature.myrev.repository.FeedRepository;
+import com.revature.myrev.service.FeedServiceImpl;
 
 
-public class TestThreadService {
+public class TestFeedService {
 /*
 	@Mock
 	ThreadRepository threadRepository;
@@ -68,28 +68,28 @@ public class TestThreadService {
 	*/
 
 	@InjectMocks
-	 ThreadServiceImpl threadService;
+	 FeedServiceImpl threadService;
 	
 	@Mock
-	ThreadRepository threadRepository;
+	FeedRepository feedRepository;
 	
-	Thread thread;
+	Feed feed;
 	
 	@BeforeEach
 	void setUp() throws Exception{
 		MockitoAnnotations.initMocks(this);
-		thread = new Thread();
+		feed = new Feed();
 		
-		thread.setThreadId(8);
+		feed.setFeedId(8);
 		
 	}
 	
 	@Test
 	final void testGetThread() {
-		when(threadRepository.findAll()).thenReturn(Collections.singletonList(thread));
+		when(feedRepository.findAll()).thenReturn(Collections.singletonList(feed));
 		//when(threadRepository.findById(anyInt())).thenReturn(thread);
-		assertNotNull(thread);
-		assertEquals(8, thread.getThreadId());
+		assertNotNull(feed);
+		assertEquals(8, feed.getFeedId());
 	}		
 	
 

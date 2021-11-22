@@ -63,7 +63,7 @@ class PostRepositoryTest {
 	@Test
 	@Order(1)
 	public void createPostTest() {
-		Post post = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
+		Post post = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
 
 		Post result = repository.save(post);
 
@@ -86,7 +86,7 @@ class PostRepositoryTest {
 	@Order(3)
 
 	public void findPostByPostIdTest() {
-		Post result = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
+		Post result = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
 
 		Assertions.assertNotEquals(0, result.getPostId());
 	}
@@ -95,7 +95,7 @@ class PostRepositoryTest {
 	@Order(4)
 
 	public void findPostByUserIdTest() {
-		Post result = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
+		Post result = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
 
 		Assertions.assertNotEquals(0, result.getUsersId());
 	}
@@ -104,7 +104,7 @@ class PostRepositoryTest {
 	@Order(5)
 
 	public void findPostByDateTest() {
-		Post result = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
+		Post result = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
 
 		Assertions.assertNotEquals(0, result.getPostDate());
 	}
@@ -151,7 +151,7 @@ class PostRepositoryTest {
 	@Order(9)
 	public void createPostFailureTestEmptyBody() {
 
-		Post post = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
+		Post post = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
 
 		Assertions.assertThrows(Exception.class, () -> repository.save(post));
 	}
@@ -167,7 +167,7 @@ class PostRepositoryTest {
 			tooMany.concat("X");
 		}
 
-		Post post = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
+		Post post = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
 
 		Assertions.assertThrows(Exception.class, () -> repository.save(post));
 	}
@@ -176,7 +176,7 @@ class PostRepositoryTest {
 	@Order(11)
 
 	public void updatePostFailureTestEmptyBody() {
-		Post post = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
+		Post post = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
 
 		post.setPostContent("");
 
@@ -187,7 +187,7 @@ class PostRepositoryTest {
 	@Order(12)
 
 	public void updatePostFailureTestTooManyCharacters() {
-		Post post = new Post(1, "content", 1, new Date(0),"testUrl",1,"post");
+		Post post = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
 
 		int length = 256;
 		String tooMany = "";
