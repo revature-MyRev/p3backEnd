@@ -12,22 +12,22 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import com.revature.myrev.controller.FollowerController;
-import com.revature.myrev.model.Follower;
-import com.revature.myrev.service.FollowerServiceImpl;
+import com.revature.myrev.model.Followers;
+import com.revature.myrev.service.FeedServiceImpl;
 
 public class TestFollowerController {
 	@InjectMocks
 	FollowerController followerController;
 	
 	@Mock
-	FollowerServiceImpl followerService;
+	FeedServiceImpl followerService;
 	
-	Follower follower;
+	Followers follower;
 	
 	@BeforeEach
 	void setUp() throws Exception{
 		MockitoAnnotations.initMocks(this);
-		follower = new Follower();
+		follower = new Followers();
 		
 		follower.setFollowedId(3);
 		follower.setFollowerId(1);

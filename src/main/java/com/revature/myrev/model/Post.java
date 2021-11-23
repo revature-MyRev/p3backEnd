@@ -23,23 +23,30 @@ public class Post {
 	private int usersId;
 	@Column(name = "post_date")
 	private Date postDate;
-	@Column(name = "thread_id")
-	private int threadId;
+	@Column(name = "feed_id")
+	private int feedId;
     @Column(name = "image_url")
     private String imageUrl;
     @Column(name = "type")
     private String type;
 
 
-	public Post(int postId, String postContent, int usersId, Date postDate, String imageUrl, int threadId, String type) {
-		super();
-		this.postId = postId;
-		this.postContent = postContent;
-		this.usersId = usersId;
-		this.postDate = postDate;
-		this.threadId = threadId;
-		this.imageUrl=imageUrl;
-		this.type = type;
+	public Post(int postId, String postContent, int usersId, Date postDate, String imageUrl, int feedId, String type) {
+		  super();
+	        this.type = type;
+	        System.out.println("Hello");
+//	        if(this.type == "post")
+//	        {
+//	            Feed feed = new Feed();
+//	            this.feedId = feed.getFeedId();
+//	            System.out.println(this.feedId);
+//	        }
+	        this.feedId = feedId;
+	        this.postId = postId;
+	        this.postContent = postContent;
+	        this.usersId = usersId;
+	        this.postDate = postDate;
+	        this.imageUrl = imageUrl;
 	}
 
 	
@@ -98,14 +105,18 @@ public class Post {
 
 
 
-	public int getThreadId() {
-		return threadId;
+	
+
+
+
+	public int getFeedId() {
+		return feedId;
 	}
 
 
 
-	public void setThreadId(int threadId) {
-		this.threadId = threadId;
+	public void setFeedId(int feedId) {
+		this.feedId = feedId;
 	}
 
 
@@ -138,7 +149,7 @@ public class Post {
 	public String toString() {
 		return "Post [postId=" + postId + ", postContent=" + postContent + ", usersId=" + usersId + ", postDate="
 
-				+ postDate + ", threadId=" + threadId + ", imageUrl=" + imageUrl + ", type=" + type + "]";
+				+ postDate + ", threadId=" + feedId + ", imageUrl=" + imageUrl + ", type=" + type + "]";
 	}
 
 	

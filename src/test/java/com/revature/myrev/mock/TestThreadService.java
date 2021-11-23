@@ -18,9 +18,9 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.revature.myrev.model.Thread;
-import com.revature.myrev.repository.ThreadRepository;
-import com.revature.myrev.service.ThreadServiceImpl;
+import com.revature.myrev.model.Feed;
+import com.revature.myrev.repository.FollowerRepository;
+import com.revature.myrev.service.FollowerServiceImpl;
 
 
 public class TestThreadService {
@@ -68,17 +68,17 @@ public class TestThreadService {
 	*/
 
 	@InjectMocks
-	 ThreadServiceImpl threadService;
+	 FollowerServiceImpl threadService;
 	
 	@Mock
-	ThreadRepository threadRepository;
+	FollowerRepository threadRepository;
 	
-	Thread thread;
+	Feed thread;
 	
 	@BeforeEach
 	void setUp() throws Exception{
 		MockitoAnnotations.initMocks(this);
-		thread = new Thread();
+		thread = new Feed();
 		
 		thread.setThreadId(8);
 		

@@ -9,35 +9,37 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Thread {
+public class Feed {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="thread_id")
-	private int threadId;
+	@Column(name="feed_id")
+	private int feedId;
 
-	public Thread(int threadId) {
+	public Feed(int feedId) {
 		super();
-		this.threadId = threadId;
+		this.feedId = feedId;
 	}
 
-	public Thread() {
+	public Feed() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getThreadId() {
-		return threadId;
+	public int getFeedId() {
+		return feedId;
 	}
 
-	public void setThreadId(int threadId) {
-		this.threadId = threadId;
+	public void setFeedId(int feedId) {
+		this.feedId = feedId;
 	}
 
 	@Override
 	public String toString() {
-		return "Thread [threadId=" + threadId + "]";
+		return "Feed [feedId=" + feedId + "]";
 	}
+
+	
 	
 
 }

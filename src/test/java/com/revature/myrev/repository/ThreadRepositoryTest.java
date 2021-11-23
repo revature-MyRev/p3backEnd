@@ -24,7 +24,7 @@ class ThreadRepositoryTest {
 	// Be sure to delete any additions made to table at the end of each test
 	/** ThreadRepository for testing */
 	@Autowired
-	private ThreadRepository repository;
+	private FollowerRepository repository;
 
 	@Test
 	void test() {

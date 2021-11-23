@@ -22,8 +22,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.myrev.MyRevApplication;
-import com.revature.myrev.model.Follower;
-import com.revature.myrev.service.FollowerServiceImpl;
+import com.revature.myrev.model.Followers;
+import com.revature.myrev.service.FeedServiceImpl;
 
 @SpringBootTest
 @ContextConfiguration(classes = MyRevApplication.class)
@@ -35,7 +35,7 @@ class FollowerControllerTest {
 	// You may find these useful for your tests
 	/** Mock FollowerService for Mockito tests */
 	@Mock
-	private FollowerServiceImpl service;
+	private FeedServiceImpl service;
 	/** Mocked servlet environment for Mockito tests */
 	@Autowired
 	private MockMvc mvc;

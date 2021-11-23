@@ -15,12 +15,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.revature.myrev.controller.ThreadController;
-import com.revature.myrev.model.Thread;
-import com.revature.myrev.model.Thread;
-import com.revature.myrev.repository.ThreadRepository;
-import com.revature.myrev.service.ThreadService;
-import com.revature.myrev.service.ThreadServiceImpl;
+import com.revature.myrev.controller.FeedController;
+import com.revature.myrev.model.Feed;
+import com.revature.myrev.model.Feed;
+import com.revature.myrev.repository.FollowerRepository;
+import com.revature.myrev.service.FollowerService;
+import com.revature.myrev.service.FollowerServiceImpl;
 
 public class TestThreadController {
 /*
@@ -61,12 +61,12 @@ public class TestThreadController {
 */	
 		
 
-	private ThreadRepository threadRepository;
+	private FollowerRepository threadRepository;
 //	private ThreadServiceImpl threadService;
 	
 	@BeforeEach
 	void initService() {
-		threadRepository = mock(ThreadRepository.class);
+		threadRepository = mock(FollowerRepository.class);
 	//	threadService = new ThreadServiceImpl();
 		
 		
@@ -75,13 +75,13 @@ public class TestThreadController {
 	
 	@Test
 	void create() {
-		Thread thread = new Thread();
+		Feed thread = new Feed();
 		
 	//	thread = new Thread();
 		
 		thread.setThreadId(6);
 	
-		when(threadRepository.save(any(Thread.class))).thenReturn(thread);
+		when(threadRepository.save(any(Feed.class))).thenReturn(thread);
 		assertNotNull(thread);
 		assertEquals(6, thread.getThreadId());
 		

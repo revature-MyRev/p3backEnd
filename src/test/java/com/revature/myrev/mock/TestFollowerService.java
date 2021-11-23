@@ -16,11 +16,11 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.revature.myrev.model.Follower;
-import com.revature.myrev.model.Follower;
+import com.revature.myrev.model.Followers;
+import com.revature.myrev.model.Followers;
 import com.revature.myrev.repository.FollowerRepository;
 import com.revature.myrev.repository.FollowerRepository;
-import com.revature.myrev.service.FollowerServiceImpl;
+import com.revature.myrev.service.FeedServiceImpl;
 
 
 public class TestFollowerService {
@@ -69,18 +69,18 @@ public class TestFollowerService {
 	
 
 	@InjectMocks
-	 FollowerServiceImpl followerService;
+	 FeedServiceImpl followerService;
 	
 	@Mock
 	FollowerRepository followerRepository;
 	
-	Follower follower;
+	Followers follower;
 	
 	
 	@BeforeEach
 	void setUp() throws Exception{
 		MockitoAnnotations.initMocks(this);
-		follower = new Follower();
+		follower = new Followers();
 		
 		follower.setFollowedId(3);
 		follower.setFollowerId(1);

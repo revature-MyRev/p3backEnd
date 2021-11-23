@@ -14,9 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.myrev.MyRevApplication;
 import com.revature.myrev.repository.FollowerRepository;
 
@@ -25,11 +23,11 @@ import com.revature.myrev.repository.FollowerRepository;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Rollback(false)
 class FollowerServiceImplTest {
-	
-	/** Mock FollowerRespository for Mockito testing */
+
+	/** Mock ThreadRespository for Mockito testing */
 	@Mock
 	private FollowerRepository repository;
-	/** FollowerService for JUnit testing */
+	/** ThreadService for JUnit testing */
 	@Autowired
 	@InjectMocks
 	FollowerService service;
@@ -45,7 +43,6 @@ class FollowerServiceImplTest {
 	public void releaseMocks () throws Exception {
 		closeable.close();
 	}
-
 	@Test
 	void test() {
 		fail("Not yet implemented");
