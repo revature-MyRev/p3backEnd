@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.revature.myrev.model.Feed;
 
 public interface FeedService {
-	
+
 	public List<Feed> findAll();
 
 	public Feed findById(int id);

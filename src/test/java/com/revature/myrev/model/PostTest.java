@@ -7,13 +7,6 @@ import org.junit.jupiter.api.Test;
 
 class PostTest {
 
-	@Test
-
-	void test() {
-		fail("Not yet implemented");
-	}
-
-
 	void postConstructorTest() {
 		Post testPost = new Post();
 		assertNotNull(testPost, "testPost is null");
@@ -78,15 +71,15 @@ class PostTest {
 	@Test
 	void postThreadIdGetterTest() {
 		Post testPost = new Post();
-		assertEquals(0, testPost.getThreadId());
+		assertEquals(0, testPost.getFeedId());
 	}
 
 	@Test
 	void postThreadIdSetterTest() {
 		int test = 1;
 		Post testPost = new Post();
-		testPost.setThreadId(test);
-		assertEquals(test, testPost.getThreadId());
+		testPost.setFeedId(test);
+		assertEquals(test, testPost.getFeedId());
 	}
 
 	@Test
@@ -112,8 +105,9 @@ class PostTest {
 		String postDate = "null";
 		int threadId = 0;
 		String imageUrl = "null";
+		String type = "null";
 		String test = "Post [postId=" + postId + ", postContent=" + postContent + ", usersId=" + usersId + ", postDate="
-				+ postDate + ", threadId=" + threadId + ", imageUrl=" + imageUrl + "]";
+				+ postDate + ", threadId=" + threadId + ", imageUrl=" + imageUrl + ", type=" + type + "]";
 		Post testPost = new Post();
 		assertEquals(0, testPost.toString().compareTo(test));
 	}
@@ -129,9 +123,8 @@ class PostTest {
 		String imageUrl = "image";
 		String type = "post";
 		String test = "Post [postId=" + postId + ", postContent=" + postContent + ", usersId=" + usersId + ", postDate="
-				+ postDate + ", threadId=" + threadId + ", imageUrl=" + imageUrl + ", type=" + type  + "]";
+				+ postDate + ", threadId=" + threadId + ", imageUrl=" + imageUrl + ", type=" + type + "]";
 		Post testPost = new Post(postId, postContent, usersId, postDate, imageUrl, threadId, type);
 		assertEquals(0, testPost.toString().compareTo(test));
 	}
 }
-

@@ -20,31 +20,31 @@ import com.revature.myrev.service.FeedServiceImpl;
 @RestController
 @RequestMapping("/api")
 public class FeedController {
-    
+
 	@Autowired
 	private FeedServiceImpl service;
-	
+
 	@GetMapping("/feeds")
 	public List<Feed> findAll() {
 		return service.findAll();
 	}
-	
+
 	@GetMapping("/feeds/{feed_id}")
 	public Feed findById(@PathVariable int feedId) {
 		return service.findById(feedId);
 	}
-	
+
 	@PostMapping("/feeds")
 	public int save(@RequestBody Feed feed) {
 		service.save(feed);
 		return feed.getFeedId();
 	}
-	
+
 	@PutMapping("/feeds/{feed_id}")
 	public void update(@PathVariable int feedId, @RequestBody Feed feed) {
 		service.save(feed);
 	}
-	
+
 	@DeleteMapping("/feeds/{feed_id}")
 	public void delete(@PathVariable int feedId) {
 		service.deleteById(feedId);

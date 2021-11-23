@@ -8,10 +8,9 @@ import org.springframework.stereotype.Service;
 import com.revature.myrev.repository.FeedRepository;
 import com.revature.myrev.model.Feed;
 
-
 @Service
 public class FeedServiceImpl implements FeedService {
-	
+
 	@Autowired
 	public FeedRepository feedRepository;
 
@@ -26,7 +25,6 @@ public class FeedServiceImpl implements FeedService {
 		// TODO Auto-generated method stub
 		return feedRepository.findById(id);
 	}
-	
 
 	@Override
 	public int save(Feed feed) {

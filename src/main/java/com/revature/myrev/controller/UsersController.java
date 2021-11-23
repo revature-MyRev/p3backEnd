@@ -11,7 +11,7 @@ import com.revature.myrev.service.UsersService;
 @RestController
 @RequestMapping("/users")
 public class UsersController {
-	
+
 	@Autowired
 	private UsersService service;
 

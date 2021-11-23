@@ -32,17 +32,18 @@ class FollowerServiceImplTest {
 	@InjectMocks
 	FollowerService service;
 	/** Used for the initialization & closing of mocked fields */
-    private AutoCloseable closeable;
-	
+	private AutoCloseable closeable;
+
 	@Before
-	public void setUp () {
+	public void setUp() {
 		closeable = MockitoAnnotations.openMocks(this);
 	}
-	
+
 	@After
-	public void releaseMocks () throws Exception {
+	public void releaseMocks() throws Exception {
 		closeable.close();
 	}
+
 	@Test
 	void test() {
 		fail("Not yet implemented");

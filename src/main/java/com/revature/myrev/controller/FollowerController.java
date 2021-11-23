@@ -11,7 +11,7 @@ import com.revature.myrev.service.FeedService;
 @RestController
 @RequestMapping("/followers")
 public class FollowerController {
-	
+
 	@Autowired
 	private FeedService service;
 

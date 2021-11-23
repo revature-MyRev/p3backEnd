@@ -22,28 +22,28 @@ public class TestPostController {
 
 	@InjectMocks
 	PostController postController;
-	
+
 	@Mock
 	PostServiceImpl postService;
-	
+
 	Post post;
-	
+
 	@BeforeEach
-	void setUp() throws Exception{
+	void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		post = new Post();
-		
+
 		post.setPostId(6);
 		post.setUsersId(1);
 		post.setPostContent("This is a sample post");
-	
+
 	}
-	
+
 	@Test
 	final void testGetPost() {
-		//when(postService.findByPostId(anyInt())).thenReturn(post);
+		// when(postService.findByPostId(anyInt())).thenReturn(post);
 		when(postService.findAllPosts()).thenReturn(Collections.singletonList(post));
-		
+
 		assertNotNull(post);
 		assertEquals(6, post.getPostId());
 	}

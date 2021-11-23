@@ -10,10 +10,10 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Feed {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="feed_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "feed_id")
 	private int feedId;
 
 	public Feed(int feedId) {
@@ -38,8 +38,5 @@ public class Feed {
 	public String toString() {
 		return "Feed [feedId=" + feedId + "]";
 	}
-
-	
-	
 
 }

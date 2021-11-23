@@ -28,7 +28,7 @@ import com.revature.myrev.service.FollowerServiceImpl;
 @AutoConfigureMockMvc
 @Rollback(false)
 class FeedControllerTest {
-	
+
 	// You may find these useful for your tests
 	/** Mock ThreadService for Mockito tests */
 	@Mock
@@ -41,23 +41,21 @@ class FeedControllerTest {
 	@InjectMocks
 	private FeedController controller;
 	/** Used for the initialization & closing of mocked fields */
-    private AutoCloseable closeable;
-    /** Useful for reading & writing JSON to & from POJOS */
-    private ObjectMapper mapper;
+	private AutoCloseable closeable;
+	/** Useful for reading & writing JSON to & from POJOS */
+	private ObjectMapper mapper;
 
-	
 	@Before
-	public void setUp () {
+	public void setUp() {
 		closeable = MockitoAnnotations.openMocks(this);
 		mvc = MockMvcBuilders.standaloneSetup(controller).build();
 		mapper = new ObjectMapper();
 	}
-	
+
 	@After
-	public void releaseMocks () throws Exception {
+	public void releaseMocks() throws Exception {
 		closeable.close();
 	}
-
 
 	@Test
 	void test() {

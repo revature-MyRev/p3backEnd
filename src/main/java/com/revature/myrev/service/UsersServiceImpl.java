@@ -9,7 +9,7 @@ import com.revature.myrev.model.Users;
 import com.revature.myrev.repository.UsersRepository;
 
 @Service
-public class UsersServiceImpl implements UsersService{
+public class UsersServiceImpl implements UsersService {
 
 	@Autowired
 	public UsersRepository usersRepository;

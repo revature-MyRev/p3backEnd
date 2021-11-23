@@ -13,7 +13,7 @@ public class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "users_id")                                       
+	@Column(name = "users_id")
 	private int usersId;
 	private int age;
 	@Column(name = "users_name")
@@ -142,9 +142,9 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "Users [usersId=" + usersId + ", age=" + age + ", usersname=" + usersname + ", gender=" + gender + ", photo="
-				+ photo + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", middleName="
-				+ middleName + ", jobTitle=" + jobTitle + "]";
+		return "Users [usersId=" + usersId + ", age=" + age + ", usersname=" + usersname + ", gender=" + gender
+				+ ", photo=" + photo + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", middleName=" + middleName + ", jobTitle=" + jobTitle + "]";
 	}
 
 }
