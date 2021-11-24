@@ -9,7 +9,8 @@ import com.revature.myrev.model.Feed;
 
 @Repository
 public interface FeedRepository extends JpaRepository<Feed, Integer> {
-
+	
 	public Feed findById(int id);
+	
 
 }
