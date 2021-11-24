@@ -28,7 +28,7 @@ import com.revature.myrev.repository.PostRepository;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Rollback(false)
 class PostServiceImplTest {
-	
+
 	/** Mock PostRespository for Mockito testing */
 	@Mock
 	private PostRepository repository;
@@ -37,15 +37,15 @@ class PostServiceImplTest {
 	@InjectMocks
 	PostService postServ = new PostServiceImpl();
 	/** Used for the initialization & closing of mocked fields */
-    private AutoCloseable closeable;
-	
+	private AutoCloseable closeable;
+
 	@Before
-	public void setUp () {
+	public void setUp() {
 		closeable = MockitoAnnotations.openMocks(this);
 	}
-	
+
 	@After
-	public void releaseMocks () throws Exception {
+	public void releaseMocks() throws Exception {
 		closeable.close();
 	}
 
@@ -53,64 +53,72 @@ class PostServiceImplTest {
 	@Order(1)
 	@Rollback(value = false)
 	public void createPostTest() {
-		Post post = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
-		
+		Post post = new Post(1, "content", 1, new Date(0), "testUrl", 1, "post");
+
 		Post result = postServ.savePost(post);
-		
-		Assertions.assertNotEquals(0,result.getPostId());
+
+		Assertions.assertNotEquals(0, result.getPostId());
 	}
-	
+
 	@Test
 	@Order(2)
 	@Rollback(value = false)
 	public void updatePostTest() {
 		List<Post> posts = postServ.findAllPosts();
-		Post updateMe = posts.get(posts.size()-1);
+		Post updateMe = posts.get(posts.size() - 1);
 		updateMe.setPostContent("Updated Content");
 		Post result = postServ.savePost(updateMe);
 
 		Assertions.assertEquals("Updated Content", result.getPostContent());
 	}
-	
 
 	@Test
 	@Order(3)
 	@Rollback(value = false)
 	public void findPostByPostIdTest() {
-		Post result = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
-		
-		Assertions.assertNotEquals(0,result.getPostId());
+		Post result = new Post(1, "content", 1, new Date(0), "testUrl", 1, "post");
+
+		Assertions.assertNotEquals(0, result.getPostId());
 	}
-	
+
 	@Test
 	@Order(4)
 	@Rollback(value = false)
 	public void findPostByUserIdTest() {
-		Post result = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
-		
-		Assertions.assertNotEquals(0,result.getUsersId());
+		Post result = new Post(1, "content", 1, new Date(0), "testUrl", 1, "post");
+
+		Assertions.assertNotEquals(0, result.getUsersId());
 	}
-	
+
 	@Test
 	@Order(5)
 	@Rollback(value = false)
 	public void findPostByDateTest() {
-		Post result = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
-		
-		Assertions.assertNotEquals(0,result.getPostDate());
+		Post result = new Post(1, "content", 1, new Date(0), "testUrl", 1, "post");
+
+		Assertions.assertNotEquals(0, result.getPostDate());
 	}
-	
+
 	@Test
 	@Order(6)
 	@Rollback(value = false)
 	public void deletePostTest() {
 		List<Post> posts = postServ.findAllPosts();
-		Post deleteMe = posts.get(posts.size()-1);
+		Post deleteMe = posts.get(posts.size() - 1);
 		postServ.deletePost(deleteMe.getPostId());
 
 		Assertions.assertEquals(Optional.empty(), postServ.findByPostId(deleteMe.getPostId()));
 	}
-	
+
+	@Test
+	@Order(7)
+
+	public void findAllPostsTest() {
+		Post test = new Post();
+		List<Post> posts = postServ.findAllPosts();
+		Assertions.assertNotEquals(0, posts.size());
+	}
+
 //	@Test
 //	@Order(7)
 //	@Rollback(value = false)
@@ -137,64 +145,6 @@ class PostServiceImplTest {
 //		Assertions.assertEquals(true, result);
 //		
 //	}
-	
-	//WHAT HAPPENS IF FUNCTIONS DO NOT WORK
-	
-	@Test
-	@Order(9)
-	@Rollback(value = false)
-	//Users only control the content-body of a Post
-	//Only way to break is empty posts, posts with too many characters, or inputs that cannot be translated into a String format
-	//Create an exception to be thrown if user tries to submit each of these things?
-	//Or find some way to completely prevent all of these and return whatever error message would come up
-	public void createPostFailureTestEmptyBody() {
-		
-		Post post = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
-		
-		Assertions.assertThrows(Exception.class, () -> postServ.savePost(post));
-	}
-	
-	@Test
-	@Order(10)
-	@Rollback(value = false)
-	public void createPostFailureTestTooManyCharacters() {
-		
-		int length = 256;
-		String tooMany = "";
-		for (int i = 0; i < length; i++){
-		   tooMany.concat("X");
-		}
-		
-		Post post = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
-		
-		Assertions.assertThrows(Exception.class, () -> postServ.savePost(post));
-	}
-	
-	@Test
-	@Order(11)
-	@Rollback(value = false)
-	public void updatePostFailureTestEmptyBody() {
-		Post post = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
-		
-		post.setPostContent("");
 
-		Assertions.assertThrows(Exception.class, () -> postServ.savePost(post));
-	}
-	
-	@Test
-	@Order(12)
-	@Rollback(value = false)
-	public void updatePostFailureTestTooManyCharacters() {
-		Post post = new Post(1, "content", 1, new Date(0),1,"testUrl","post");
-		
-		int length = 256;
-		String tooMany = "";
-		for (int i = 0; i < length; i++){
-		   tooMany.concat("X");
-		}
-		post.setPostContent(tooMany);
-
-		Assertions.assertThrows(Exception.class, () -> postServ.savePost(post));
-	}
-
+	// NEGATIVE TESTS HANDLED IN FRONT END CODE
 }

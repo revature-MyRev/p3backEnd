@@ -71,15 +71,15 @@ class PostTest {
 	@Test
 	void postThreadIdGetterTest() {
 		Post testPost = new Post();
-		assertEquals(0, testPost.getThreadId());
+		assertEquals(0, testPost.getFeedId());
 	}
 
 	@Test
 	void postThreadIdSetterTest() {
 		int test = 1;
 		Post testPost = new Post();
-		testPost.setThreadId(test);
-		assertEquals(test, testPost.getThreadId());
+		testPost.setFeedId(test);
+		assertEquals(test, testPost.getFeedId());
 	}
 
 	@Test
@@ -94,20 +94,6 @@ class PostTest {
 		Post testPost = new Post();
 		testPost.setImageUrl(test);
 		assertEquals(test, testPost.getImageUrl());
-	}
-	
-	@Test
-	void postTypeGetterTest() {
-		Post testPost = new Post();
-		assertEquals(null, testPost.getType());
-	}
-
-	@Test
-	void postTypeSetterTest() {
-		String test = "typeTest";
-		Post testPost = new Post();
-		testPost.setType(test);
-		assertEquals(test, testPost.getType());
 	}
 
 	@Test
@@ -137,9 +123,8 @@ class PostTest {
 		String imageUrl = "image";
 		String type = "post";
 		String test = "Post [postId=" + postId + ", postContent=" + postContent + ", usersId=" + usersId + ", postDate="
-				+ postDate + ", threadId=" + threadId + ", imageUrl=" + imageUrl + ", type=" + type  + "]";
-		Post testPost = new Post(postId, postContent, usersId, postDate, threadId, imageUrl, type);
+				+ postDate + ", threadId=" + threadId + ", imageUrl=" + imageUrl + ", type=" + type + "]";
+		Post testPost = new Post(postId, postContent, usersId, postDate, imageUrl, threadId, type);
 		assertEquals(0, testPost.toString().compareTo(test));
 	}
 }
-
