@@ -1,12 +1,16 @@
 package com.revature.myrev.service;
 
 import java.util.List;
+
+
 import com.revature.myrev.model.Follower;
 
 
 public interface FollowerService {
 
-	public Follower findByFollowedId(int followedId);
+	public List<Follower> findByFollowedId(int followedId);
+	
+	public Follower findByFollowedIdAndFollowerId(int followedId , int followerId);
 	
 	public List<Follower> findAll();
 

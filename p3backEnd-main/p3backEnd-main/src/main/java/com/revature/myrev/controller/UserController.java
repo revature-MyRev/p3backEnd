@@ -12,37 +12,41 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.myrev.service.UserService;
-import com.revature.myrev.model.User;
+import com.revature.myrev.service.UsersService;
+
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import com.revature.myrev.model.Users;
 
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/user")
+@EnableSwagger2
 public class UserController {
 	
 	@Autowired
-	private UserService userService;
+	private UsersService userService;
 	
 	@GetMapping("/findByUsername/{username}")
-	public User findFollowersByUsername(@PathVariable String username) {
+	public Users findFollowersByUsername(@PathVariable String username) {
 		// TODO Auto-generated method stub
 		return userService.findByUsername(username);
 	}
 
 	@GetMapping("/findById/{id}")
-	public User findById(@PathVariable int id) {
+	public Users findById(@PathVariable int id) {
 		// TODO Auto-generated method stub
 		return userService.findById(id);
 	}
 
 	@PostMapping("/users")
-	public void save(User user) {
+	public void save(Users user) {
 		userService.save(user);
 
 	}
 
 	@PutMapping("/users/{id}")
-	public void update(@PathVariable int id, User user) {
+	public void update(@PathVariable int id, Users user) {
 		userService.save(user);
 
 	}
@@ -54,7 +58,7 @@ public class UserController {
 	}
 
 	@GetMapping("/users")
-	public List<User> findAll() {
+	public List<Users> findAll() {
 		// TODO Auto-generated method stub
 		return userService.findAll();
 	}
