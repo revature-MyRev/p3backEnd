@@ -27,8 +27,9 @@ public class UsersDetailsServiceImpl implements UserDetailsService {
 			throw new UsernameNotFoundException("User Not Found with username: " + username);
 
 		}
-				
-
-		return UsersDetailsImpl.build(users);
+		if(users == null) // Null pointer exceptions were happening.
+			return null;
+		else
+			return UsersDetailsImpl.build(users);
 	}
 }
