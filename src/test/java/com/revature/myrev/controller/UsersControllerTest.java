@@ -2,6 +2,9 @@ package com.revature.myrev.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -36,6 +39,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.myrev.MyRevApplication;
+import com.revature.myrev.exception.ObjectNotFoundException;
 import com.revature.myrev.model.Users;
 import com.revature.myrev.service.UsersService;
 // change import once everyone has all cases of user switched to users
@@ -63,17 +67,14 @@ class UsersControllerTest {
 	/** Used for the initialization & closing of mocked fields */
 	private AutoCloseable closeable;
 	/** Useful for reading & writing JSON to & from POJOS */
-	private ObjectMapper mapper;
+	private ObjectMapper mapper = new ObjectMapper();
 	private JacksonTester<Users> json;
-	private Users u1 = new Users(100, 37, "test123", "password", "male", "photo", "email@gmail.com", "Fname", "Lname",
-			"Mname", "jobtitle");
-	private List<Users> mockUsers = new ArrayList<>();
+
 
 	@Before
 	public void setUp() {
 		closeable = MockitoAnnotations.openMocks(this);
 		mvc = MockMvcBuilders.standaloneSetup(controller).build();
-		mapper = new ObjectMapper();
 	}
 
 	@After
@@ -81,7 +82,11 @@ class UsersControllerTest {
 		closeable.close();
 	}
 
-	// test for returned user on valid username
+	/**
+	 * Test for returned user on valid user name
+	 * 
+	 * @throws Exception if user is not found.
+	 */
 	@Test
 	public void testFindByUsername() throws Exception {
 		Users user1 = new Users(100, 37, "test123", "password", "male", "photo", "email@gmail.com", "Fname", "Lname",
@@ -93,41 +98,28 @@ class UsersControllerTest {
 				.perform(get("/users/findByUserName/test123").accept(MediaType.APPLICATION_JSON)).andReturn()
 				.getResponse();
 
-		System.out.println(response.getContentType());
-		System.out.println(response.getContentAsString());
 		Assert.assertTrue(response.getStatus() == HttpStatus.OK.value());
-
+		verify(service, times(1)).findByUserName("test123");
 	}
 
-	// test for exception on invalid username
+	/**
+	 *  Test for NOT_FOUND HttpStatus when passed an invalid user name or the table is empty
+	 *  
+	 *  @throws Exception when a user is not found
+	 */
 	@Test
 	public void testUserNotFound() throws Exception {
 
-		when(service.findByUserName(any())).thenReturn(null);
+		when(service.findByUserName(any())).thenThrow(ObjectNotFoundException.class);
 
 		MockHttpServletResponse response = mvc
 				.perform(get("/users/findByUserName/test123").accept(MediaType.APPLICATION_JSON)).andReturn()
 				.getResponse();
-
-		System.out.println(response.getContentType());
-		System.out.println(response.getContentAsString());
+		
 		Assert.assertTrue(response.getStatus() == HttpStatus.NOT_FOUND.value());
-
+        verify(service, times(1)).findByUserName("test123");
 	}
-	@Test
-	public void testNoUserFound() throws Exception {
-
-		when(service.findByUserName(any())).thenReturn(null);
-
-		MockHttpServletResponse response = mvc
-				.perform(get("/users/findByUserName/").accept(MediaType.APPLICATION_JSON)).andReturn()
-				.getResponse();
-
-		System.out.println(response.getContentType());
-		System.out.println(response.getContentAsString());
-		Assert.assertTrue(response.getStatus() == HttpStatus.NOT_FOUND.value());
-
-	}
+	
  // Adding new user
 	@Test
 	public void addUser() throws Exception {
@@ -136,39 +128,29 @@ class UsersControllerTest {
 
 		when(service.save(any())).thenReturn(user1);
 
+		String json = mapper.writeValueAsString(user1);
 		MockHttpServletResponse response = mvc
-				.perform(post("/users/addUser").contentType(MediaType.APPLICATION_JSON).content(asJsonString(user1)))
+				.perform(post("/users/addUser").contentType(MediaType.APPLICATION_JSON).content(json))
 				.andReturn().getResponse();
 
-		System.out.println(response.getContentType());
-		System.out.println(response.getContentAsString());
 		Assert.assertTrue(response.getStatus() == HttpStatus.OK.value());
 
 	}
-	//  Test adding new user without userName
-		@Test
-		public void addInValidUser() throws Exception {
-			Users user = new Users();
-			
-
-			//when(service.save(any())).thenReturn(user1);
-
-			MockHttpServletResponse response = mvc
-					.perform(post("/users/addUser").contentType(MediaType.APPLICATION_JSON).content(asJsonString(user)))
-					.andReturn().getResponse();
-
-			System.out.println(response.getContentType());
-			System.out.println(response.getContentAsString());
-			Assert.assertTrue(response.getStatus() == HttpStatus.BAD_REQUEST.value());
-
-		}
-	
-
-	public static String asJsonString(final Object obj) {
-		try {
-			return new ObjectMapper().writeValueAsString(obj);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
+//	//  Test adding new user without userName
+//		@Test
+//		public void addInValidUser() throws Exception {
+//			Users user = new Users();
+//			
+//
+//			//when(service.save(any())).thenReturn(user1);
+//
+//			MockHttpServletResponse response = mvc
+//					.perform(post("/users/addUser").contentType(MediaType.APPLICATION_JSON).content(asJsonString(user)))
+//					.andReturn().getResponse();
+//
+//			System.out.println(response.getContentType());
+//			System.out.println(response.getContentAsString());
+//			Assert.assertTrue(response.getStatus() == HttpStatus.BAD_REQUEST.value());
+//
+//		}
 }
