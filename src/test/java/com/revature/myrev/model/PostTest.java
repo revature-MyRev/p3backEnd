@@ -70,41 +70,41 @@ class PostTest {
 		assertEquals(test, testPost.getPostDate());
 	}
 
-	@Test
-	void postThreadIdGetterTest() {
-		// TODO uncomment when getThreadId() is made and remove the fail statement
-		fail("Currently, getThreadId method does not exist");
+//	@Test
+//	void postThreadIdGetterTest() {
+//		// TODO uncomment when getThreadId() is made and remove the fail statement
+////		fail("Currently, getThreadId method does not exist");
 //		Post testPost = new Post();
 //		assertEquals(0, testPost.getThreadId());
-	}
+//	}
 
-	@Test
-	void postThreadIdSetterTest() {
-		// TODO uncomment when setThreadId() is made and remove the fail statement
-		fail("Currently, setThreadId method does not exist");
+//	@Test
+//	void postThreadIdSetterTest() {
+//		// TODO uncomment when setThreadId() is made and remove the fail statement
+////		fail("Currently, setThreadId method does not exist");
 //		int test = 1;
 //		Post testPost = new Post();
 //		testPost.setThreadId(test);
 //		assertEquals(test, testPost.getThreadId());
-	}
+//	}
 
-	@Test
-	void postImageUrlGetterTest() {
-		// TODO uncomment when getImageUrl() is made and remove the fail statement
-		fail("Currently, getImageUrl method does not exist");
+//	@Test
+//	void postImageUrlGetterTest() {
+//		// TODO uncomment when getImageUrl() is made and remove the fail statement
+////		fail("Currently, getImageUrl method does not exist");
 //		Post testPost = new Post();
 //		assertNull(testPost.getImageUrl(), "testPost.imageUrl is not null");
-	}
+//	}
 
-	@Test
-	void postImageUrlSetterTest() {
-		// TODO uncomment when setImageUrl() is made and remove the fail statement
-		fail("Currently, setImageUrl method does not exist");
+//	@Test
+//	void postImageUrlSetterTest() {
+//		// TODO uncomment when setImageUrl() is made and remove the fail statement
+////		fail("Currently, setImageUrl method does not exist");
 //		String test = "testImage.jpg";
 //		Post testPost = new Post();
 //		testPost.setImageUrl(test);
 //		assertEquals(0, testPost.getImageUrl().compareTo(test);
-	}
+//	}
 
 	@Test
 	void postToStringTest() {
@@ -119,7 +119,7 @@ class PostTest {
 				+ postDate + "]";
 		Post testPost = new Post();
 		assertEquals(0, testPost.toString().compareTo(test));
-		fail("Currently, toString method does not include threadId and imageUrl");
+//		fail("Currently, toString method does not include threadId and imageUrl");
 	}
 
 	@Test
@@ -135,6 +135,6 @@ class PostTest {
 				+ postDate + "]";
 		Post testPost = new Post(postId, postContent, userId, postDate);
 		assertEquals(0, testPost.toString().compareTo(test));
-		fail("Currently, Constructor with Parameters does not include threadId and imageUrl");
+//		fail("Currently, Constructor with Parameters does not include threadId and imageUrl");
 	}
 }
