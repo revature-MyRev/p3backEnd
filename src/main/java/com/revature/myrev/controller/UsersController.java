@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,12 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.myrev.model.Users;
 import com.revature.myrev.service.UsersServiceImpl;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/users")
 @EnableSwagger2
+@Api(tags = "Users")
 public class UsersController {
 
 	@Autowired
@@ -35,9 +39,10 @@ public class UsersController {
 	 * @param username The user name associated with the user to be retrieved.
 	 * @return The user associated with the given user name.
 	 */
-	@GetMapping(path = "/findByUsername/{username}")
+	@ApiOperation(value = "This method is used to find users by theur usersname.")
+	@GetMapping(path = "/findByUsersname/{usersname}")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-	public Users findByUsersname(@PathVariable String usersname) {
+	public Users findByUsername(@PathVariable String usersname) {
 		return service.findByUsersname(usersname);
 	}
 	

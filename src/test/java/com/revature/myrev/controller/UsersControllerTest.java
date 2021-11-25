@@ -34,6 +34,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -88,18 +89,18 @@ class UsersControllerTest {
 	 * @throws Exception if user is not found.
 	 */
 	@Test
-	public void testFindByUsername() throws Exception {
+	public void testFindByUsersname() throws Exception {
 		Users user1 = new Users(100, 37, "test123", "password", "male", "photo", "email@gmail.com", "Fname", "Lname",
 				"Mname", "jobtitle");
 
-		when(service.findByUserName(any())).thenReturn(user1);
+		when(service.findByUsersname(user1.getUsersname())).thenReturn(user1);
 
 		MockHttpServletResponse response = mvc
-				.perform(get("/users/findByUserName/test123").accept(MediaType.APPLICATION_JSON)).andReturn()
+				.perform(get("/users/findByUsersname/" + user1.getUsersname()).accept(MediaType.APPLICATION_JSON)).andReturn()
 				.getResponse();
-
+				
 		Assert.assertTrue(response.getStatus() == HttpStatus.OK.value());
-		verify(service, times(1)).findByUserName("test123");
+		verify(service, times(1)).findByUsersname("test123");
 	}
 
 	/**
@@ -110,14 +111,14 @@ class UsersControllerTest {
 	@Test
 	public void testUserNotFound() throws Exception {
 
-		when(service.findByUserName(any())).thenThrow(ObjectNotFoundException.class);
+		when(service.findByUsersname(any())).thenThrow(ObjectNotFoundException.class);
 
 		MockHttpServletResponse response = mvc
-				.perform(get("/users/findByUserName/test123").accept(MediaType.APPLICATION_JSON)).andReturn()
+				.perform(get("/users/findByUsersname/test123").accept(MediaType.APPLICATION_JSON)).andReturn()
 				.getResponse();
 		
 		Assert.assertTrue(response.getStatus() == HttpStatus.NOT_FOUND.value());
-        verify(service, times(1)).findByUserName("test123");
+        verify(service, times(1)).findByUsersname("test123");
 	}
 	
  // Adding new user

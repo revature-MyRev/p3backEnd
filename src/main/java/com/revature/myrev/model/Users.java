@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -41,9 +42,10 @@ public class Users {
 	private String jobTitle;
 
 	//Stores User roles as list on separate user_roles table with reference to id
-	//@ManyToMany(fetch = FetchType.LAZY)
-	//@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "users_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "users_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
+
 	
 	public Users(int usersId, int age, String usersname, String password, String gender, String photo, String email,
 			String firstName, String lastName, String middleName, String jobTitle) {
