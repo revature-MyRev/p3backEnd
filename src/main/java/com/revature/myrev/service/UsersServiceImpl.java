@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.myrev.exception.ObjectNotFoundException;
 import com.revature.myrev.model.Users;
@@ -14,7 +13,7 @@ import com.revature.myrev.repository.UsersRepository;
 public class UsersServiceImpl implements UsersService {
 
 	@Autowired
-	public UsersRepository userRepository;
+	public UsersRepository repository;
 
 	/**
 	 * Requests user from the repository that matches the given user name
@@ -24,17 +23,17 @@ public class UsersServiceImpl implements UsersService {
 	 * @return The user associated with the given user name.
 	 */
 	@Override
-	public Users findByUserName(String username) {
-		Users user = userRepository.findByUserName(username);
-		if (user == null) {
+	public Users findByUsersname(String usersname) {
+		Users users = repository.findByUsersname(usersname);
+		if (users == null) {
 			throw new ObjectNotFoundException("User Record Not Found");
 		} 
-		return user;
+		return users;
 	}
 
 	@Override
 	public Users findById(int id) {
-		return userRepository.findById(id).get();
+		return repository.findById(id).get();
 	}
 
 	/**
@@ -44,26 +43,26 @@ public class UsersServiceImpl implements UsersService {
 	 * @return The user object saved in the database with an updated user id.
 	 */
 	@Override
-	public Users save(Users user) {
-		return userRepository.save(user);
+	public Users save(Users users) {
+		return repository.save(users);
 
 	}
 
 	@Override
-	public void update(int id, Users user) {
-		userRepository.save(user);
+	public void update(int id, Users users) {
+		repository.save(users);
 
 	}
 
 	@Override
 	public void deleteById(int id) {
-		userRepository.deleteById(id);
+		repository.deleteById(id);
 
 	}
 
 	@Override
 	public List<Users> findAll() {
 		// TODO Auto-generated method stub
-		return userRepository.findAll();
+		return repository.findAll();
   }
 }

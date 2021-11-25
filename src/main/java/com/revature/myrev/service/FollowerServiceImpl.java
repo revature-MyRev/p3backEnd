@@ -12,10 +12,10 @@ import com.revature.myrev.repository.FollowerRepository;
 public class FollowerServiceImpl implements FollowerService{
 
 	@Autowired
-	public FollowerRepository followerRepository;
+	FollowerRepository followerRepository;
 	
 	@Override
-	public Follower findByFollowedId(int followedId) {
+	public List<Follower> findByFollowedId(int followedId) {
 		// TODO Auto-generated method stub
 		return followerRepository.findByFollowedId(followedId);
 	}
@@ -50,6 +50,10 @@ public class FollowerServiceImpl implements FollowerService{
 		
 	}
 
-	
+	@Override
+	public Follower findByFollowedIdAndFollowerId(int followedId, int followerId) {
+		// TODO Auto-generated method stub
+		return followerRepository.findByFollowedIdAndFollowerId(followedId, followerId);
+	}
 
 }

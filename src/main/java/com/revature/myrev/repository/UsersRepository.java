@@ -15,6 +15,6 @@ public interface UsersRepository extends JpaRepository<Users, Integer> {
 	 * @param username The user name associated with the user to be retrieved.
 	 * @return The user associated with the given user name.
 	 */
-	Users findByUserName(String userName);
+	Users findByUsersname(String usersname);
 
 }

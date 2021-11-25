@@ -15,16 +15,16 @@ import com.revature.myrev.repository.UsersRepository;
 @Service
 public class UsersDetailsServiceImpl implements UserDetailsService {
 	@Autowired
-	UsersRepository userRepository;
+	UsersRepository repository;
 
 	@Transactional
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String usersname) throws UsernameNotFoundException {
 		Users users = null;
 		try{
-			users = userRepository.findByUserName(username);
+			users = repository.findByUsersname(usersname);
 		}
 		catch(UsernameNotFoundException e) {
-			throw new UsernameNotFoundException("User Not Found with username: " + username);
+			throw new UsernameNotFoundException("User Not Found with username: " + usersname);
 
 		}
 		if(users == null) // Null pointer exceptions were happening.
@@ -32,4 +32,5 @@ public class UsersDetailsServiceImpl implements UserDetailsService {
 		else
 			return UsersDetailsImpl.build(users);
 	}
+
 }

@@ -1,5 +1,6 @@
 package com.revature.myrev.model;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,22 +10,23 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@Table
+import org.springframework.security.core.GrantedAuthority;
+
+@Table(name = "users")
 @Entity
 public class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_id")
-	private int userId;
+	@Column(name = "users_id")
+	private int usersId;
 	private int age;
-	@Column(name = "user_name")
-	private String userName;
+	@Column(name = "users_name")
+	private String usersname;
 	private String password;
 	private String gender;
 	private String photo;
@@ -40,15 +42,15 @@ public class Users {
 
 	//Stores User roles as list on separate user_roles table with reference to id
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "users_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
-
-	public Users(int userId, int age, String userName, String password, String gender, String photo, String email,
+	
+	public Users(int usersId, int age, String usersname, String password, String gender, String photo, String email,
 			String firstName, String lastName, String middleName, String jobTitle) {
 		super();
-		this.userId = userId;
+		this.usersId = usersId;
 		this.age = age;
-		this.userName = userName;
+		this.usersname = usersname;
 		this.password = password;
 		this.gender = gender;
 		this.photo = photo;
@@ -64,12 +66,12 @@ public class Users {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getUserId() {
-		return userId;
+	public int getUsersId() {
+		return usersId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUsersId(int usersId) {
+		this.usersId = usersId;
 	}
 
 	public int getAge() {
@@ -80,12 +82,12 @@ public class Users {
 		this.age = age;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsersname() {
+		return usersname;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsersname(String usersname) {
+		this.usersname = usersname;
 	}
 
 	public String getPassword() {
@@ -159,12 +161,12 @@ public class Users {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", age=" + age + ", userName=" + userName + ", gender=" + gender + ", photo="
-				+ photo + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", middleName="
-				+ middleName + ", jobTitle=" + jobTitle + "]";
+		return "Users [usersId=" + usersId + ", age=" + age + ", usersname=" + usersname + ", gender=" + gender
+				+ ", photo=" + photo + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", middleName=" + middleName + ", jobTitle=" + jobTitle + "]";
 	}
 
 }
