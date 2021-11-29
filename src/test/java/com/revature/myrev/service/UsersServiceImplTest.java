@@ -66,13 +66,13 @@ class UsersServiceImplTest {
 	@Test
 	public void testFindByUsername () {
 		//test for exception on empty table
-		when(repository.findByUserName("user1")).thenReturn(null);
+		when(repository.findByUsername("user1")).thenReturn(null);
 		
 		try {
-		    Users test = service.findByUserName("user1");
+		    Users test = service.findByUsername("user1");
 		} catch (Exception e) {
 			Assertions.assertEquals(e.getMessage(), "Record Not Found");
-			verify(service,times(1)).findByUserName("user1");
+			verify(service,times(1)).findByUsername("user1");
 		}
 		
 		
@@ -86,22 +86,22 @@ class UsersServiceImplTest {
 		list.add(three);
 		
 		try {
-		    Users test = service.findByUserName("user1");
+		    Users test = service.findByUsername("user1");
 		} catch (Exception e) {
 			Assertions.assertEquals(e.getMessage(), "Record Not Found");
-			verify(service,times(1)).findByUserName("user1");
+			verify(service,times(1)).findByUsername("user1");
 		}
 		
 		
 		//test for returned user on valid username
-		when(repository.findByUserName("test123")).thenReturn(one);			//mock UsersServiceImpl to call findByUserName and return matching user
+		when(repository.findByUsername("test123")).thenReturn(one);			//mock UsersServiceImpl to call findByUserName and return matching user
 		
-		Users test = service.findByUserName("test123");	
+		Users test = service.findByUsername("test123");	
 		
 		Assertions.assertNotNull(test);
 		Assertions.assertEquals(30, test.getAge());							//age should match returned user age
 		Assertions.assertEquals("testpassword", test.getPassword());		//password should match returned user password
-		verify(service,times(1)).findByUserName("test123");					//verify UsersServiceImpl calls findByUserName method 1 time	
+		verify(service,times(1)).findByUsername("test123");					//verify UsersServiceImpl calls findByUserName method 1 time	
 	}
 
 

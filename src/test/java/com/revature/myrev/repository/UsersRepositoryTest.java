@@ -49,7 +49,7 @@ class UsersRepositoryTest {
 	@Order(2)
 	public void testFindByUsername() {
 		// Test on empty table
-		Users result = repository.findByUserName("user1");
+		Users result = repository.findByUsername("user1");
 		
 		Assertions.assertNull(result);
 		
@@ -59,13 +59,13 @@ class UsersRepositoryTest {
 				"Testing", "JUnit", "Tester");
 		repository.save(testUser);
 		
-		result = repository.findByUserName("user1");
+		result = repository.findByUsername("user1");
 		
 		Assertions.assertNull(result);
 		
 		
         // Test on nonempty table with valid user name
-		result = repository.findByUserName(testUser.getUserName());
+		result = repository.findByUsername(testUser.getUsername());
 
 		Assertions.assertNotNull(result);
 		Assertions.assertEquals(20, result.getAge());

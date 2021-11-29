@@ -47,15 +47,15 @@ class UsersTest {
 	@Test
 	void userNameGetterTest() {
 		Users testUser = new Users();
-		assertNull(testUser.getUserName(), "testUser.username not null");
+		assertNull(testUser.getUsername(), "testUser.username not null");
 	}
 
 	@Test
 	void userNameSetterTest() {
 		String test = "testUserName";
 		Users testUser = new Users();
-		testUser.setUserName(test);
-		assertEquals(0, testUser.getUserName().compareTo(test));
+		testUser.setUsername(test);
+		assertEquals(0, testUser.getUsername().compareTo(test));
 	}
 
 	@Test
@@ -172,7 +172,7 @@ class UsersTest {
 
 	@Test
 	void usersToStringTest() {
-		String test = "User [userId=" + "0" + ", age=" + "0" + ", userName=" + "null" + ", gender=" + "null"
+		String test = "User [userId=" + "0" + ", age=" + "0" + ", username=" + "null" + ", gender=" + "null"
 				+ ", photo=" + "null" + ", email=" + "null" + ", firstName=" + "null" + ", lastName=" + "null"
 				+ ", middleName=" + "null" + ", jobTitle=" + "null" + "]";
 		Users testUser = new Users();
@@ -185,7 +185,7 @@ class UsersTest {
 	void usersConstructorWithParamsTest() {
 		int userId = 1;
 		int age = 26;
-		String userName = "testUserName";
+		String username = "testUsername";
 		String password = "testPassword";
 		String gender = "Non-binary";
 		String photo = "testPhoto.jpg";
@@ -194,10 +194,10 @@ class UsersTest {
 		String lastName = "Last";
 		String middleName = "Middle";
 		String jobTitle = "testJobTitle";
-		String test = "User [userId=" + userId + ", age=" + age + ", userName=" + userName + ", gender=" + gender
+		String test = "User [userId=" + userId + ", age=" + age + ", username=" + username + ", gender=" + gender
 				+ ", photo=" + photo + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", middleName=" + middleName + ", jobTitle=" + jobTitle + "]";
-		Users testUser = new Users(userId, age, userName, password, gender, photo, email, firstName, lastName,
+		Users testUser = new Users(userId, age, username, password, gender, photo, email, firstName, lastName,
 				middleName, jobTitle);
 		assertEquals(0, testUser.toString().compareTo(test));
 	}

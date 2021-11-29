@@ -87,7 +87,7 @@ class UsersControllerTest {
 		Users user1 = new Users(100, 37, "test123", "password", "male", "photo", "email@gmail.com", "Fname", "Lname",
 				"Mname", "jobtitle");
 
-		when(service.findByUserName(any())).thenReturn(user1);
+		when(service.findByUsername(any())).thenReturn(user1);
 
 		MockHttpServletResponse response = mvc
 				.perform(get("/users/findByUserName/test123").accept(MediaType.APPLICATION_JSON)).andReturn()
@@ -103,7 +103,7 @@ class UsersControllerTest {
 	@Test
 	public void testUserNotFound() throws Exception {
 
-		when(service.findByUserName(any())).thenReturn(null);
+		when(service.findByUsername(any())).thenReturn(null);
 
 		MockHttpServletResponse response = mvc
 				.perform(get("/users/findByUserName/test123").accept(MediaType.APPLICATION_JSON)).andReturn()
@@ -117,7 +117,7 @@ class UsersControllerTest {
 	@Test
 	public void testNoUserFound() throws Exception {
 
-		when(service.findByUserName(any())).thenReturn(null);
+		when(service.findByUsername(any())).thenReturn(null);
 
 		MockHttpServletResponse response = mvc
 				.perform(get("/users/findByUserName/").accept(MediaType.APPLICATION_JSON)).andReturn()

@@ -24,7 +24,7 @@ public class Users {
 	private int userId;
 	private int age;
 	@Column(name = "user_name")
-	private String userName;
+	private String username;
 	private String password;
 	private String gender;
 	private String photo;
@@ -43,12 +43,12 @@ public class Users {
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
-	public Users(int userId, int age, String userName, String password, String gender, String photo, String email,
+	public Users(int userId, int age, String username, String password, String gender, String photo, String email,
 			String firstName, String lastName, String middleName, String jobTitle) {
 		super();
 		this.userId = userId;
 		this.age = age;
-		this.userName = userName;
+		this.username = username;
 		this.password = password;
 		this.gender = gender;
 		this.photo = photo;
@@ -80,12 +80,12 @@ public class Users {
 		this.age = age;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -162,7 +162,7 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", age=" + age + ", userName=" + userName + ", gender=" + gender + ", photo="
+		return "User [userId=" + userId + ", age=" + age + ", username=" + username + ", gender=" + gender + ", photo="
 				+ photo + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", middleName="
 				+ middleName + ", jobTitle=" + jobTitle + "]";
 	}

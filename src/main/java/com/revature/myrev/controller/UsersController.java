@@ -26,10 +26,10 @@ public class UsersController {
 	@Autowired
 	private UsersServiceImpl service;
 
-	@GetMapping(path = "/findByUserName/{userName}")
+	@GetMapping(path = "/findByUsername/{username}")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-	public Users findByUserName(@PathVariable String userName) {
-		Users user = service.findByUserName(userName);
+	public Users findByUsername(@PathVariable String username) {
+		Users user = service.findByUsername(username);
 		if (Objects.isNull(user)) {
 			throw new ObjectNotFoundException("Not Found");
 		}
@@ -44,7 +44,7 @@ public class UsersController {
 	}
 
 	public void validate(Users user) {
-		if (Objects.isNull(user.getUserName()) || Objects.isNull(user.getPassword())) {
+		if (Objects.isNull(user.getUsername()) || Objects.isNull(user.getPassword())) {
 			throw new ValidationException("Invalid user");
 		}
 	}
