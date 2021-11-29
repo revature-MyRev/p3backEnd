@@ -1,4 +1,4 @@
-# Expense Reimbursement System
+# Revature Social Medial Platform Back-End
 
 ## Project Description
 
@@ -65,7 +65,7 @@ This was individual project. The process consisted of full stack development tas
 * Creating entity beans for each database table
 * Creating services with database processing methods (CRUD operations)
 * Creating controllers to call services and establish endpoints for front-end communication
-* Starting a Javalin server with routing
+* Starting a Angular server with routing
 * Creating html pages that corresponds to the end-points, along with styling with CSS and Bootstrap. 
 
 ## License
