@@ -2,25 +2,35 @@
 
 ## Project Description
 
+This is the back-end implementation for the Revature Social Media Platform (RSMP) designed to allow employees and associates to collaborate with each other. 
  
 
 ## Technologies Used
 
+* Maven 
+* Java
+* Hibernate
+* Mokito
+* Cucumber
+* Selenium 
+* Junit
+* Spring Boot
+* Swaggar
+* Postman
 * 
-*
-*
-*
 
 ## Features
 
 List of features ready and TODOs for future development
-* 
-*
-*
-*
-
+* User Authentication
+* Register User Endpoint
+* Login User Endpoint
+* CRUD Endpoints for Profile, User Posts, and Threads
+* Session Management
+* Unit Testing with Junit
 
 To-do list: 
+*  End to End and Integration BDD testing with Cucumber and Gerkin
 *  
 ## Getting Started
 
@@ -47,8 +57,8 @@ Follow these steps to get started:
 
 ## Contributors and Tasks
 
-This was individual project. The process consisted of full stack development tasks including: 
-*
+This was a batch group project consisting of the following Tasks: 
+* 
 *
 *
 *
