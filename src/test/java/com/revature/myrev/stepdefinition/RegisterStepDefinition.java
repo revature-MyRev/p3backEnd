@@ -22,14 +22,13 @@ public class RegisterStepDefinition {
 		throw new io.cucumber.java.PendingException();
 	}
 
-	@When("^User enters Username \"(.*)\", First Name \"(.*)\", Last Name \"(.*)\", Email \"(.*)\", Password 1 \"(.*)\" & Password 2 \"(.*)\"$")
-	public void user_enters_credentials_to_login(String username, String firstName, String lastName, String email, String password1, String password2) {
+	@When("^User enters Username \"(.*)\", First Name \"(.*)\", Last Name \"(.*)\", Email \"(.*)\", & Password 1 \"(.*)\"$")
+	public void user_enters_credentials_to_login(String username, String firstName, String lastName, String email, String password1) {
         driver.findElement(By.name("username")).sendKeys(username);
         driver.findElement(By.name("firstName")).sendKeys(firstName);
         driver.findElement(By.name("lastName")).sendKeys(lastName);
         driver.findElement(By.name("email")).sendKeys(email);
         driver.findElement(By.name("password1")).sendKeys(password1);
-        driver.findElement(By.name("password2")).sendKeys(password2);
 		throw new io.cucumber.java.PendingException();
 	}
 
