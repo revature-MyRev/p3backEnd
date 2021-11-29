@@ -37,6 +37,11 @@ public class UserController {
 		return serviceImpl.findById(id);
 	}
 	
+	@GetMapping("/users/username/{username}")
+	public Users getUserByUserName(@PathVariable String username) {
+		return serviceImpl.findByUserName(username);
+	}
+	
 	@PostMapping("/users")
 	public void saveUser(@RequestBody Users user) {
 		serviceImpl.save(user);
@@ -46,6 +51,20 @@ public class UserController {
 	public void editUser(@PathVariable(value ="id") int id, @RequestBody Users user) {
 		user.setUserId(id);
 		serviceImpl.save(user);
+	}
+	
+	@PutMapping("/uploadPhoto/{id}")
+	public void uploadPicture(@PathVariable(value = "id") int id,@RequestBody String imgurl) {
+		Users user = serviceImpl.findById(id);
+		user.setUserId(id);
+		user.setPhoto(imgurl);
+		serviceImpl.save(user);
+	}
+	
+	@GetMapping("/getPhoto/{id}")
+	public String getUserPhoto(@PathVariable(value = "id") int id) {
+		Users user = serviceImpl.findById(id);
+		return user.getPhoto();
 	}
 	
 	@DeleteMapping("/users/{id}")
