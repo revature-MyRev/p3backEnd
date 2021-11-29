@@ -32,21 +32,30 @@ public class UserController {
 		return serviceImpl.findAll();
 	}
 	
+	
 	@GetMapping("/users/{id}")
 	public Users getUserById(@PathVariable int id) {
 		return serviceImpl.findById(id);
 	}
 	
-	@GetMapping("/users/username/{username}")
-	public Users getUserByUserName(@PathVariable String username) {
-		return serviceImpl.findByUserName(username);
+	@GetMapping(path = "/findByUserName/{userName}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+	public Users findByUserName(@PathVariable String userName) {
+		return serviceImpl.findByUserName(userName);
 	}
 	
-	@PostMapping("/users")
-	public void saveUser(@RequestBody Users user) {
-		serviceImpl.save(user);
-	}
-	
+	/**
+	 * Sends a user object to service to save in the database
+	 * 
+	 * @param user The user object to be added to the database.
+	 * @return The user object saved in the database with an updated user id.
+	 */
+    @PostMapping(path = "/addUser")
+	  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public Users addUser(@RequestBody Users user) {
+    	return serviceImpl.save(user);
+    }
+		
 	@PutMapping("/editProfile/{id}")
 	public void editUser(@PathVariable(value ="id") int id, @RequestBody Users user) {
 		user.setUserId(id);
