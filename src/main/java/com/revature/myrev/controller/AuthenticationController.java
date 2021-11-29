@@ -75,13 +75,13 @@ public class AuthenticationController {
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
 		//checks if username is already taken
-		if (userRepository.findByUserName(signUpRequest.getUserName()) != null) {
+		if (userRepository.findByUserName(signUpRequest.getUsername()) != null) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
 		}
 
 		// creates new user's account, encoder used to hash password, second 0 and nulls are for values not being filled in at registration
-		Users users = new Users(0, 0, signUpRequest.getUserName(), encoder.encode(signUpRequest.getPassword()), null,
-				null, signUpRequest.getEmail(), signUpRequest.getFirstName(), signUpRequest.getLastName(), null, null);
+		Users users = new Users(0, 0, signUpRequest.getUsername(), encoder.encode(signUpRequest.getPassword()), null,
+				null, signUpRequest.getEmail(), signUpRequest.getFirstname(), signUpRequest.getLastname(), null, null);
 
 		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
