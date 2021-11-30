@@ -1,4 +1,4 @@
-# Revature Social Medial Platform Back-End
+# Revature Social Media Platform Back-End
 
 ## Project Description
 
