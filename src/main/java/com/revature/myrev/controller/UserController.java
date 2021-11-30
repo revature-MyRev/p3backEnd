@@ -2,46 +2,70 @@ package com.revature.myrev.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import com.revature.myrev.service.UsersService;
+
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import com.revature.myrev.model.Users;
-import com.revature.myrev.service.UserService;
-import com.revature.myrev.service.UserServiceImpl;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
+@EnableSwagger2
 public class UserController {
 	
 	@Autowired
-	private UserServiceImpl serviceImpl;
+	private UsersService userService;
+	
+	@GetMapping("/findByUsername/{username}")
+	public Users findFollowersByUsername(@PathVariable String username) {
+		// TODO Auto-generated method stub
+		return userService.findByUserName(username);
+	}
+
+	@GetMapping("/findById/{id}")
+	public Users findById(@PathVariable int id) {
+		// TODO Auto-generated method stub
+		return userService.findById(id);
+	}
+
+	@PostMapping("/users")
+	public void save(Users user) {
+		userService.save(user);
+	}
+
+	@PutMapping("/users/{id}")
+	public void update(@PathVariable int id, Users user) {
+		userService.save(user);
+
+	}
+
+	@DeleteMapping("/users/{id}")
+	public void delete(@PathVariable int id) {
+		userService.deleteById(id);
+
+	}
 
 	@GetMapping("/users")
-	public List<Users> getUsers(){
-		return serviceImpl.findAll();
+	public List<Users> findAll() {
+		// TODO Auto-generated method stub
+		return userService.findAll();
 	}
-	
-	
-	@GetMapping("/users/{id}")
-	public Users getUserById(@PathVariable int id) {
-		return serviceImpl.findById(id);
-	}
-	
+
+	/**
+	 * Requests user from service that matches the given user name
+	 * 
+	 * @param userName The user name associated with the user to be retrieved.
+	 * @return The user associated with the given user name.
+	 */
 	@GetMapping(path = "/findByUserName/{userName}")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public Users findByUserName(@PathVariable String userName) {
-		return serviceImpl.findByUserName(userName);
+		return userService.findByUserName(userName);
 	}
 	
 	/**
@@ -53,33 +77,34 @@ public class UserController {
     @PostMapping(path = "/addUser")
 	  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public Users addUser(@RequestBody Users user) {
-    	return serviceImpl.save(user);
+    	return userService.save(user);
     }
-		
-	@PutMapping("/editProfile/{id}")
-	public void editUser(@PathVariable(value ="id") int id, @RequestBody Users user) {
-		user.setUserId(id);
-		serviceImpl.save(user);
-	}
-	
-	@PutMapping("/uploadPhoto/{id}")
-	public void uploadPicture(@PathVariable(value = "id") int id,@RequestBody String imgurl) {
-		Users user = serviceImpl.findById(id);
-		user.setUserId(id);
-		user.setPhoto(imgurl);
-		serviceImpl.save(user);
-	}
-	
-	@GetMapping("/getPhoto/{id}")
-	public String getUserPhoto(@PathVariable(value = "id") int id) {
-		Users user = serviceImpl.findById(id);
-		return user.getPhoto();
-	}
-	
-	@DeleteMapping("/users/{id}")
-	public void deleteUserById(@PathVariable int id){
-		serviceImpl.deleteById(id);
-	}
+//    
+//    public void validate(Users user) {
+//		if(Objects.isNull(user.getUserName()) || Objects.isNull(user.getPassword())) {
+//			throw new ValidationException("Invalid user");
+//		}
+//	}
 
-	
+@PutMapping("/editProfile/{id}")
+public void editUser(@PathVariable(value ="id") int id, @RequestBody Users user) {
+	user.setUserId(id);
+	userService.save(user);
+}
+
+@PutMapping("/uploadPhoto/{id}")
+public void uploadPicture(@PathVariable(value = "id") int id,@RequestBody String imgurl) {
+	Users user = userService.findById(id);
+	user.setUserId(id);
+	user.setPhoto(imgurl);
+	userService.save(user);
+}
+
+@GetMapping("/getPhoto/{id}")
+public String getUserPhoto(@PathVariable(value = "id") int id) {
+	Users user = userService.findById(id);
+	return user.getPhoto();
+}
+
+
 }
