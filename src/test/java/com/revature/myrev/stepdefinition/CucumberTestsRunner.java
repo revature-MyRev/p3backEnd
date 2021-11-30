@@ -7,10 +7,10 @@ import io.cucumber.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = "C:\\Users\\anjali\\Documents\\GitHub\\p3backEnd\\src\\test\\resources\\login.feature", 
-		plugin = {"pretty",
-        "json:target/cucumber-report.json"},
-		glue={"classpath:com.revature.myrev.stepdefiniton.LoginStepDefinition.java"}
+		features = {"src/test/resources/"}, 
+//		plugin = {"pretty",
+//        "json:target/cucumber-report.json"},
+		glue={"src/test/java/com/revature/myrev/stepdefinition"}
         )
 public class CucumberTestsRunner {
 

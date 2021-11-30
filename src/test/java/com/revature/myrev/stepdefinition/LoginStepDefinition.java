@@ -13,9 +13,10 @@ import io.cucumber.java.en.When;
 public class LoginStepDefinition {
 	WebDriver driver = new ChromeDriver();
 
-	@Given("^User is on Login Page$")
+	@Given("User is on Login Page")
 	public void user_is_on_login_page() {
-		System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe");
+		//System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe");
+		System.setProperty("webdriver.firefox.driver", "C:\\Program Files\\Mozilla Firefox\\firefox.exe");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get("http://localhost:4200/");
 		throw new io.cucumber.java.PendingException();
