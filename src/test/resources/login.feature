@@ -23,7 +23,7 @@ Then Message displayed Login Successfully
  # Test for invalid password
  |testing              |fakepassword    |
  # Test for invalid user name and password
- |fakename             |fakepassword
+ |fakename             |fakepassword    |
  And User click submit button
  Then Login show error
   
