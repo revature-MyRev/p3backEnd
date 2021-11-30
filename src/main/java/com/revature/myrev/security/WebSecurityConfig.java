@@ -23,6 +23,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler;
+	
+	//added for swagger
+	private static final String[] AUTH_WHITELIST = {
+	   // -- Swagger UI v2
+	   "/v2/api-docs",
+	   "/swagger-resources",
+	   "/swagger-resources/**",
+	   "/configuration/ui",
+	   "/configuration/security",
+	   "/swagger-ui.html",
+	   "/webjars/**",
+	   // -- Swagger UI v3 (OpenAPI)
+	   "/v3/api-docs/**",
+	   "/swagger-ui/**",
+	   //signin and signup
+	   "/api/auth/*"
+	};
 
 	@Bean
 	public AuthTokenFilter authenticationJwtTokenFilter() {
@@ -51,7 +68,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors().and().csrf().disable()
 			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-			.authorizeRequests().antMatchers("/api/auth/**").permitAll()
+			//.authorizeRequests().antMatchers("/api/auth/**").permitAll()
+			.authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll() //added for swagger
 			.anyRequest().authenticated();
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
