@@ -13,7 +13,7 @@ stages {
     stage ('Build') {
       steps {
         /*Put whatever steps need to be automated for a compile here IE running a bat file or running npm (npm requires node)*/
-        git 'https://github.com/revature-MyRev/p3backEnd.git'
+        /*git 'https://github.com/revature-MyRev/p3backEnd.git'*/
         bat 'Build bat'
         /*sh 'npm install'*/
         
