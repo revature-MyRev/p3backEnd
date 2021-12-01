@@ -10,13 +10,13 @@ stages {
       }
     }
     
-    stage ('Compile') {
+    stage ('Build') {
       steps {
         /*Put whatever steps need to be automated for a compile here IE running a bat file or running npm (npm requires node)*/
-        
-        /*bat 'Build bat'*/
-        /*sh 'npm install'*/
         git 'https://github.com/revature-MyRev/p3backEnd'
+        bat 'Build bat'
+        /*sh 'npm install'*/
+        
         echo "Compiled Success!"
       }
     }
