@@ -3,6 +3,7 @@ package com.revature.myrev.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,42 +30,49 @@ public class FollowerController {
 	
 	
 	@GetMapping("/findFollowers/{followedId}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<Follower> findByFollowedId(@PathVariable int followedId) {
 		// TODO Auto-generated method stub
 		return followerService.findByFollowedId(followedId);
 	}
 	
 	@GetMapping("/isFollowing/{followedId},{followerId}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public Follower findByFollowedIdAndFollowerId(@PathVariable int followedId,@PathVariable int followerId) {
 		// TODO Auto-generated method stub
 		return followerService.findByFollowedIdAndFollowerId(followedId, followerId);
 	}
 
 	@GetMapping("/followers")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<Follower> findAll() {
 		// TODO Auto-generated method stub
 		return followerService.findAll();
 	}
 
 	@GetMapping("/findById/{id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public Follower findById(@PathVariable int id) {
 		// TODO Auto-generated method stub
 		return followerService.findById(id);
 	}
 
 	@PostMapping("/followers")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public void save(Follower follower) {
 		followerService.save(follower);
 		
 	}
 
 	@PutMapping("/followers/{id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public void update(@PathVariable int id, Follower follower) {
 		followerService.save(follower);
 		
 	}
 
 	@DeleteMapping("/followers/{id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public void delete(@PathVariable int id) {
 		followerService.deleteById(id);
 		

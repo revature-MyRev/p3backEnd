@@ -3,6 +3,7 @@ package com.revature.myrev.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,37 +26,44 @@ public class LikesController {
 	private LikesServiceImpl service;
 	
 	@GetMapping("/likes")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<Likes> findAll() {
 		return service.findAll();
 	}
 	
 	@GetMapping("/likesByLid/{like_id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<Likes> findByLikeId(@PathVariable int like_id) {
 		return service.findByLikeId(like_id);
 	}
 	
 	@GetMapping("/likesByPid/{post_id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<Likes> findByPostId(@PathVariable int post_id) {
 		return service.findByPostId(post_id);
 	}
 	
 	@GetMapping("/likesByUid/{users_id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<Likes> findByUsersId(@PathVariable int users_id) {
 		return service.findByUsersId(users_id);
 	}
 	
 	@PostMapping("/likes")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public void saveLike(@RequestBody Likes like) {
 		service.saveLike(like);
 	}
 	
 	@PutMapping("/likes/{like_id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public void updateLike(@PathVariable int like_id, @RequestBody Likes like) {
 		like.setLikeId(like_id);
 		service.saveLike(like);
 	}
 	
 	@DeleteMapping("/likes/{like_id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public void deleteLike(@PathVariable int like_id) {
 		service.deleteLike(like_id);
 	}

@@ -3,6 +3,7 @@ package com.revature.myrev.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,37 +26,44 @@ public class DislikesController {
 	private DislikesServiceImpl service;
 	
 	@GetMapping("/dislikes")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<Dislikes> findAll() {
 		return service.findAll();
 	}
 	
 	@GetMapping("/dislikesByDid/{dislike_id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<Dislikes> findByLikeId(@PathVariable int dislike_id) {
 		return service.findByDislikeId(dislike_id);
 	}
 	
 	@GetMapping("/dislikesByPid/{post_id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<Dislikes> findByPostId(@PathVariable int post_id) {
 		return service.findByPostId(post_id);
 	}
 	
 	@GetMapping("/dislikesByUid/{users_id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<Dislikes> findByUsersId(@PathVariable int users_id) {
 		return service.findByUsersId(users_id);
 	}
 	
 	@PostMapping("/dislikes")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public void saveLike(@RequestBody Dislikes dislike) {
 		service.saveDislike(dislike);
 	}
 	
 	@PutMapping("/dislikes/{dislike_id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public void updateDislike(@PathVariable int dislike_id, @RequestBody Dislikes dislike) {
 		dislike.setDislikeId(dislike_id);
 		service.saveDislike(dislike);
 	}
 	
 	@DeleteMapping("/dislikes/{dislike_id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public void deleteDislike(@PathVariable int dislike_id) {
 		service.deleteDislike(dislike_id);
 	}

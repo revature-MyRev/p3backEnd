@@ -22,35 +22,41 @@ public class UserController {
 	private UsersService userService;
 	
 	@GetMapping("/findByUsername/{username}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public Users findFollowersByUsername(@PathVariable String username) {
 		// TODO Auto-generated method stub
 		return userService.findByUserName(username);
 	}
 
 	@GetMapping("/findById/{id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public Users findById(@PathVariable int id) {
 		// TODO Auto-generated method stub
 		return userService.findById(id);
 	}
 
 	@PostMapping("/users")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public void save(Users user) {
 		userService.save(user);
 	}
 
 	@PutMapping("/users/{id}")
+	@PreAuthorize("#id == authentication.principal.id or hasRole('ADMIN')")
 	public void update(@PathVariable int id, Users user) {
 		userService.save(user);
 
 	}
 
 	@DeleteMapping("/users/{id}")
+	@PreAuthorize("#id == authentication.principal.id or hasRole('ADMIN')")
 	public void delete(@PathVariable int id) {
 		userService.deleteById(id);
 
 	}
 
 	@GetMapping("/users")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<Users> findAll() {
 		// TODO Auto-generated method stub
 		return userService.findAll();
@@ -75,7 +81,7 @@ public class UserController {
 	 * @return The user object saved in the database with an updated user id.
 	 */
     @PostMapping(path = "/addUser")
-	  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public Users addUser(@RequestBody Users user) {
     	return userService.save(user);
     }
@@ -87,12 +93,14 @@ public class UserController {
 //	}
 
 @PutMapping("/editProfile/{id}")
+@PreAuthorize("#id == authentication.principal.id or hasRole('ADMIN')")
 public void editUser(@PathVariable(value ="id") int id, @RequestBody Users user) {
 	user.setUserId(id);
 	userService.save(user);
 }
 
 @PutMapping("/uploadPhoto/{id}")
+@PreAuthorize("#id == authentication.principal.id or hasRole('ADMIN')")
 public void uploadPicture(@PathVariable(value = "id") int id,@RequestBody String imgurl) {
 	Users user = userService.findById(id);
 	user.setUserId(id);
@@ -101,6 +109,7 @@ public void uploadPicture(@PathVariable(value = "id") int id,@RequestBody String
 }
 
 @GetMapping("/getPhoto/{id}")
+@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 public String getUserPhoto(@PathVariable(value = "id") int id) {
 	Users user = userService.findById(id);
 	return user.getPhoto();

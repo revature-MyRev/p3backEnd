@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,31 +27,37 @@ public class PostController {
 	private PostServiceImpl service;
 
 	@GetMapping("/posts")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<Post> findAllPosts() {
 		return service.findAllPosts();
 	}
 
 	@GetMapping("/postById/{post_id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public Optional<Post> findByPostId(@PathVariable int post_id) {
 		return service.findByPostId(post_id);
 	}
 
 	@GetMapping("/postByUserId/{user_id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public List<Post> findByUserId(@PathVariable int user_id) {
 		return service.findByUserId(user_id);
 	}
 
 	@PostMapping("/posts")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public void save(@RequestBody Post post) {
 		service.savePost(post);
 	}
 
 	@PutMapping("/posts/{post_id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public void update(@PathVariable int post_id, @RequestBody Post post) {
 		service.savePost(post);
 	}
 
 	@DeleteMapping("/posts/{post_id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public void delete(@PathVariable int post_id) {
 		service.deletePost(post_id);
 	}
