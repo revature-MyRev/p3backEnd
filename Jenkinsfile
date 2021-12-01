@@ -1,6 +1,5 @@
 pipeline {
 agent any 
-  node {
 /*MAKE SURE TO CHECK WHICH BRANCH BEFORE EDITING*/
 stages {
     
@@ -15,7 +14,6 @@ stages {
       steps {
         /*Put whatever steps need to be automated for a compile here IE running a bat file or running npm (npm requires node)*/
         /*git 'https://github.com/revature-MyRev/p3backEnd.git'*/
-        bat 'Build bat'
         /*sh 'npm install'*/
         
         echo "Compiled Success!"
@@ -41,5 +39,5 @@ stages {
         }
 
 
-        }
+        
 }
