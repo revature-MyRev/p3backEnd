@@ -16,6 +16,7 @@ stages {
         
         /*bat 'Build bat'*/
         /*sh 'npm install'*/
+        git 'https://github.com/revature-MyRev/p3backEnd'
         echo "Compiled Success!"
       }
     }
