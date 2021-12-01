@@ -36,7 +36,7 @@ stages {
         echo "Quality Gate passed!"
       }
     }
-    
+    /*
       stage ('Deploy') {
       parallel { 
             stage('Deploy start ') {
@@ -59,7 +59,7 @@ stages {
                            }
                            }
   
-  
+  */
   
         }
 
