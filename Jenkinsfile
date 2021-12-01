@@ -1,5 +1,6 @@
 pipeline {
 agent any 
+  node {
 /*MAKE SURE TO CHECK WHICH BRANCH BEFORE EDITING*/
 stages {
     
@@ -41,3 +42,4 @@ stages {
 
 
         }
+}
