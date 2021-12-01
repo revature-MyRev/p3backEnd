@@ -17,7 +17,8 @@ stages {
           sh 'node --version'
         /*Put whatever steps need to be automated for a compile here IE running a bat file or running npm (npm requires node)*/
         /*git 'https://github.com/revature-MyRev/p3backEnd.git'*/
-        /*sh 'npm install'*/
+          sh 'npm install'
+          sh 'npm --version'
         
         echo "Compiled Success!"
       }
