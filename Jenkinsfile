@@ -33,6 +33,28 @@ stages {
         echo "Quality Gate passed!"
       }
     }
+    
+      stage ('Deploy') {
+      parallel { 
+            stage('Deploy start ') {
+            steps {
+            echo "Start the deploy .."
+             } 
+             }
+                       stage('Deploying now') {
+                       agent {
+                             docker {
+                                   reuseNode true
+                                   image ‘nginx’
+                                           }
+                                    }
+                            
+                              steps {
+                                echo "Docker Created"
+                              }
+                           }
+                           }
+                           }
   
   
   
