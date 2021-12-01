@@ -1,5 +1,7 @@
 pipeline {
-agent any 
+agent {
+    docker { image 'node:14-alpine' }
+      }
 /*MAKE SURE TO CHECK WHICH BRANCH BEFORE EDITING*/
 stages {
     
@@ -12,6 +14,7 @@ stages {
     
     stage ('Build') {
       steps {
+          sh 'node --version'
         /*Put whatever steps need to be automated for a compile here IE running a bat file or running npm (npm requires node)*/
         /*git 'https://github.com/revature-MyRev/p3backEnd.git'*/
         /*sh 'npm install'*/
