@@ -1,16 +1,22 @@
 package com.revature.myrev.controller;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import com.revature.myrev.service.UsersService;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import com.revature.myrev.model.ERole;
+import com.revature.myrev.model.Role;
 import com.revature.myrev.model.Users;
+import com.revature.myrev.repository.RoleRepository;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -20,6 +26,10 @@ public class UserController {
 	
 	@Autowired
 	private UsersService userService;
+	@Autowired
+	PasswordEncoder encoder;
+	@Autowired
+	RoleRepository roleRepository;
 	
 	@GetMapping("/findByUsername/{username}")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
@@ -38,6 +48,14 @@ public class UserController {
 	@PostMapping("/users")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public void save(Users user) {
+		
+		user.setPassword(encoder.encode(user.getPassword()));
+		
+		Set<Role> roles = new HashSet<>();
+		Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+		roles.add(userRole);
+		user.setRoles(roles);
 		userService.save(user);
 	}
 
