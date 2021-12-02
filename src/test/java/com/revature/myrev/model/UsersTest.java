@@ -47,7 +47,7 @@ class UsersTest {
 	@Test
 	void userNameGetterTest() {
 		Users testUser = new Users();
-		assertNull(testUser.getUserName(), "testUser.username not null");
+		assertNull(testUser.getUsername(), "testUser.username not null");
 	}
 
 	@Test
@@ -55,7 +55,7 @@ class UsersTest {
 		String test = "testUserName";
 		Users testUser = new Users();
 		testUser.setUserName(test);
-		assertEquals(0, testUser.getUserName().compareTo(test));
+		assertEquals(0, testUser.getUsername().compareTo(test));
 	}
 
 	@Test

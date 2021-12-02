@@ -71,19 +71,19 @@ class UsersServiceImplTest {
 		
 		doAnswer(invocation -> {
 			for (Users u: list) {
-				if (u.getUserName().equals(fake.getUserName())) {
+				if (u.getUsername().equals(fake.getUsername())) {
 					return u;
 				}
 			} 
 			return null;
-		}).when(repository).findByUserName(fake.getUserName());
+		}).when(repository).findByUsername(fake.getUsername());
 			
 		//test for exception on empty table	
 		try {
-		    Users test = service.findByUserName(fake.getUserName());
+		    Users test = service.findByUserName(fake.getUsername());
 		} catch (Exception e) {
 			Assertions.assertEquals(e.getMessage(), "User Record Not Found");
-			verify(service,times(1)).findByUserName(fake.getUserName());
+			verify(service,times(1)).findByUserName(fake.getUsername());
 		}
 		
 		
@@ -96,15 +96,15 @@ class UsersServiceImplTest {
 		list.add(three);
 		
 		try {
-		    Users test = service.findByUserName(fake.getUserName());
+		    Users test = service.findByUserName(fake.getUsername());
 		} catch (Exception e) {
 			Assertions.assertEquals(e.getMessage(), "User Record Not Found");
-			verify(service,times(2)).findByUserName(fake.getUserName());
+			verify(service,times(2)).findByUserName(fake.getUsername());
 		}
 		
 		
 		//test for returned user on valid user name
-		when(repository.findByUserName("test123")).thenReturn(one);			//mock UsersServiceImpl to call findByUserName and return matching user
+		when(repository.findByUsername("test123")).thenReturn(one);			//mock UsersServiceImpl to call findByUserName and return matching user
 		
 		Users test = service.findByUserName("test123");	
 		

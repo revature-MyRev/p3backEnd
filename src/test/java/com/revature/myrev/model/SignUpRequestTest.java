@@ -39,29 +39,29 @@ public class SignUpRequestTest {
 	@Test
 	void firstnameGetterTest() {
 		SignUpRequest testSignUpRequest = new SignUpRequest();
-		assertNull(testSignUpRequest.getFirstname(), "testSignUpRequest.firstname is not null");
+		assertNull(testSignUpRequest.getFirstName(), "testSignUpRequest.firstname is not null");
 	}
 
 	@Test
 	void firstnameSetterTest() {
 		String testFirstname = "Test";
 		SignUpRequest testSignUpRequest = new SignUpRequest();
-		testSignUpRequest.setFirstname(testFirstname);
-		assertEquals(0, testSignUpRequest.getFirstname().compareTo(testFirstname));
+		testSignUpRequest.setFirstName(testFirstname);
+		assertEquals(0, testSignUpRequest.getFirstName().compareTo(testFirstname));
 	}
 
 	@Test
 	void lastnameGetterTest() {
 		SignUpRequest testSignUpRequest = new SignUpRequest();
-		assertNull(testSignUpRequest.getLastname(), "testSignUpRequest.lastname is not null");
+		assertNull(testSignUpRequest.getLastName(), "testSignUpRequest.lastname is not null");
 	}
 
 	@Test
 	void lastnameSetterTest() {
 		String testLastname = "Token";
 		SignUpRequest testSignUpRequest = new SignUpRequest();
-		testSignUpRequest.setLastname(testLastname);
-		assertEquals(0, testSignUpRequest.getLastname().compareTo(testLastname));
+		testSignUpRequest.setLastName(testLastname);
+		assertEquals(0, testSignUpRequest.getLastName().compareTo(testLastname));
 	}
 
 	@Test
@@ -102,8 +102,8 @@ public class SignUpRequestTest {
 		SignUpRequest testSignUpRequest = new SignUpRequest(testUsername, testFirstname, testLastname, testEmail,
 				testPassword);
 		assertEquals(0, testSignUpRequest.getUsername().compareTo(testUsername));
-		assertEquals(0, testSignUpRequest.getFirstname().compareTo(testFirstname));
-		assertEquals(0, testSignUpRequest.getLastname().compareTo(testLastname));
+		assertEquals(0, testSignUpRequest.getFirstName().compareTo(testFirstname));
+		assertEquals(0, testSignUpRequest.getLastName().compareTo(testLastname));
 		assertEquals(0, testSignUpRequest.getEmail().compareTo(testEmail));
 		assertEquals(0, testSignUpRequest.getPassword().compareTo(testPassword));
 	}

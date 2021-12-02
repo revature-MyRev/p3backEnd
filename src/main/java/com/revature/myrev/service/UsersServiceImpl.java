@@ -25,7 +25,7 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	@Override
 	public Users findByUserName(String username) {
-		Users user = userRepository.findByUserName(username);
+		Users user = userRepository.findByUsername(username);
 		if (user == null) {
 			throw new ObjectNotFoundException("User Record Not Found");
 		} 

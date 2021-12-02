@@ -9,8 +9,8 @@ import java.util.Set;
 public class SignUpRequest {
 
 	private String username;
-	private String firstname;
-	private String lastname;
+	private String firstName;
+	private String lastName;
 	private String email;
 	private String password;
 	private Set<String> role;
@@ -20,11 +20,11 @@ public class SignUpRequest {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SignUpRequest(String username, String firstname, String lastname, String email, String password) {
+	public SignUpRequest(String username, String firstName, String lastName, String email, String password) {
 		super();
 		this.username = username;
-		this.firstname = firstname;
-		this.lastname = lastname;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 	}
@@ -37,20 +37,20 @@ public class SignUpRequest {
 		this.username = username;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getEmail() {
@@ -79,7 +79,7 @@ public class SignUpRequest {
 
 	@Override
 	public String toString() {
-		return "SignUpRequest [username=" + username + ", firstname=" + firstname + ", lastname=" + lastname
+		return "SignUpRequest [username=" + username + ", firstName=" + firstName + ", lastname=" + lastName
 				+ ", email=" + email + ", password=" + password + ", role=" + role + "]";
 	}
 

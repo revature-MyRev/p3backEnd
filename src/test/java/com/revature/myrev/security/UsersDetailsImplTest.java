@@ -52,7 +52,7 @@ class UsersDetailsImplTest {
 	@Test
 	@Order(3)
 	void usersDetailsImplConstructorAllParamsTest() {
-		UsersDetailsImpl testUsersDetailsImpl = new UsersDetailsImpl(testUser.getUserId(), testUser.getUserName(),
+		UsersDetailsImpl testUsersDetailsImpl = new UsersDetailsImpl(testUser.getUserId(), testUser.getUsername(),
 				testUser.getEmail(), testUser.getPassword(), testControl.getAuthorities());
 		assertNotNull(testUsersDetailsImpl, "Constructor with all Params failed");
 	}
@@ -78,7 +78,7 @@ class UsersDetailsImplTest {
 	@Test
 	@Order(7)
 	void usersDetailsImplUsernameGetterTest() {
-		assertEquals(testUser.getUserName(), testControl.getUsername());
+		assertEquals(testUser.getUsername(), testControl.getUsername());
 	}
 
 	@Test
@@ -114,7 +114,7 @@ class UsersDetailsImplTest {
 	void usersDetailsImplEqualsTest() {
 		assertTrue(testControl.equals(testControl), "testControl.equals(testControl) failed");
 		assertFalse(testControl.equals(null), "testControl.equals(null) came out true");
-		UsersDetailsImpl testUsersDetailsImpl = new UsersDetailsImpl(testUser.getUserId(), testUser.getUserName(),
+		UsersDetailsImpl testUsersDetailsImpl = new UsersDetailsImpl(testUser.getUserId(), testUser.getUsername(),
 				testUser.getEmail(), testUser.getPassword(), testControl.getAuthorities());
 		assertTrue(testControl.equals(testUsersDetailsImpl), "testControl.equals(testUsersDetailsImpl) failed");
 	}
