@@ -3,11 +3,10 @@ Feature: Log in
 @tag1
 Scenario: Successful Login with Valid Credentials
 Given User is on Login Page
-When User enters Username <username> and Password <password>
-|username    |password  |
-| Krishna123 | kkkk1234 |
-And User click submit button 
-Then Message displayed Login Successfully
+When User enters username and password 
+Then User click submit button 
+Then User goes to feed page
+#Then Message displayed Login Successfully
 
 # @tag2
  #Scenario: Standard login with invalid credentials
@@ -21,7 +20,7 @@ Then Message displayed Login Successfully
  # Test for invalid user name
  #|fakename             |testing         |
  # Test for invalid password
- |testing              |fakepassword    |
+ #|testing              |fakepassword    |
  # Test for invalid user name and password
 # |fakename             |fakepassword    |
  #And User click submit button
