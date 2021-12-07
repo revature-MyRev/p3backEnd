@@ -1,9 +1,9 @@
 Feature: Log in
 
-  @tag1
+  @tag2
   Scenario: Standard login with invalid credentials
     Given User is on Login Page
-    When User enters username <username> and password <password>
+    When User enters username <username> and password <password> User click submit button
       # Test for missing information
       | username   | password |
       |            | Test@153 |
@@ -15,16 +15,14 @@ Feature: Log in
     #|testing              |fakepassword    |
     # Test for invalid user name and password
     # |fakename             |fakepassword    |
-    And User click submit button
     Then Login show error
 
-  @tag2
+  @tag1
   Scenario: Successful Login with Valid Credentials
     Given User is on Login Page
-    When User enters username <username> and password <password>
+    When User enters username <username> and password <password> User click submit button
       | username   | username |
       | krishna123 | kkkk1234 |
-    Then User click submit button
     Then User goes to feed page
  #@tag3
 # Scenario: Redirect to registration page

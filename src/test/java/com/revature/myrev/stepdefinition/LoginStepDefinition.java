@@ -8,39 +8,56 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.revature.myrev.model.Users;
-
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class LoginStepDefinition {
-	WebDriver driver = new ChromeDriver();
-	Users users = new Users();
+	WebDriver driver;
+	// Users users = new Users();
+
+	@Before
+	public void setUp() {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\mekri\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		driver = new ChromeDriver();
+	}
+
+	@After
+	public void tearDown() {
+		driver.close();
+		driver.quit();
+	}
 
 	@Given("User is on Login Page")
 	public void user_is_on_login_page() {
-		System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe");
+
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get("http://localhost:4200");
 
 	}
 
-	@When("User enters username <username> and password <password>")
-	public void user_enters_username_username_and_password_password(DataTable table) {
+	@When("User enters username <username> and password <password> User click submit button")
+	public void user_enters_username_username_and_password_password_user_click_submit_button(DataTable table) {
 		// List<String> data = table.row();
 		List<List<String>> datas = table.asLists();
-		System.out.println(datas.get(0).toString());
-		System.out.println(datas.get(1).toString());
-		for (int i =1; i<datas.size(); i++) {
+		System.out.println("Datatable" + datas.toString());
+//		System.out.println(datas.get(0).toString());
+//		System.out.println(datas.get(1).toString());
+		for (int i = 1; i < datas.size(); i++) {
 			if (datas.get(i).get(0) != null) {
 				System.out.println(datas.get(0).toString());
 				driver.findElement(By.name("username")).sendKeys(datas.get(i).get(0));
-			}if(datas.get(i).get(1) != null) {
-				driver.findElement(By.name("password")).sendKeys(datas.get(i).get(1));
+				System.out.println("data "+i+" " + datas.get(i).get(0).toString());
 			}
-		//	driver.findElement(By.name("password")).sendKeys(datas.get(i).get(1));
+			if (datas.get(i).get(1) != null) {
+				driver.findElement(By.name("password")).sendKeys(datas.get(i).get(1));
+				System.out.println("data "+i +" " + datas.get(i).get(1).toString());
+			}
+			driver.findElement(By.tagName("button")).click();
+			// driver.findElement(By.name("password")).sendKeys(datas.get(i).get(1));
 			driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
 		}
 
@@ -58,9 +75,16 @@ public class LoginStepDefinition {
 
 	@When("User click submit button")
 	public void user_click_submit_button() {
-		driver.findElement(By.name("btnSubmit")).click();
+		//driver.findElement(By.tagName("button")).click();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
+//	@Given("User is on Login page")
+//	public void user_is_on_login_Page() {
+//		System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe");
+//		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+//		driver.get("http://localhost:4200");
+//
+//	}
 
 //	@Then("Go to the home page")
 //	public void go_to_the_home_page() {
@@ -69,7 +93,7 @@ public class LoginStepDefinition {
 	@Then("User goes to feed page")
 	public void user_goes_to_feed_page() {
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(10000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -101,7 +125,15 @@ public class LoginStepDefinition {
 
 	@Then("Login show error")
 	public void login_show_error() {
-		driver.close();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Assertions.assertTrue(driver.getCurrentUrl().equals("http://localhost:4200/"),
+				"Actual value was " + driver.getCurrentUrl());
+		// driver.close();
 	}
 
 //	@Then("Message displayed Login Successfully")
