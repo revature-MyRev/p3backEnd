@@ -96,11 +96,11 @@ class UsersControllerTest {
 		when(service.findByUserName(any())).thenReturn(user1);
 
 		MockHttpServletResponse response = mvc
-				.perform(get("/users/findByUserName/test123").accept(MediaType.APPLICATION_JSON)).andReturn()
+				.perform(get("/users/findByUsername/test123").accept(MediaType.APPLICATION_JSON)).andReturn()
 				.getResponse();
 
 		Assert.assertTrue(response.getStatus() == HttpStatus.OK.value());
-		verify(service, times(1)).findByUserName("test123");
+		verify(service, times(1)).findByUsername("test123");
 	}
 
 	/**
@@ -114,11 +114,11 @@ class UsersControllerTest {
 		when(service.findByUserName(any())).thenThrow(ObjectNotFoundException.class);
 
 		MockHttpServletResponse response = mvc
-				.perform(get("/users/findByUserName/test123").accept(MediaType.APPLICATION_JSON)).andReturn()
+				.perform(get("/users/findByUsername/test123").accept(MediaType.APPLICATION_JSON)).andReturn()
 				.getResponse();
 		
 		Assert.assertTrue(response.getStatus() == HttpStatus.NOT_FOUND.value());
-        verify(service, times(1)).findByUserName("test123");
+        verify(service, times(1)).findByUsername("test123");
 	}
 	
  // Adding new user
