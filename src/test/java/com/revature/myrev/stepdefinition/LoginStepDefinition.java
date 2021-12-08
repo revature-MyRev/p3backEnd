@@ -149,15 +149,23 @@ public class LoginStepDefinition {
 //		
 //	}
 //
-//	@When("Click the RevUp button")
-//	public void click_the_rev_up_button() {
-//		driver.findElement(By.name("btnRevUp")).click();
-//		
-//	}
-//
-//	@Then("Go to the registration page")
-//	public void go_to_the_registration_page() {
-//		driver.get("http://localhost:4200/register");
-//	   
-//	}
+	@When("Click the RevUp button")
+	public void click_the_rev_up_button() {
+		driver.findElement(By.className("login__card__register-link")).click();
+		
+	}
+
+	@Then("Go to the registration page")
+	public void go_to_the_registration_page() {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Assertions.assertTrue(driver.getCurrentUrl().equals("http://localhost:4200/register"),
+				"Actual value was " + driver.getCurrentUrl());
+		//driver.get("http://localhost:4200/register");
+	   
+	}
 }

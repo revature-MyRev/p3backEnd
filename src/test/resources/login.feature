@@ -24,8 +24,8 @@ Feature: Log in
       | username   | username |
       | krishna123 | kkkk1234 |
     Then User goes to feed page
- #@tag3
-# Scenario: Redirect to registration page
-# Given The user is on the login page
- #When Click the RevUp button 
- #Then Go to the registration page
+ @tag3
+ Scenario: Redirect to registration page
+ Given User is on Login Page
+ When Click the RevUp button 
+ Then Go to the registration page
