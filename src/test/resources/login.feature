@@ -39,4 +39,5 @@ Feature: Log in
       | username | username |
       | chatty   | catnip   |
     Then User goes to feed page
-    
+    Then Click Hamburger Menu
+    And Click Log Out button

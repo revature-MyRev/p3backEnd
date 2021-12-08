@@ -3,11 +3,12 @@ package com.revature.myrev.stepdefinition;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.tomcat.jni.Time;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -94,16 +95,16 @@ public class LoginStepDefinition {
 	@Then("User goes to feed page")
 	public void user_goes_to_feed_page() {
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Assertions.assertTrue(driver.getCurrentUrl().equals("http://localhost:4200/feed"),
 				"Actual value was " + driver.getCurrentUrl());
-	Assertions.assertTrue(driver.findElement(By.id("menu")).getAttribute("class").equals("hamburger-container"), "Actual value =" + driver.findElement(By.id("menu")).getAttribute("class"));
-		
-       // driver.findElement(By.id("edit")).click();
+		Assertions.assertTrue(driver.findElement(By.id("menu")).getAttribute("class").equals("hamburger-container"),
+				"Actual value =" + driver.findElement(By.id("menu")).getAttribute("class"));
+
 	}
 
 //	@When("User enters <username> and <password>")
@@ -135,8 +136,8 @@ public class LoginStepDefinition {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	Assertions.assertTrue(driver.getCurrentUrl().equals("http://localhost:4200/"),
-			"Actual value was " + driver.getCurrentUrl());	
+		Assertions.assertTrue(driver.getCurrentUrl().equals("http://localhost:4200/"),
+				"Actual value was " + driver.getCurrentUrl());
 		// driver.close();
 	}
 
@@ -199,5 +200,34 @@ public class LoginStepDefinition {
 		}
 		Assertions.assertTrue(driver.getCurrentUrl().equals("http://localhost:4200/"),
 				"Actual value was " + driver.getCurrentUrl());
+	}
+
+	@Then("Click Hamburger Menu")
+	public void click_hamburger_menu() {
+		try {
+			WebElement menu = driver.findElement(By.id("menu"));
+
+			Thread.sleep(3000);
+			menu.click();
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Then("Click Log Out button")
+	public void click_log_out_button() {
+		try {
+			WebElement menu = driver.findElement(By.className("logoutBTN"));
+
+			Thread.sleep(3000);
+			menu.click();
+			//Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
