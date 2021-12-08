@@ -21,7 +21,8 @@ public class LoginStepDefinition {
 
 	@Before
 	public void setUp() {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\mekri\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\mekri\\Downloads\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver();
 	}
 
@@ -50,11 +51,11 @@ public class LoginStepDefinition {
 			if (datas.get(i).get(0) != null) {
 				System.out.println(datas.get(0).toString());
 				driver.findElement(By.name("username")).sendKeys(datas.get(i).get(0));
-				System.out.println("data "+i+" " + datas.get(i).get(0).toString());
+				System.out.println("data " + i + " " + datas.get(i).get(0).toString());
 			}
 			if (datas.get(i).get(1) != null) {
 				driver.findElement(By.name("password")).sendKeys(datas.get(i).get(1));
-				System.out.println("data "+i +" " + datas.get(i).get(1).toString());
+				System.out.println("data " + i + " " + datas.get(i).get(1).toString());
 			}
 			driver.findElement(By.tagName("button")).click();
 			// driver.findElement(By.name("password")).sendKeys(datas.get(i).get(1));
@@ -75,7 +76,7 @@ public class LoginStepDefinition {
 
 	@When("User click submit button")
 	public void user_click_submit_button() {
-		//driver.findElement(By.tagName("button")).click();
+		// driver.findElement(By.tagName("button")).click();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 //	@Given("User is on Login page")
@@ -100,6 +101,9 @@ public class LoginStepDefinition {
 		}
 		Assertions.assertTrue(driver.getCurrentUrl().equals("http://localhost:4200/feed"),
 				"Actual value was " + driver.getCurrentUrl());
+	Assertions.assertTrue(driver.findElement(By.id("menu")).getAttribute("class").equals("hamburger-container"), "Actual value =" + driver.findElement(By.id("menu")).getAttribute("class"));
+		
+       // driver.findElement(By.id("edit")).click();
 	}
 
 //	@When("User enters <username> and <password>")
@@ -131,8 +135,8 @@ public class LoginStepDefinition {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Assertions.assertTrue(driver.getCurrentUrl().equals("http://localhost:4200/"),
-				"Actual value was " + driver.getCurrentUrl());
+	Assertions.assertTrue(driver.getCurrentUrl().equals("http://localhost:4200/"),
+			"Actual value was " + driver.getCurrentUrl());	
 		// driver.close();
 	}
 
@@ -149,10 +153,10 @@ public class LoginStepDefinition {
 //		
 //	}
 //
-	@When("Click the RevUp button")
-	public void click_the_rev_up_button() {
+	@When("Click the register button")
+	public void click_the_register_button() {
 		driver.findElement(By.className("login__card__register-link")).click();
-		
+
 	}
 
 	@Then("Go to the registration page")
@@ -165,7 +169,35 @@ public class LoginStepDefinition {
 		}
 		Assertions.assertTrue(driver.getCurrentUrl().equals("http://localhost:4200/register"),
 				"Actual value was " + driver.getCurrentUrl());
-		//driver.get("http://localhost:4200/register");
-	   
+		// driver.get("http://localhost:4200/register");
+
+	}
+
+	@When("User enters Username <username>, First Name <first_name>, Last Name <last_name>, Email <email>, & Password <password>")
+	public void user_enters_username_username_first_name_first_name_last_name_last_name_email_email_password_password(
+			DataTable table) {
+		List<List<String>> datas = table.asLists();
+		driver.findElement(By.name("username")).sendKeys(datas.get(1).get(0));
+		driver.findElement(By.name("firstName")).sendKeys(datas.get(1).get(1));
+		driver.findElement(By.name("lastName")).sendKeys(datas.get(1).get(2));
+		driver.findElement(By.name("email")).sendKeys(datas.get(1).get(3));
+		driver.findElement(By.name("password")).sendKeys(datas.get(1).get(4));
+	}
+
+	@When("Click the RevUp button")
+	public void click_the_rev_up_button() {
+		driver.findElement(By.id("btn")).click();
+	}
+
+	@Then("User goes to login page")
+	public void user_goes_to_login_page() {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Assertions.assertTrue(driver.getCurrentUrl().equals("http://localhost:4200/"),
+				"Actual value was " + driver.getCurrentUrl());
 	}
 }

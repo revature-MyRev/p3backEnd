@@ -24,8 +24,19 @@ Feature: Log in
       | username   | username |
       | krishna123 | kkkk1234 |
     Then User goes to feed page
- @tag3
- Scenario: Redirect to registration page
- Given User is on Login Page
- When Click the RevUp button 
- Then Go to the registration page
+
+  @tag3
+  Scenario: Redirect to registration page
+    Given User is on Login Page
+    When Click the register button
+    Then Go to the registration page
+    When User enters Username <username>, First Name <first_name>, Last Name <last_name>, Email <email>, & Password <password>
+      | username | first_name | last_name | email            | password |
+      | chatty   | Chatita    | The Brave | chatty@email.com | catnip   |
+    And Click the RevUp button
+    Then User goes to login page
+    When User enters username <username> and password <password> User click submit button
+      | username | username |
+      | chatty   | catnip   |
+    Then User goes to feed page
+    
