@@ -5,16 +5,16 @@ Feature: Log in
     Given User is on Login Page
     When User enters username <username> and password <password> User click submit button
       # Test for missing information
-      | username   | password |
-      |            | Test@153 |
-      | testuser_1 |          |
-      |            |          |
-    # Test for invalid user name
-    #|fakename             |testing         |
-    # Test for invalid password
-    #|testing              |fakepassword    |
-    # Test for invalid user name and password
-    # |fakename             |fakepassword    |
+      | username   | password     |
+      |            | Test@153     |
+      | testuser_1 |              |
+      |            |              |
+      # Test for invalid user name
+      | fakename   | testing      |
+      # Test for invalid password
+      | testing    | fakepassword |
+      # Test for invalid user name and password
+      | fakename   | fakepassword |
     Then Login show error
 
   @tag1

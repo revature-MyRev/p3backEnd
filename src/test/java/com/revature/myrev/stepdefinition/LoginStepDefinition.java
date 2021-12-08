@@ -187,7 +187,15 @@ public class LoginStepDefinition {
 
 	@When("Click the RevUp button")
 	public void click_the_rev_up_button() {
-		driver.findElement(By.id("btn")).click();
+		
+		try {
+			Thread.sleep(3000);
+			driver.findElement(By.id("btn")).click();
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Then("User goes to login page")
@@ -205,7 +213,7 @@ public class LoginStepDefinition {
 	@Then("Click Hamburger Menu")
 	public void click_hamburger_menu() {
 		try {
-			WebElement menu = driver.findElement(By.id("menu"));
+			WebElement menu = driver.findElement(By.className("hamburger-container"));
 
 			Thread.sleep(3000);
 			menu.click();
