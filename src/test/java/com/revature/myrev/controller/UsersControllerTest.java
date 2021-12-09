@@ -63,9 +63,6 @@ class UsersControllerTest {
 		closeable.close();
 	}
 
-	@Test
-	public void test() {
-	}
 //
 //	/**
 //	 * Test for returned user on valid user name
