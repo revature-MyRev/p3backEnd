@@ -1,7 +1,6 @@
 package com.revature.myrev.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.After;
 import org.junit.Before;
@@ -17,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
+
 import com.revature.myrev.MyRevApplication;
 import com.revature.myrev.model.Feed;
 import com.revature.myrev.repository.FeedRepository;

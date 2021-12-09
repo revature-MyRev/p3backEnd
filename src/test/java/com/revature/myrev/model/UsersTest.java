@@ -1,6 +1,8 @@
 package com.revature.myrev.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * @author Dipanjali Ghosh
@@ -47,15 +49,15 @@ class UsersTest {
 	@Test
 	void userNameGetterTest() {
 		Users testUser = new Users();
-		assertNull(testUser.getUserName(), "testUser.username not null");
+		assertNull(testUser.getUsername(), "testUser.username not null");
 	}
 
 	@Test
 	void userNameSetterTest() {
 		String test = "testUserName";
 		Users testUser = new Users();
-		testUser.setUserName(test);
-		assertEquals(0, testUser.getUserName().compareTo(test));
+		testUser.setUsername(test);
+		assertEquals(0, testUser.getUsername().compareTo(test));
 	}
 
 	@Test
@@ -172,12 +174,10 @@ class UsersTest {
 
 	@Test
 	void usersToStringTest() {
-		String test = "User [userId=" + "0" + ", age=" + "0" + ", userName=" + "null" + ", gender=" + "null"
+		String test = "User [userId=" + "0" + ", age=" + "0" + ", username=" + "null" + ", gender=" + "null"
 				+ ", photo=" + "null" + ", email=" + "null" + ", firstName=" + "null" + ", lastName=" + "null"
 				+ ", middleName=" + "null" + ", jobTitle=" + "null" + "]";
 		Users testUser = new Users();
-//		System.out.println("test = " + test);	// These two print statements were added to figure out just what happens with toString
-//		System.out.println("testUser.toString() = " + testUser);
 		assertEquals(0, testUser.toString().compareTo(test));
 	}
 
@@ -194,7 +194,7 @@ class UsersTest {
 		String lastName = "Last";
 		String middleName = "Middle";
 		String jobTitle = "testJobTitle";
-		String test = "User [userId=" + userId + ", age=" + age + ", userName=" + userName + ", gender=" + gender
+		String test = "User [userId=" + userId + ", age=" + age + ", username=" + userName + ", gender=" + gender
 				+ ", photo=" + photo + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", middleName=" + middleName + ", jobTitle=" + jobTitle + "]";
 		Users testUser = new Users(userId, age, userName, password, gender, photo, email, firstName, lastName,

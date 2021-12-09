@@ -1,4 +1,4 @@
-package com.revature.myrev.service; 
+package com.revature.myrev.service;
 
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.times;
@@ -15,12 +15,10 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,7 +29,8 @@ import com.revature.myrev.MyRevApplication;
 import com.revature.myrev.model.Users;
 import com.revature.myrev.repository.UsersRepository;
 
-@SpringBootTest // -was working with this annotation before the merge conflict, will pass test while commented out -> contextload test fails also, could be the cause
+@SpringBootTest // -was working with this annotation before the merge conflict, will pass test
+				// while commented out -> contextload test fails also, could be the cause
 @ContextConfiguration(classes = MyRevApplication.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Rollback(false)
@@ -48,87 +47,91 @@ class UsersServiceImplTest {
 	@InjectMocks
 	private UsersService service = new UsersServiceImpl();
 	/** Used for the initialization & closing of mocked fields */
-    private AutoCloseable closeable;
-	
+	private AutoCloseable closeable;
+
 	@Before
-	public void setUp () {
+	public void setUp() {
 		closeable = MockitoAnnotations.openMocks(this);
 	}
-	
-	
+
 	@After
-	public void releaseMocks () throws Exception {
+	public void releaseMocks() throws Exception {
 		closeable.close();
 	}
-	
+
 	/**
 	 * Test that findByUserName either finds a user or throws an exception
 	 */
 	@Test
-	public void testFindByUsername () {
+	public void testFindByUsername() {
 		List<Users> list = new ArrayList<>();
-		Users fake = new Users(0, 52, "fake", "not real", "none", "photo", "email", "firstName", "lastName", "middleName", "jobTitle");
-		
+		Users fake = new Users(0, 52, "fake", "not real", "none", "photo", "email", "firstName", "lastName",
+				"middleName", "jobTitle");
+
 		doAnswer(invocation -> {
-			for (Users u: list) {
-				if (u.getUserName().equals(fake.getUserName())) {
+			for (Users u : list) {
+				if (u.getUsername().equals(fake.getUsername())) {
 					return u;
 				}
-			} 
+			}
 			return null;
-		}).when(repository).findByUserName(fake.getUserName());
-			
-		//test for exception on empty table	
+		}).when(repository).findByUsername(fake.getUsername());
+
+		// test for exception on empty table
 		try {
-		    Users test = service.findByUserName(fake.getUserName());
+			Users test = service.findByUserName(fake.getUsername());
 		} catch (Exception e) {
 			Assertions.assertEquals(e.getMessage(), "User Record Not Found");
-			verify(service,times(1)).findByUserName(fake.getUserName());
+			verify(service, times(1)).findByUserName(fake.getUsername());
 		}
-		
-		
-		//test for exception on invalid user name on nonempty table
-		Users one = new Users(1, 30, "test123", "testpassword", "gender", "photo", "email", "firstName", "lastName", "middleName", "jobTitle");
-		Users two = new Users(2, 35, "num123", "passwordtest", "gender", "photo", "email", "firstName", "lastName", "middleName", "jobTitle");
-		Users three = new Users(3, 45, "fakeusername", "fakepassword", "gender", "photo", "email", "firstName", "lastName", "middleName", "jobTitle");
+
+		// test for exception on invalid user name on nonempty table
+		Users one = new Users(1, 30, "test123", "testpassword", "gender", "photo", "email", "firstName", "lastName",
+				"middleName", "jobTitle");
+		Users two = new Users(2, 35, "num123", "passwordtest", "gender", "photo", "email", "firstName", "lastName",
+				"middleName", "jobTitle");
+		Users three = new Users(3, 45, "fakeusername", "fakepassword", "gender", "photo", "email", "firstName",
+				"lastName", "middleName", "jobTitle");
 		list.add(one);
 		list.add(two);
 		list.add(three);
-		
+
 		try {
-		    Users test = service.findByUserName(fake.getUserName());
+			Users test = service.findByUserName(fake.getUsername());
 		} catch (Exception e) {
 			Assertions.assertEquals(e.getMessage(), "User Record Not Found");
-			verify(service,times(2)).findByUserName(fake.getUserName());
+			verify(service, times(2)).findByUserName(fake.getUsername());
 		}
-		
-		
-		//test for returned user on valid user name
-		when(repository.findByUserName("test123")).thenReturn(one);			//mock UsersServiceImpl to call findByUserName and return matching user
-		
-		Users test = service.findByUserName("test123");	
-		
+
+		// test for returned user on valid user name
+		when(repository.findByUsername("test123")).thenReturn(one); // mock UsersServiceImpl to call findByUserName and
+																	// return matching user
+
+		Users test = service.findByUserName("test123");
+
 		Assertions.assertNotNull(test);
-		Assertions.assertEquals(30, test.getAge());							//age should match returned user age
-		Assertions.assertEquals("testpassword", test.getPassword());		//password should match returned user password
-		verify(service,times(1)).findByUserName("test123");					//verify UsersServiceImpl calls findByUserName method 1 time	
+		Assertions.assertEquals(30, test.getAge()); // age should match returned user age
+		Assertions.assertEquals("testpassword", test.getPassword()); // password should match returned user password
+		verify(service, times(1)).findByUserName("test123"); // verify UsersServiceImpl calls findByUserName method 1
+																// time
 	}
 
-    /**
-     * Tests that a user is saved 
-     */
+	/**
+	 * Tests that a user is saved
+	 */
 	@Test
-	public void testSave () {
-		Users test = new Users(0, 30, "test123", "testpassword", "gender", "photo", "email", "firstName", "lastName", "middleName", "jobTitle");
+	public void testSave() {
+		Users test = new Users(0, 30, "test123", "testpassword", "gender", "photo", "email", "firstName", "lastName",
+				"middleName", "jobTitle");
 		List<Users> mockdb = new ArrayList<Users>();
 		doAnswer(invocation -> {
 			test.setUserId(1);
 			mockdb.add(test);
 			return test;
 		}).when(repository).save(test);
-		
+
 		Users result = service.save(test);
 		Assertions.assertNotNull(result);
-        Assertions.assertEquals(test.toString(), result.toString());
+		Assertions.assertEquals(test.toString(), result.toString());
 	}
 }

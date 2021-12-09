@@ -21,10 +21,7 @@ import com.revature.myrev.model.Post;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 class PostRepositoryTest {
-// Not mocking anything here.
 
-	// Be sure to delete any additions made to db tables at the end of each test
-	/** PostRepository for testing */
 	@Autowired
 	private PostRepository repository;
 
@@ -93,34 +90,8 @@ class PostRepositoryTest {
 
 	public void findAllPostsTest() {
 		Post test = new Post();
+		repository.save(test);
 		List<Post> posts = repository.findAll();
 		Assertions.assertNotEquals(0, posts.size());
 	}
-
-//	@Test
-//	@Order(7)
-//	
-//	public void likePostTest() {
-//		List<Post> posts = repository.findAll();
-//		Post likeMe = posts.get(posts.size()-1);
-//		
-//		// int likeCount +1
-//		boolean result = repository.likePost(likeMe);
-//
-//		Assertions.assertEquals(true, result);
-//	}
-//	
-//	@Test
-//	@Order(8)
-//	
-//	public void dislikePostTest() {
-//		List<Post> posts = repository.findAll();
-//		Post dislikeMe = posts.get(posts.size()-1);
-//		
-//		// int likeCount -1
-//		boolean result = repository.dislikePost(dislikeMe);
-//
-//		Assertions.assertEquals(true, result);
-//		
-//	}
 }

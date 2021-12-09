@@ -115,6 +115,7 @@ class PostServiceImplTest {
 
 	public void findAllPostsTest() {
 		Post test = new Post();
+		postServ.savePost(test);
 		List<Post> posts = postServ.findAllPosts();
 		Assertions.assertNotEquals(0, posts.size());
 	}

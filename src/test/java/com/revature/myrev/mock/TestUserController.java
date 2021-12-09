@@ -7,17 +7,15 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.util.Collections;
-
-import com.revature.myrev.controller.UserController;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import com.revature.myrev.controller.UserController;
 import com.revature.myrev.model.Users;
-
 import com.revature.myrev.repository.UsersRepository;
 import com.revature.myrev.service.UsersServiceImpl;
 
@@ -45,6 +43,7 @@ public class TestUserController {
 	}
 
 	@Test
+	@Disabled
 	final void testGetUsers() {
 		when(usersService.findById(anyInt())).thenReturn(users);
 		assertNotNull(users);

@@ -1,7 +1,5 @@
 package com.revature.myrev.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.MethodOrderer;
@@ -59,7 +57,6 @@ class PostControllerTest {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
 	}
 
 }
